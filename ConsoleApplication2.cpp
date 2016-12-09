@@ -23,6 +23,7 @@
 #include <iostream> 
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "Player.h"
 
 
 
@@ -33,7 +34,7 @@
 int main()
 {
 	// Create the main window 
-	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "SFML First Program");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "SFML First Program");
 
 	//load a font
 	//sf::Font font;
@@ -50,8 +51,15 @@ int main()
 	////create a circle
 	//sf::CircleShape circle(50);
 	//circle.setPosition(300, 200);
-
-
+	sf::Texture playerTex;
+	sf::Texture background2;
+	background2.loadFromFile("back.png");
+	sf::Sprite backgorund;
+	backgorund.setTexture(background2);
+	backgorund.setPosition(0, 0);
+	playerTex.loadFromFile("ship.png");
+	Player *_player = new Player(sf::Vector2f(200, 200),sf::Vector2f(1,1),playerTex);
+	sf::View view1(sf::Vector2f(_player->getSprite().getPosition().x,_player->getSprite().getPosition().y),sf::Vector2f(300, 463));
 
 	// Start game loop 
 	while (window.isOpen())
@@ -68,12 +76,34 @@ int main()
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
 
+			// Escape key : exit 
+			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::W))
+			{
+				_player->move(sf::Vector2f(0,-0.001));
+				sf::View view1(sf::Vector2f(_player->getSprite().getPosition().x, _player->getSprite().getPosition().y), sf::Vector2f(300, 463));
+			}
+			// Escape key : exit 
+			else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::S))
+			{
+				_player->move(sf::Vector2f(0,0.001));
+			  
+			}
+			else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::D))
+			{
+				_player->move(sf::Vector2f(0.001, 0));
 
+			}
+			else if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::A))
+			{
+				_player->move(sf::Vector2f(-0.001, 0));
+			}
 		}
-
+		view1 = sf::View(sf::Vector2f(_player->getSprite().getPosition().x, _player->getSprite().getPosition().y), sf::Vector2f(300, 463));
 		//prepare frame
 		window.clear();
-
+		window.setView(view1);
+		window.draw(backgorund);
+		window.draw(_player->getSprite());
 		//draw frame items
 		/*window.draw(text);
 
