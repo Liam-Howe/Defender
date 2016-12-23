@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////// 
 // Headers 
 //////////////////////////////////////////////////////////// 
+#include "stdafx.h" 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 
 #pragma comment(lib,"sfml-audio-d.lib") 
@@ -20,7 +21,7 @@
 #include "SFML/Graphics.hpp" 
 #include "SFML/OpenGL.hpp" 
 #define _USE_MATH_DEFINES
-#include "./include/Menu.hpp"
+#include "../include/Menu.hpp"
 
 
 ////////////////////////////////////////////////////////////

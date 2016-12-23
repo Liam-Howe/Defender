@@ -1,5 +1,7 @@
-#include "stdafx.h"
-#include "Player.h"
+//#include "../include/stdafx.h"
+#include "/Defender/include/stdafx.h"
+//#include "/Defender/include/stdafx.h"
+#include "../include/Player.h"
 
 
 
