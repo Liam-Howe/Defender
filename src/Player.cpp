@@ -1,10 +1,4 @@
-//#include "../include/stdafx.h"
-#include "/Defender/include/stdafx.h"
-//#include "/Defender/include/stdafx.h"
 #include "../include/Player.h"
-
-
-
 
 Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos) , m_Vel(_Vel) , m_Tex(_Tex)
 {

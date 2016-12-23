@@ -1,9 +1,5 @@
-//#include "../stdafx.h"
-#include <SFML/Graphics.hpp>
-
 #include "../include/Menu.hpp"
 #include "../include/Play.hpp"
-#include "../include/game_state.hpp"
 
 Menu::Menu(Game* game)
 {
@@ -29,7 +25,6 @@ void Menu::update()
 
 	return;
 		
-	
 }
 
 Menu::~Menu()

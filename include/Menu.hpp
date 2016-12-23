@@ -3,8 +3,6 @@
 
 
 #include <SFML/Graphics.hpp>
-
-
 #include "game_state.hpp"
 
 class Menu : public GameState
