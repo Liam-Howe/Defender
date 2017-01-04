@@ -6,7 +6,7 @@ class Astronaut
 
 public:
 
-	Astronaut()
+	Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex);
 	~Astronaut();
 
 	sf::Sprite getSprite();
@@ -17,11 +17,10 @@ public:
 
 private:
 
-	sf::Vector2f m_AstroPos;
-	sf::Vector2f m_AstroVel;
-	sf::Vector2f m_AstroAccel;
-	sf::Texture m_AstroTex;
-	sf::Sprite m_AstroSprite;
+	sf::Vector2f m_Pos;
+	sf::Vector2f m_Vel;
+	sf::Texture m_Tex;
+	sf::Sprite m_Sprite;
 	float randX;
 	float randY;
 };

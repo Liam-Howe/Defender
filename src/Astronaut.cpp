@@ -1,12 +1,11 @@
 
 #include "../include/Astronaut.h"
 
-Astronaut::Astronaut(sf::Vector2f m_pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos), m_Vel(_Vel), m_Tex(_Tex)
+Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos), m_Vel(_Vel), m_Tex(_Tex)
 {
-	m_AstroSprite.setTexture(m_AstroTex);
-	m_AstroSprite.setPosition(m_AstroPos);
-	m_AstroSprite.setOrigin(m_AstroSprite.getGlobalBounds().width / 2, m_AstroSprite.getGlobalBounds().height / 2);
-	m_AstroAccel = sf::Vector2f(0, 0);
+	m_Sprite.setTexture(m_Tex);
+	m_Sprite.setPosition(m_Pos);
+	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 }
 
 Astronaut::~Astronaut()
@@ -19,6 +18,11 @@ void Astronaut::movement()
 
 	//randX = rand_FloatRange(screenHeight);
 	//randY = rand_FloatRange(screenHeight);
+
+}
+
+void Astronaut::update()
+{
 
 }
 
