@@ -24,6 +24,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Player.h"
+#include "Astronaut.h"
 
 
 
@@ -52,13 +53,17 @@ int main()
 	//sf::CircleShape circle(50);
 	//circle.setPosition(300, 200);
 	sf::Texture playerTex;
+	sf::Texture AstroTex;
 	sf::Texture background2;
 	background2.loadFromFile("back.png");
-	sf::Sprite backgorund;
-	backgorund.setTexture(background2);
-	backgorund.setPosition(0, 0);
+	sf::Sprite background;
+	background.setTexture(background2);
+	background.setPosition(0, 0);
 	playerTex.loadFromFile("ship.png");
+	AstroTex.loadFromFile("astronaut.png");
 	Player *_player = new Player(sf::Vector2f(200, 200),sf::Vector2f(1,1),playerTex);
+	Astronaut *_astro = new Astronaut(sf::Vector2f(200, 200), sf::Vector2f(1, 1), playerTex);
+
 	sf::View view1(sf::Vector2f(_player->getSprite().getPosition().x,_player->getSprite().getPosition().y),sf::Vector2f(300, 463));
 
 	// Start game loop 
@@ -98,12 +103,14 @@ int main()
 				_player->move(sf::Vector2f(-0.001, 0));
 			}
 		}
+		_astro->movement();
 		view1 = sf::View(sf::Vector2f(_player->getSprite().getPosition().x, _player->getSprite().getPosition().y), sf::Vector2f(300, 463));
 		//prepare frame
 		window.clear();
 		window.setView(view1);
 		window.draw(backgorund);
 		window.draw(_player->getSprite());
+		window.draw(_astro->getSprite());
 		//draw frame items
 		/*window.draw(text);
 
