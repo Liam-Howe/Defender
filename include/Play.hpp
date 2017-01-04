@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Menu.hpp"
 #include "obstacles.h"
-
+#include "Astronaut.h"
 class Play : public GameState
 {
 private:
@@ -26,6 +26,9 @@ private:
 	float WidthOffset;
 	float heightOffset;
 	std::vector<obstacles*> m_obstacles;
+	//Astronaut
+	Astronaut * _astro;
+	sf::Texture _astroTexture;
 
 public:
 

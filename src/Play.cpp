@@ -11,7 +11,8 @@ Play::Play(Game* game)
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
 	_backgorundTexture.loadFromFile("Assets/back.png");
-	_astronautTexture.loadFromFile("Assets/a1.jpg");
+	_astronautTexture.loadFromFile("Assets/astronaut.png");
+	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 
@@ -52,9 +53,11 @@ void Play::update()
 	{
 		m_obstacles[i]->update();
 	}
+	_astro->movement();
 	game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
+	game->window.draw(_astro->getSprite());
 	for (int i = 0; i < m_obstacles.size(); i++)
 	{
 		game->window.draw(m_obstacles[i]->getSprite());

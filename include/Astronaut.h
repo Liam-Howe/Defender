@@ -1,6 +1,6 @@
 #pragma once
 #include "SFML\Graphics.hpp"
-
+#include "Astronaut.h"
 class Astronaut
 {
 
@@ -11,6 +11,8 @@ public:
 
 	sf::Sprite getSprite();
 	sf::Vector2f getPosition();
+
+	
 
 	void movement();
 	void update();
