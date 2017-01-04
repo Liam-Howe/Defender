@@ -5,6 +5,7 @@
 #include "game_state.hpp"
 #include "Player.h"
 #include "Menu.hpp"
+#include "obstacles.h"
 
 class Play : public GameState
 {
@@ -14,7 +15,8 @@ private:
 	Player * _player;
 	sf::Texture _playerTexture;
 	sf::View _playerView;
-
+	sf::Texture _astronautTexture;
+	sf::Texture _asteroidTexture;
 	//backgorund properties
 	sf::Texture _backgorundTexture;
 	sf::Sprite _backgroundSprite;
@@ -23,6 +25,8 @@ private:
 	float cameraoffset;
 	float WidthOffset;
 	float heightOffset;
+	std::vector<obstacles*> m_obstacles;
+
 public:
 
 	virtual void draw();

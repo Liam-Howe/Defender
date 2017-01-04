@@ -5,16 +5,34 @@
 Play::Play(Game* game)
 {
 	this->game = game;
+
 	game->window.setFramerateLimit(60); 
+
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
 	_backgorundTexture.loadFromFile("Assets/back.png");
+	_astronautTexture.loadFromFile("Assets/a1.jpg");
 	_backgroundSprite.setTexture(_backgorundTexture);
+	_asteroidTexture.loadFromFile("Assets/asteroids.png");
+
 	 gameHeight = 1056;
 	 gameWidth = 2048;
 	 cameraoffset = 200;
 	 heightOffset = gameHeight - cameraoffset;
 	 WidthOffset = gameWidth - cameraoffset;
+
+	 srand(time(NULL));
+
+	 int _x =0;
+	 int _y =0;
+
+	 for (int i = 0; i < 2; i++)
+	 {
+		 _x = rand() % (1900 - 100 + 1) + 100;
+		 _y = rand() % (900 - 100 + 1) + 100;
+		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
+		 m_obstacles.push_back(_temp);
+	 }
 } 
 
 
@@ -30,9 +48,17 @@ void Play::update()
 	wrapAround();
 	_player->update();
 	
+	for (int i = 0; i < m_obstacles.size(); i++)
+	{
+		m_obstacles[i]->update();
+	}
 	game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
+	for (int i = 0; i < m_obstacles.size(); i++)
+	{
+		game->window.draw(m_obstacles[i]->getSprite());
+	}
 	game->window.display();
 	return;
 }
