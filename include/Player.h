@@ -13,6 +13,8 @@ public :
 	void update();
 	bool  isdecelerating();
 	void setdecelerating(bool value);
+	void setdirection(bool value);
+	bool getDirection();
 private :
 
 	sf::Vector2f m_Pos;
@@ -21,4 +23,5 @@ private :
 	sf::Texture m_Tex;
 	sf::Sprite m_Sprite;
 	bool m_decelerate;
+	bool m_direction;
 };

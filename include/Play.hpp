@@ -7,6 +7,7 @@
 #include "Menu.hpp"
 #include "obstacles.h"
 #include "Astronaut.h"
+#include "Bullet.h"
 class Play : public GameState
 {
 private:
@@ -15,6 +16,10 @@ private:
 	Player * _player;
 	sf::Texture _playerTexture;
 	sf::View _playerView;
+	std::vector<Bullet *> _playerBulletVector;
+	sf::Texture _playerBullet;
+
+
 	sf::Texture _astronautTexture;
 	sf::Texture _asteroidTexture;
 	//backgorund properties
@@ -39,7 +44,7 @@ public:
 	void wrapAround();
 	virtual void update();
 	virtual void handleInput();
-
+	void updatePlayerBullet();
 	~Play();
 
 	Play(Game* game);

@@ -7,6 +7,8 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 	m_accel = sf::Vector2f(0, 0);
 	m_decelerate = false;
+	m_Sprite.setRotation(90);
+	m_direction = false;
 }
 
 Player::~Player()
@@ -23,14 +25,14 @@ void Player::move(sf::Vector2f speed)
 		m_accel.x += 0.01f;
 	}
 
-	if (speed.x >=0)
+	if (speed.x >0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
 		m_Sprite.setScale(-1, 1);
 		m_Vel.x += speed.x;
 		m_Sprite.setRotation(90);
 	}
-	else if (speed.x <= 0)
+	else if (speed.x < 0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
 		m_Sprite.setScale(1, 1);
@@ -39,6 +41,7 @@ void Player::move(sf::Vector2f speed)
 	}
 	if (speed.y >= 0)
 	{
+		
 		m_Vel.y = 0;
 		m_Vel.y += speed.y;
 	}
@@ -53,6 +56,15 @@ void Player::move(sf::Vector2f speed)
 	m_Pos.y += m_Vel.y;
 	m_Sprite.setPosition(m_Pos);
 
+}
+
+void Player::setdirection(bool value)
+{
+	m_direction = value;
+}
+bool Player::getDirection()
+{
+	return m_direction;
 }
 
 bool Player::isdecelerating()

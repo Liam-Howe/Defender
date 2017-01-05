@@ -10,11 +10,13 @@ Play::Play(Game* game)
 
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
+	
 	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
 	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
+	_playerBullet.loadFromFile("Assets/playerBullet.png");
 
 	 gameHeight = 1056;
 	 gameWidth = 2848;
@@ -49,6 +51,12 @@ void Play::update()
 	wrapAround();
 	_player->update();
 	
+
+	if (_playerBulletVector.size() != 0)
+	{
+		updatePlayerBullet();
+	}
+
 	for (int i = 0; i < m_obstacles.size(); i++)
 	{
 		m_obstacles[i]->update();
@@ -57,6 +65,16 @@ void Play::update()
 	//game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
+	
+	if (_playerBulletVector.size() >0)
+	{
+		for (int i = 0; i < _playerBulletVector.size(); i++)
+		{
+			game->window.draw(_playerBulletVector[i]->getSprite());
+		}
+	}
+	
+
 	game->window.draw(_astro->getSprite());
 	////game->window.draw(_leftSprite);
 	//game->window.draw(_rightSprite);
@@ -66,6 +84,14 @@ void Play::update()
 	}
 	game->window.display();
 	return;
+}
+
+void Play::updatePlayerBullet()
+{
+		for (int i = 0; i < _playerBulletVector.size(); i++)
+		{
+			_playerBulletVector[i]->update();
+		}
 }
 
 void Play::updateCamera()
@@ -125,21 +151,6 @@ void Play::updateCamera()
 }
 void Play::wrapAround()
 {
-	/*if (_player->getPosition().x > gameWidth)
-	{
-		float tempY = _player->getPosition().y;
-		_player->setPosition(sf::Vector2f(0, tempY));
-		_playerView.setCenter(sf::Vector2f(_player->getPosition().x,tempY));
-	}
-	if (_player->getPosition().x < 0)
-	{
-		float tempY = _player->getPosition().y;
-		_player->setPosition(sf::Vector2f(gameWidth, tempY));
-		_playerView.setCenter(sf::Vector2f(_player->getPosition().x,tempY));
-	}*/
-
-
-
 	if (_player->getPosition().x > 2648)
 	{
 		float tempY = _player->getPosition().y;
@@ -175,20 +186,35 @@ void Play::handleInput()
 			{
 				_player->setdecelerating(true);
 			}
-
 			if (event.key.code == sf::Keyboard::A)
 			{
-				_player->setdecelerating(true);
+				_player->setdecelerating(true);	
 			}
 			break;
+
 		case sf::Event::KeyPressed:
 			if (event.key.code == sf::Keyboard::D)
 			{
 				_player->setdecelerating(false);
+				_player->setdirection(false);
 			}
 			if (event.key.code == sf::Keyboard::A)
 			{
 				_player->setdecelerating(false);
+				_player->setdirection(true);
+			}
+			if (event.key.code == sf::Keyboard::Space)
+			{
+				if (_player->getDirection() == false)
+				{
+					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, 10);
+					_playerBulletVector.push_back(_temp);
+				}
+				else
+				{
+					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, -10);
+					_playerBulletVector.push_back(_temp);
+				}	
 			}
 			break;
 		}
@@ -200,6 +226,7 @@ void Play::handleInput()
 				_player->move(sf::Vector2f(0, -10));
 			}
 		}
+
 		if (_player->getSprite().getPosition().y + _player->getSprite().getGlobalBounds().height / 2 < gameHeight)
 		{
 			if (event.key.code == sf::Keyboard::S)
