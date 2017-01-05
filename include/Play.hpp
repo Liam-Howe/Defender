@@ -20,6 +20,8 @@ private:
 	//backgorund properties
 	sf::Texture _backgorundTexture;
 	sf::Sprite _backgroundSprite;
+	
+
 	float gameHeight;
 	float gameWidth;
 	float cameraoffset;

@@ -84,7 +84,7 @@ void Game::gameLoop()
 
 Game::Game()
 {
-	this->window.create(sf::VideoMode(2048, 1056), "ET WARS");//,sf::Style::Fullscreen);
+	this->window.create(sf::VideoMode(2848, 1056), "ET WARS");//,sf::Style::Fullscreen);
 	this->window.setFramerateLimit(60);
 	this->window.setVerticalSyncEnabled(true);
 }

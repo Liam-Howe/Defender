@@ -10,14 +10,14 @@ Play::Play(Game* game)
 
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
-	_backgorundTexture.loadFromFile("Assets/back.png");
+	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
 	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 
 	 gameHeight = 1056;
-	 gameWidth = 2048;
+	 gameWidth = 2848;
 	 cameraoffset = 200;
 	 heightOffset = gameHeight - cameraoffset;
 	 WidthOffset = gameWidth - cameraoffset;
@@ -54,10 +54,12 @@ void Play::update()
 		m_obstacles[i]->update();
 	}
 	_astro->movement();
-	game->window.clear(sf::Color::Red);
+	//game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 	game->window.draw(_astro->getSprite());
+	////game->window.draw(_leftSprite);
+	//game->window.draw(_rightSprite);
 	for (int i = 0; i < m_obstacles.size(); i++)
 	{
 		game->window.draw(m_obstacles[i]->getSprite());
@@ -123,7 +125,7 @@ void Play::updateCamera()
 }
 void Play::wrapAround()
 {
-	if (_player->getPosition().x > gameWidth)
+	/*if (_player->getPosition().x > gameWidth)
 	{
 		float tempY = _player->getPosition().y;
 		_player->setPosition(sf::Vector2f(0, tempY));
@@ -134,6 +136,21 @@ void Play::wrapAround()
 		float tempY = _player->getPosition().y;
 		_player->setPosition(sf::Vector2f(gameWidth, tempY));
 		_playerView.setCenter(sf::Vector2f(_player->getPosition().x,tempY));
+	}*/
+
+
+
+	if (_player->getPosition().x > 2648)
+	{
+		float tempY = _player->getPosition().y;
+		_player->setPosition(sf::Vector2f(600, tempY));
+		//_playerView.setCenter(sf::Vector2f(_player->getPosition()));
+	}
+	if (_player->getPosition().x <= 200)
+	{
+		float tempY = _player->getPosition().y;
+		_player->setPosition(sf::Vector2f(2248, tempY));
+		//_playerView.setCenter(sf::Vector2f(_player->getPosition().x, tempY));
 	}
 }
 
