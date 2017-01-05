@@ -19,8 +19,9 @@ private:
 	std::vector<Bullet *> _playerBulletVector;
 	sf::Texture _playerBullet;
 
-
+	std::vector<Astronaut*> m_astronauts;
 	sf::Texture _astronautTexture;
+
 	sf::Texture _asteroidTexture;
 	//backgorund properties
 	sf::Texture _backgorundTexture;

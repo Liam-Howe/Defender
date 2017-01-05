@@ -28,6 +28,14 @@ Play::Play(Game* game)
 
 	 int _x =0;
 	 int _y =0;
+	 int _Ax = 0;
+	 for (int i = 0; i < 2; i++)
+	 {
+		 _Ax = rand() % (1900 - 100 + 1) + 100;
+		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
+		 m_astronauts.push_back(_temp);
+	 }
+
 
 	 for (int i = 0; i < 2; i++)
 	 {
@@ -61,11 +69,19 @@ void Play::update()
 	{
 		m_obstacles[i]->update();
 	}
-	_astro->movement();
+
+	for (int i = 0; i < m_astronauts.size(); i++)
+	{
+		m_astronauts[i]->movement(_player->getPosition());
+	}
 	//game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
-	
+	for (int i = 0; i < m_astronauts.size(); i++)
+	{
+		game->window.draw(m_astronauts[i]->getSprite());
+	}
+
 	if (_playerBulletVector.size() >0)
 	{
 		for (int i = 0; i < _playerBulletVector.size(); i++)

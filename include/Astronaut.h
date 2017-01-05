@@ -9,20 +9,21 @@ public:
 	Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex);
 	~Astronaut();
 
+	void movement(sf::Vector2f abductorPos);
+
 	sf::Sprite getSprite();
 	sf::Vector2f getPosition();
 
-	
-
-	void movement();
+	sf::Vector2f Normalise(sf::Vector2f velocity);
 	void update();
 
 private:
 
 	sf::Vector2f m_Pos;
 	sf::Vector2f m_Vel;
+	sf::Vector2f m_Velocity;
 	sf::Texture m_Tex;
 	sf::Sprite m_Sprite;
-	float randX;
-	float randY;
+	float abductorDist;
+	float generatedPos;
 };
