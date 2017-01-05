@@ -8,7 +8,7 @@ Play::Play(Game* game)
 
 	game->window.setFramerateLimit(60); 
 
-	_playerTexture.loadFromFile("ship.png");
+	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
 	_backgorundTexture.loadFromFile("Assets/back.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");

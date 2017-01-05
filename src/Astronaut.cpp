@@ -18,15 +18,12 @@ Astronaut::~Astronaut()
 
 void Astronaut::movement(sf::Vector2f abductorPos)
 {
-	//randX = rand_FloatRange(screenWidth);
-	//randY = rand_FloatRange(screenHeight);
 	abductorDist = sqrt((m_Pos.x - abductorPos.x) + (m_Pos.y - abductorPos.y));
 
 	if(abductorDist < 1)
 	{
 		m_Velocity.x = m_Pos.x - abductorPos.x;
 		m_Velocity = Normalise(m_Velocity);
-		//m_Velocity.x = m_Velocity.x * 10;
 		m_Pos.x += m_Velocity.x;
 		m_Sprite.setPosition(m_Pos);
 	}
@@ -34,7 +31,6 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 	{
 		m_Velocity.x = generatedPos - m_Pos.x;
 		m_Velocity = Normalise(m_Velocity);
-		//m_Velocity.x = m_Velocity.x * 10;
 		m_Pos.x += m_Velocity.x;
 		m_Sprite.setPosition(m_Pos);
 
@@ -42,7 +38,6 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 		{
 			m_Velocity.x = 0;
 			m_Pos.x = generatedPos + 10;
-			//srand(time(NULL));
 			generatedPos = rand() % 2048 + 1;
 		}
 	}
