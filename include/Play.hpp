@@ -37,6 +37,8 @@ private:
 	//Astronaut
 	Astronaut * _astro;
 	sf::Texture _astroTexture;
+	float  _dt;
+	sf::Clock _clock;
 
 public:
 

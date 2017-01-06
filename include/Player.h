@@ -8,15 +8,15 @@ public :
 	~Player();
 	sf::Sprite getSprite();
 	sf::Vector2f getPosition();
-	void move(sf::Vector2f speed);
+	void move(sf::Vector2f speed, float _dt);
 	void setPosition(sf::Vector2f _tempPos);
-	void update();
+	void update(float _dt);
 	bool  isdecelerating();
 	void setdecelerating(bool value);
 	void setdirection(bool value);
 	bool getDirection();
 private :
-
+	float m_friction;
 	sf::Vector2f m_Pos;
 	sf::Vector2f m_Vel;
 	sf::Vector2f m_accel;

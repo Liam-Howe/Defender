@@ -1,6 +1,6 @@
 #include "../include/Player.h"
-
-Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos) , m_Vel(_Vel) , m_Tex(_Tex)
+#include <iostream>
+Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos), m_Vel(_Vel), m_Tex(_Tex)
 {
 	m_Sprite.setTexture(m_Tex);
 	m_Sprite.setPosition(m_Pos);
@@ -9,8 +9,8 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_decelerate = false;
 	m_Sprite.setRotation(90);
 	m_direction = false;
+	m_friction = 0.987f;
 }
-
 Player::~Player()
 {
 
@@ -18,25 +18,25 @@ Player::~Player()
 }
 
 
-void Player::move(sf::Vector2f speed)
+void Player::move(sf::Vector2f speed , float _dt)
 {
-	if (m_accel.x < 1)
+	if (m_accel.x < 100 && m_decelerate == false)
 	{
-		m_accel.x += 0.01f;
+		m_accel.x += 5;
 	}
 
 	if (speed.x >0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
 		m_Sprite.setScale(-1, 1);
-		m_Vel.x += speed.x;
+		m_Vel.x = speed.x * m_accel.x * _dt;
 		m_Sprite.setRotation(90);
 	}
 	else if (speed.x < 0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
 		m_Sprite.setScale(1, 1);
-		m_Vel.x += speed.x;
+		m_Vel.x = speed.x * m_accel.x * _dt;
 		m_Sprite.setRotation(-90);
 	}
 	if (speed.y >= 0)
@@ -52,7 +52,7 @@ void Player::move(sf::Vector2f speed)
 	}
 
 
-	m_Pos.x += m_Vel.x * m_accel.x;
+	m_Pos.x += m_Vel.x;
 	m_Pos.y += m_Vel.y;
 	m_Sprite.setPosition(m_Pos);
 
@@ -76,18 +76,32 @@ void Player::setdecelerating(bool value )
 {
 	m_decelerate = value;
 }
-void Player::update()
+void Player::update(float _dt)
 {
-	if (m_decelerate ==true && m_accel.x > 0)
+	if (m_decelerate ==true && m_Vel.x >0)
 	{
-		m_accel.x -= 0.01f;
-		m_Pos.x += m_Vel.x * m_accel.x;
+		m_accel.x += -0.1;
+		m_Vel.x = m_accel.x * _dt;
+		m_Vel.x *= m_friction;
+		m_Pos.x += m_Vel.x;
 		if (m_accel.x < 0 )
 		{
 			m_accel = sf::Vector2f(0, 0);
 		}
 		m_Sprite.setPosition(m_Pos);
 	}	
+	 if (m_decelerate == true && m_Vel.x < 0)
+	{
+		m_accel.x += -0.1;
+		m_Vel.x = -m_accel.x * _dt;
+		m_Vel.x *= m_friction;
+		m_Pos.x += m_Vel.x;
+		if (m_accel.x < 0)
+		{
+			m_accel = sf::Vector2f(0, 0);
+		}
+		m_Sprite.setPosition(m_Pos);
+	}
 }
 sf::Vector2f Player::getPosition()
 {

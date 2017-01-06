@@ -55,9 +55,11 @@ void Play::draw()
 
 void Play::update()
 {
+
+	_dt = _clock.restart().asSeconds();
 	updateCamera();
 	wrapAround();
-	_player->update();
+	_player->update(_dt);
 	
 
 	if (_playerBulletVector.size() != 0)
@@ -239,7 +241,7 @@ void Play::handleInput()
 		{
 			if (event.key.code == sf::Keyboard::W)
 			{
-				_player->move(sf::Vector2f(0, -10));
+				_player->move(sf::Vector2f(0, -10), _dt);
 			}
 		}
 
@@ -247,18 +249,18 @@ void Play::handleInput()
 		{
 			if (event.key.code == sf::Keyboard::S)
 			{
-				_player->move(sf::Vector2f(0, 10));
+				_player->move(sf::Vector2f(0, 10),_dt);
 			}
 		}
 
 		if (event.key.code == sf::Keyboard::D)
 		{
-			_player->move(sf::Vector2f(10, 0));
+			_player->move(sf::Vector2f(2, 0),_dt);
 		}
 		
 		if (event.key.code == sf::Keyboard::A)
 		{
-			_player->move(sf::Vector2f (-10,0));
+			_player->move(sf::Vector2f (-2,0),_dt);
 		}
 
 		return;
