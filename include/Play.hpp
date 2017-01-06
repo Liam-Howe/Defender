@@ -7,22 +7,34 @@
 #include "Menu.hpp"
 #include "obstacles.h"
 #include "Astronaut.h"
+#include "AlienNest.h"
 #include "Bullet.h"
 class Play : public GameState
 {
 private:
 	
-	//Player porperties
+	//Player properties
 	Player * _player;
 	sf::Texture _playerTexture;
 	sf::View _playerView;
+
+	//Bullet properties
 	std::vector<Bullet *> _playerBulletVector;
 	sf::Texture _playerBullet;
+	sf::Texture _alienMissile;
 
+	//Nest properties
+	std::vector<AlienNest*> m_nests;
+	sf::Texture _nestTexture;
+
+	//Astronaut properties
 	std::vector<Astronaut*> m_astronauts;
 	sf::Texture _astronautTexture;
 
+	//Obstacle properties
 	sf::Texture _asteroidTexture;
+	std::vector<obstacles*> m_obstacles;
+
 	//backgorund properties
 	sf::Texture _backgorundTexture;
 	sf::Sprite _backgroundSprite;
@@ -33,10 +45,6 @@ private:
 	float cameraoffset;
 	float WidthOffset;
 	float heightOffset;
-	std::vector<obstacles*> m_obstacles;
-	//Astronaut
-	Astronaut * _astro;
-	sf::Texture _astroTexture;
 
 public:
 

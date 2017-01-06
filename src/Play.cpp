@@ -9,14 +9,15 @@ Play::Play(Game* game)
 	game->window.setFramerateLimit(60); 
 
 	_playerTexture.loadFromFile("Assets/ship.png");
-	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
-	
 	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
-	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
-	_backgroundSprite.setTexture(_backgorundTexture);
+	_nestTexture.loadFromFile("Assets/nest.png");
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 	_playerBullet.loadFromFile("Assets/playerBullet.png");
+	_alienMissile.loadFromFile("Assets/alienMissile.png");
+
+	_player = new Player(sf::Vector2f(400, 400), sf::Vector2f(0, 0), _playerTexture);
+	_backgroundSprite.setTexture(_backgorundTexture);
 
 	 gameHeight = 1056;
 	 gameWidth = 2848;
@@ -29,13 +30,23 @@ Play::Play(Game* game)
 	 int _x =0;
 	 int _y =0;
 	 int _Ax = 0;
-	 for (int i = 0; i < 2; i++)
+	 int _Nx = 0;
+	 int _Ny = 0;
+
+	 for (int i = 0; i < 1; i++)
 	 {
 		 _Ax = rand() % (1900 - 100 + 1) + 100;
 		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
 		 m_astronauts.push_back(_temp);
 	 }
 
+	 for (int i = 0; i < 1; i++)
+	 {
+		 _Nx = rand() % (1900 - 100 + 1) + 100;
+		 _Nx = rand() % 700 + 1;
+		 AlienNest * _Atemp = new AlienNest(sf::Vector2f(350, 400), sf::Vector2f(0, 0), _nestTexture);
+		 m_nests.push_back(_Atemp);
+	 }
 
 	 for (int i = 0; i < 2; i++)
 	 {
@@ -74,12 +85,34 @@ void Play::update()
 	{
 		m_astronauts[i]->movement(_player->getPosition());
 	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+	//	m_nests[i]->update(_player->getPosition(), _alienMissile);
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->_nestBulletVector.size() > 0)
+		{
+			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			{
+				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
+			}
+		}
+	}
+
 	//game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
 		game->window.draw(m_astronauts[i]->getSprite());
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		game->window.draw(m_nests[i]->getSprite());
 	}
 
 	if (_playerBulletVector.size() >0)
@@ -89,11 +122,18 @@ void Play::update()
 			game->window.draw(_playerBulletVector[i]->getSprite());
 		}
 	}
-	
 
-	game->window.draw(_astro->getSprite());
-	////game->window.draw(_leftSprite);
-	//game->window.draw(_rightSprite);
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->_nestBulletVector.size() > 0)
+		{
+			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			{
+				m_nests[i]->_nestBulletVector[k]->getSprite();
+			}
+		}
+	}
+	
 	for (int i = 0; i < m_obstacles.size(); i++)
 	{
 		game->window.draw(m_obstacles[i]->getSprite());
