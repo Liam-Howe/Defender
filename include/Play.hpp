@@ -8,6 +8,7 @@
 #include "obstacles.h"
 #include "Astronaut.h"
 #include "Bullet.h"
+#include "AlienNest.h"
 class Play : public GameState
 {
 private:
@@ -18,6 +19,12 @@ private:
 	sf::View _playerView;
 	std::vector<Bullet *> _playerBulletVector;
 	sf::Texture _playerBullet;
+	sf::Texture _nestTexture;
+
+
+
+	std::vector<AlienNest*> m_nests;
+	sf::Texture _alienMissile;
 
 	std::vector<Astronaut*> m_astronauts;
 	sf::Texture _astronautTexture;

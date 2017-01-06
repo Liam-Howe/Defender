@@ -9,11 +9,12 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	srand(time(NULL));
 
-	generatedPos = 400;
+	generatedPos = rand() % 2048 + 1;
 }
 
 Astronaut::~Astronaut()
 {
+
 }
 
 void Astronaut::movement(sf::Vector2f abductorPos)
@@ -22,25 +23,35 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 
 	if(abductorDist < 10)
 	{
-		m_Velocity.x = m_Pos.x - abductorPos.x;
-		m_Velocity = Normalise(m_Velocity);
-		m_Pos.x += m_Velocity.x;
-		m_Sprite.setPosition(m_Pos);
+		flee(abductorPos);
 	}
 	else
 	{
-		m_Velocity.x = generatedPos - m_Pos.x;
-		m_Velocity = Normalise(m_Velocity);
-		m_Pos.x += m_Velocity.x;
-		m_Sprite.setPosition(m_Pos);
-
-		if (m_Pos.x == generatedPos)
-		{
-			m_Velocity.x = 0;
-			m_Pos.x = generatedPos + 10;
-			generatedPos = rand() % 2048 + 1;
-		}
+		wander();
 	}
+}
+
+void Astronaut::wander()
+{
+	m_Vel.x = generatedPos - m_Pos.x;
+	m_Vel = Normalise(m_Vel);
+	m_Pos.x += m_Vel.x;
+	m_Sprite.setPosition(m_Pos);
+
+	if (m_Pos.x == generatedPos)
+	{
+		m_Vel.x = 0;
+		m_Pos.x = generatedPos + 10;
+		generatedPos = rand() % 2048 + 1;
+	}
+}
+
+void Astronaut::flee(sf::Vector2f abductorPos)
+{
+	m_Vel.x = m_Pos.x - abductorPos.x;
+	m_Vel = Normalise(m_Vel);
+	m_Pos.x += m_Vel.x;
+	m_Sprite.setPosition(m_Pos);
 }
 
 sf::Vector2f Astronaut::Normalise(sf::Vector2f velocity)

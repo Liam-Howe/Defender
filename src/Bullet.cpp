@@ -19,6 +19,24 @@ Bullet::~Bullet()
 
 }
 
+void Bullet::seekerUpdate(sf::Vector2f targetPos)
+{
+	m_vel.x = targetPos.x - m_pos.x;
+	m_vel.y = targetPos.y - m_pos.y;
+	m_vel = Normalise(m_vel);
+	m_pos.x += m_vel.x;
+	m_Sprite.setPosition(m_pos);
+}
+
+sf::Vector2f Bullet::Normalise(sf::Vector2f velocity)
+{
+	float length;
+	length = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y));
+	velocity = velocity / length;
+	return velocity;
+}
+
+
 void Bullet::update()
 {
 	m_pos.x += m_speed;

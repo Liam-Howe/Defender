@@ -10,13 +10,14 @@ Play::Play(Game* game)
 
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
-	
+	_nestTexture.loadFromFile("Assets/nest.png");
 	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
 	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 	_playerBullet.loadFromFile("Assets/playerBullet.png");
+	_alienMissile.loadFromFile("Assets/alienMissile.png");
 
 	 gameHeight = 1056;
 	 gameWidth = 2848;
@@ -29,11 +30,23 @@ Play::Play(Game* game)
 	 int _x =0;
 	 int _y =0;
 	 int _Ax = 0;
+	 int _Nx = 0;
+	 int _Ny = 0;
+
+
 	 for (int i = 0; i < 2; i++)
 	 {
 		 _Ax = rand() % (1900 - 100 + 1) + 100;
 		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
 		 m_astronauts.push_back(_temp);
+	 }
+
+	 for (int i = 0; i < 1; i++)
+	 {
+		 _Nx = rand() % (1900 - 100 + 1) + 100;
+		 _Nx = rand() % 700 + 1;
+		 AlienNest * _Atemp = new AlienNest(sf::Vector2f(350, 400), sf::Vector2f(0, 0), _nestTexture);
+		 m_nests.push_back(_Atemp);
 	 }
 
 
@@ -91,11 +104,41 @@ void Play::update()
 			game->window.draw(_playerBulletVector[i]->getSprite());
 		}
 	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		//	m_nests[i]->update(_player->getPosition(), _alienMissile);
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->_nestBulletVector.size() > 0)
+		{
+			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			{
+				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
+			}
+		}
+	}
 	
 
 	game->window.draw(_astro->getSprite());
-	////game->window.draw(_leftSprite);
-	//game->window.draw(_rightSprite);
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		game->window.draw(m_nests[i]->getSprite());
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->_nestBulletVector.size() > 0)
+		{
+			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			{
+				m_nests[i]->_nestBulletVector[k]->getSprite();
+			}
+		}
+	}
+
 	for (int i = 0; i < m_obstacles.size(); i++)
 	{
 		game->window.draw(m_obstacles[i]->getSprite());

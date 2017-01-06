@@ -10,6 +10,8 @@ public :
 	void update();
 	Bullet(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, float _speed);
 	~Bullet();
+	void seekerUpdate(sf::Vector2f targetPos);
+	sf::Vector2f Normalise(sf::Vector2f velocity);
 private:
 
 	
