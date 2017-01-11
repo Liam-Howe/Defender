@@ -10,6 +10,7 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	srand(time(NULL));
 
 	generatedPos = rand() % 2048 + 1;
+	m_fleeing = false;
 }
 
 Astronaut::~Astronaut()
@@ -19,16 +20,25 @@ Astronaut::~Astronaut()
 
 void Astronaut::movement(sf::Vector2f abductorPos)
 {
-	abductorDist = sqrt((m_Pos.x - abductorPos.x) + (m_Pos.y - abductorPos.y));
+	abductorDist = sqrt(((m_Pos.x - abductorPos.x) * (m_Pos.x - abductorPos.x)) + ((m_Pos.y - abductorPos.y) * (m_Pos.y - abductorPos.y)));
 
-	if(abductorDist < 10)
+	if(abductorDist < 100)
 	{
-		flee(abductorPos);
+		m_fleeing = true;
 	}
-	else
+	 if (abductorDist > 300)
 	{
-		wander();
+		 m_fleeing = false;
 	}
+
+	 if (abductorDist < 300  && m_fleeing == true)
+	 {
+		 flee(abductorPos);
+	 }
+	 else if (m_fleeing == false)
+	 {
+		 wander();
+	 }
 }
 
 void Astronaut::wander()

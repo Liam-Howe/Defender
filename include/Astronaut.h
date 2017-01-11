@@ -27,4 +27,5 @@ private:
 	sf::Sprite m_Sprite;
 	float abductorDist;
 	float generatedPos;
+	bool m_fleeing;
 };

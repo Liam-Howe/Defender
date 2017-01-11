@@ -10,6 +10,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_Sprite.setRotation(90);
 	m_direction = false;
 	m_friction = 0.987f;
+	m_maxAcceleration = 200;
 }
 Player::~Player()
 {
@@ -20,9 +21,17 @@ Player::~Player()
 
 void Player::move(sf::Vector2f speed , float _dt)
 {
-	if (m_accel.x < 100 && m_decelerate == false)
+	if (m_accel.x < m_maxAcceleration && m_decelerate == false)
 	{
-		m_accel.x += 5;
+		m_accel.x += 10;
+	}
+	if (m_direction == true && m_Vel.x > 0)
+	{
+		m_accel.x = 0;
+	}
+	else if (m_direction == false && m_Vel.x < 0)
+	{
+		m_accel.x = 0;
 	}
 
 	if (speed.x >0 && speed.y ==0)
@@ -32,9 +41,11 @@ void Player::move(sf::Vector2f speed , float _dt)
 		m_Vel.x = speed.x * m_accel.x * _dt;
 		m_Sprite.setRotation(90);
 	}
-	else if (speed.x < 0 && speed.y ==0)
+	
+	 if (speed.x < 0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
+	
 		m_Sprite.setScale(1, 1);
 		m_Vel.x = speed.x * m_accel.x * _dt;
 		m_Sprite.setRotation(-90);

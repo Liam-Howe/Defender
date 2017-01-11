@@ -9,7 +9,7 @@ Play::Play(Game* game)
 	game->window.setFramerateLimit(60); 
 
 	_playerTexture.loadFromFile("Assets/ship.png");
-	_player = new Player(sf::Vector2f(400,400),sf::Vector2f(0,0),_playerTexture);
+	_player = new Player(sf::Vector2f(1424,400),sf::Vector2f(0,0),_playerTexture);
 	_nestTexture.loadFromFile("Assets/nest.png");
 	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
@@ -21,9 +21,14 @@ Play::Play(Game* game)
 
 	 gameHeight = 1056;
 	 gameWidth = 2848;
-	 cameraoffset = 200;
-	 heightOffset = gameHeight - cameraoffset;
+	 cameraoffset = 400;
+	
 	 WidthOffset = gameWidth - cameraoffset;
+
+	 _spawnLeft = 600;
+	 _spawnRight = 2248;
+	 _rightSpawnBoundary = 2648;
+	 _leftSpawnBoundary = 200;
 
 	 srand(time(NULL));
 
@@ -52,8 +57,8 @@ Play::Play(Game* game)
 
 	 for (int i = 0; i < 2; i++)
 	 {
-		 _x = rand() % (1900 - 100 + 1) + 100;
-		 _y = rand() % (900 - 100 + 1) + 100;
+		 _x = rand() % (2200 - 600 + 1) + 100;
+		 _y = rand() % (600 - 100 + 1) + 100;
 		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
 		 m_obstacles.push_back(_temp);
 	 }
@@ -107,7 +112,7 @@ void Play::update()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		//	m_nests[i]->update(_player->getPosition(), _alienMissile);
+			m_nests[i]->update(_player->getPosition(), _alienMissile);
 	}
 
 	for (int i = 0; i < m_nests.size(); i++)
@@ -157,72 +162,21 @@ void Play::updatePlayerBullet()
 
 void Play::updateCamera()
 {
-	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, _player->getSprite().getPosition().y), sf::Vector2f(400, 400));
-
-
-	// y checks 
-	if (_player->getPosition().y >  heightOffset)
-	{
-		_playerView.setCenter(sf::Vector2f(_player->getPosition().x, heightOffset));
-	}
-	else if (_player->getPosition().y < 0 + cameraoffset)
-	{
-		_playerView.setCenter(sf::Vector2f(_player->getPosition().x, cameraoffset));
-	}
-
-
-	//x checks
-	if (_player->getPosition().x < 0 + cameraoffset)
-	{
-		_playerView.setCenter(sf::Vector2f(cameraoffset, _player->getPosition().y));
-	}
-	if (_player->getPosition().x < 0 + cameraoffset && _player->getPosition().y > heightOffset)
-	{
-		_playerView.setCenter(sf::Vector2f(cameraoffset, heightOffset));
-	}
-
-	if (_player->getPosition().x > WidthOffset)
-	{
-		_playerView.setCenter(sf::Vector2f(WidthOffset, _player->getPosition().y));
-	}
-
-	//left and lower check
-	if (_player->getPosition().x < 0 + cameraoffset && _player->getPosition().y > heightOffset)
-	{
-		_playerView.setCenter(sf::Vector2f(cameraoffset, heightOffset));
-	}
-	//right and lower checks
-	if (_player->getPosition().x > WidthOffset && _player->getPosition().y > heightOffset)
-	{
-		_playerView.setCenter(sf::Vector2f(WidthOffset, heightOffset));
-	}
-	//left and upper check
-	if (_player->getPosition().x < 0 + cameraoffset && _player->getPosition().y <  0 + cameraoffset)
-	{
-		_playerView.setCenter(sf::Vector2f(cameraoffset, cameraoffset));
-	}
-
-	//right and upper check
-	if (_player->getPosition().x > WidthOffset && _player->getPosition().y <  0 + cameraoffset)
-	{
-		_playerView.setCenter(sf::Vector2f(WidthOffset, cameraoffset));
-	}
-	
+	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(800, gameHeight));
 	game->window.setView(_playerView);
 }
 void Play::wrapAround()
 {
-	if (_player->getPosition().x > 2648)
+	
+	if (_player->getPosition().x > _rightSpawnBoundary)
 	{
 		float tempY = _player->getPosition().y;
-		_player->setPosition(sf::Vector2f(600, tempY));
-		//_playerView.setCenter(sf::Vector2f(_player->getPosition()));
+		_player->setPosition(sf::Vector2f(_spawnLeft, tempY));
 	}
-	if (_player->getPosition().x <= 200)
+	if (_player->getPosition().x <= _leftSpawnBoundary)
 	{
 		float tempY = _player->getPosition().y;
-		_player->setPosition(sf::Vector2f(2248, tempY));
-		//_playerView.setCenter(sf::Vector2f(_player->getPosition().x, tempY));
+		_player->setPosition(sf::Vector2f(_spawnRight, tempY));
 	}
 }
 

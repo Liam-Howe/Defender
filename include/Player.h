@@ -22,6 +22,7 @@ private :
 	sf::Vector2f m_accel;
 	sf::Texture m_Tex;
 	sf::Sprite m_Sprite;
+	int m_maxAcceleration;
 	bool m_decelerate;
 	bool m_direction;
 };

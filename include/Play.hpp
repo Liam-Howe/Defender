@@ -20,8 +20,11 @@ private:
 	std::vector<Bullet *> _playerBulletVector;
 	sf::Texture _playerBullet;
 	sf::Texture _nestTexture;
-
-
+	
+	int _spawnLeft;
+	int _spawnRight;
+	int _rightSpawnBoundary;
+	int _leftSpawnBoundary;
 
 	std::vector<AlienNest*> m_nests;
 	sf::Texture _alienMissile;
@@ -39,7 +42,7 @@ private:
 	float gameWidth;
 	float cameraoffset;
 	float WidthOffset;
-	float heightOffset;
+	//float heightOffset;
 	std::vector<obstacles*> m_obstacles;
 	//Astronaut
 	Astronaut * _astro;
