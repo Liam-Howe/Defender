@@ -12,6 +12,7 @@ public :
 	~Bullet();
 	void seekerUpdate(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
+	int lifeTime;
 private:
 
 	
@@ -21,7 +22,6 @@ private:
 	sf::Sprite m_Sprite;
 	sf::Texture m_Texture;
 	float m_speed;
-
 	float PI;
 	float rotation;
 	sf::Vector2f rotationVec;

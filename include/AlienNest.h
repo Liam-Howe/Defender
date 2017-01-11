@@ -20,6 +20,7 @@ public :
 
 	void wander();
 	void flee(sf::Vector2f playerPos);
+	int bulletCount;
 
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 
@@ -29,7 +30,6 @@ private:
 	float playerDistance;
 
 	int bulletTimer;
-	int bulletCount;
 	bool m_Afleeing;
 
 	sf::Vector2f m_APos;

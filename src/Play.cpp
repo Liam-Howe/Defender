@@ -11,7 +11,7 @@ Play::Play(Game* game)
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(1424,400),sf::Vector2f(0,0),_playerTexture);
 	_nestTexture.loadFromFile("Assets/nest.png");
-	_backgorundTexture.loadFromFile("Assets/wrapback.png");
+	_backgorundTexture.loadFromFile("Assets/back2.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
 	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
@@ -20,15 +20,15 @@ Play::Play(Game* game)
 	_alienMissile.loadFromFile("Assets/alienMissile.png");
 
 	 gameHeight = 1056;
-	 gameWidth = 2848;
+	 gameWidth = 5400;
 	 cameraoffset = 400;
 	
 	 WidthOffset = gameWidth - cameraoffset;
 
 	 _spawnLeft = 600;
-	 _spawnRight = 2248;
-	 _rightSpawnBoundary = 2648;
-	 _leftSpawnBoundary = 200;
+	 _spawnRight = 4800;
+	 _rightSpawnBoundary = 5000;
+	 _leftSpawnBoundary = 400;
 
 	 srand(time(NULL));
 
@@ -122,6 +122,12 @@ void Play::update()
 			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
 			{
 				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
+
+				if (m_nests[i]->_nestBulletVector[k]->lifeTime > 300)
+				{
+					m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+					m_nests[i]->bulletCount--;
+				}
 			}
 		}
 	}
@@ -162,7 +168,7 @@ void Play::updatePlayerBullet()
 
 void Play::updateCamera()
 {
-	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(800, gameHeight));
+	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(600, gameHeight));
 	game->window.setView(_playerView);
 }
 
