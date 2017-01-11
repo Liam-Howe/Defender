@@ -9,6 +9,8 @@
 #include "Astronaut.h"
 #include "Bullet.h"
 #include "AlienNest.h"
+#include "Mutant.h"
+#include "Abductor.h"
 class Play : public GameState
 {
 private:
@@ -31,12 +33,19 @@ private:
 
 	std::vector<Astronaut*> m_astronauts;
 	sf::Texture _astronautTexture;
-
+	
 	sf::Texture _asteroidTexture;
 	//backgorund properties
 	sf::Texture _backgorundTexture;
 	sf::Sprite _backgroundSprite;
 	
+	//mutants
+	std::vector<Mutant*> _mutants;
+
+
+	std::vector<Abductor*> _abductors;
+	sf::Texture _abductorTexture;
+	int _abductorCount = 1;
 
 	float gameHeight;
 	float gameWidth;

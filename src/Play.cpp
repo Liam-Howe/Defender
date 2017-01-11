@@ -11,24 +11,24 @@ Play::Play(Game* game)
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(1424,400),sf::Vector2f(0,0),_playerTexture);
 	_nestTexture.loadFromFile("Assets/nest.png");
-	_backgorundTexture.loadFromFile("Assets/back2.png");
+	_backgorundTexture.loadFromFile("Assets/wrapback.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
 	_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 	_playerBullet.loadFromFile("Assets/playerBullet.png");
 	_alienMissile.loadFromFile("Assets/alienMissile.png");
-
+	_abductorTexture.loadFromFile("Assets/p2.png");
 	 gameHeight = 1056;
-	 gameWidth = 5400;
+	 gameWidth = 2848;
 	 cameraoffset = 400;
 	
 	 WidthOffset = gameWidth - cameraoffset;
 
 	 _spawnLeft = 600;
-	 _spawnRight = 4800;
-	 _rightSpawnBoundary = 5000;
-	 _leftSpawnBoundary = 400;
+	 _spawnRight = 2248;
+	 _rightSpawnBoundary = 2648;
+	 _leftSpawnBoundary = 200;
 
 	 srand(time(NULL));
 
@@ -62,6 +62,12 @@ Play::Play(Game* game)
 		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
 		 m_obstacles.push_back(_temp);
 	 }
+
+	 for (int i = 0; i <= _abductorCount; i++)
+	 {
+		 Abductor * _temp = new Abductor(sf::Vector2f(1424, 100), sf::Vector2f(0, 0), _abductorTexture);
+		 _abductors.push_back(_temp);
+	 }
 } 
 
 
@@ -79,7 +85,7 @@ void Play::update()
 	wrapAround();
 	_player->update(_dt);
 	
-
+	_abductors[0]->seek(m_astronauts[0]->getPosition());
 	if (_playerBulletVector.size() != 0)
 	{
 		updatePlayerBullet();
@@ -94,7 +100,7 @@ void Play::update()
 	{
 		m_astronauts[i]->movement(_player->getPosition());
 	}
-	//game->window.clear(sf::Color::Red);
+
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 	for (int i = 0; i < m_astronauts.size(); i++)
@@ -110,6 +116,14 @@ void Play::update()
 		}
 	}
 
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (_abductors.size() >0)
+		{
+			game->window.draw(_abductors[i]->getSprite());
+		}
+	}
+
 	for (int i = 0; i < m_nests.size(); i++)
 	{
 			m_nests[i]->update(_player->getPosition(), _alienMissile);
@@ -122,12 +136,6 @@ void Play::update()
 			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
 			{
 				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
-
-				if (m_nests[i]->_nestBulletVector[k]->lifeTime > 300)
-				{
-					m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
-					m_nests[i]->bulletCount--;
-				}
 			}
 		}
 	}
@@ -168,7 +176,7 @@ void Play::updatePlayerBullet()
 
 void Play::updateCamera()
 {
-	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(600, gameHeight));
+	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(800, gameHeight));
 	game->window.setView(_playerView);
 }
 
