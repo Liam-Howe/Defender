@@ -1,5 +1,5 @@
 #include "../include/AlienNest.h"
-
+#include <iostream>
 
 AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_APos(_Pos), m_AVel(_Vel), m_ATex(_Tex)
 {
@@ -11,6 +11,9 @@ AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	generatedPos.x = rand() % 400;
 	generatedPos.y = rand() % 400;
+
+	bulletCount = 0;
+	m_Afleeing = false;
 }
 
 AlienNest::~AlienNest()
@@ -30,9 +33,18 @@ sf::Vector2f AlienNest::getPosition()
 
 void AlienNest::update(sf::Vector2f playerPos, sf::Texture _alienMissile)
 {
-	playerDistance = sqrt((m_APos.x - playerPos.x) + (m_APos.y - playerPos.y));
+	playerDistance = sqrt(((m_APos.x - playerPos.x) * (m_APos.x - playerPos.x)) + ((m_APos.y - playerPos.y) * (m_APos.y - playerPos.y)));
 
-	if (playerDistance < 20)
+	if (playerDistance < 150)
+	{
+		m_Afleeing = true;
+	}
+	if (playerDistance > 300)
+	{
+		m_Afleeing = false;
+	}
+
+	if (playerDistance < 300 && m_Afleeing == true)
 	{
 		flee(playerPos);
 
@@ -40,16 +52,17 @@ void AlienNest::update(sf::Vector2f playerPos, sf::Texture _alienMissile)
 		{
 			bulletTimer += 1;
 
-			if (bulletTimer > 50)
+			if (bulletTimer > 100)
 			{
-				Bullet * _temp = new Bullet(sf::Vector2f(m_APos.x, m_APos.y), sf::Vector2f(0, 1), _alienMissile, 10);
+				Bullet * _temp = new Bullet(sf::Vector2f(m_APos.x, m_APos.y), sf::Vector2f(0, 0), _alienMissile, 10);
+				std::cout << "Missile Fired" << std::endl;
 				_nestBulletVector.push_back(_temp);
 				bulletTimer = 0;
 				bulletCount++;
 			}
 		}
 	}
-	else
+	else if (m_Afleeing == false)
 	{
 		wander();
 	}

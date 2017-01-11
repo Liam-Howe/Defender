@@ -11,6 +11,7 @@ Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, float _sp
 	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 	m_speed = _speed;
 
+	PI = 3.14159265;
 }
 
 Bullet::~Bullet()
@@ -24,8 +25,15 @@ void Bullet::seekerUpdate(sf::Vector2f targetPos)
 	m_vel.x = targetPos.x - m_pos.x;
 	m_vel.y = targetPos.y - m_pos.y;
 	m_vel = Normalise(m_vel);
-	m_pos.x += m_vel.x;
+	m_pos += m_vel;
 	m_Sprite.setPosition(m_pos);
+
+	rotationVec = m_pos - targetPos;
+
+
+	rotation = (atan2(rotationVec.y, rotationVec.x)) * 180 / PI;
+
+	m_Sprite.setRotation(rotation);
 }
 
 sf::Vector2f Bullet::Normalise(sf::Vector2f velocity)

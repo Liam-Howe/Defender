@@ -30,7 +30,7 @@ private:
 
 	int bulletTimer;
 	int bulletCount;
-
+	bool m_Afleeing;
 
 	sf::Vector2f m_APos;
 	sf::Vector2f m_AVel;

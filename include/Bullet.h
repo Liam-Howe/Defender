@@ -22,5 +22,9 @@ private:
 	sf::Texture m_Texture;
 	float m_speed;
 
+	float PI;
+	float rotation;
+	sf::Vector2f rotationVec;
+
 
 };

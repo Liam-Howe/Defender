@@ -50,7 +50,7 @@ Play::Play(Game* game)
 	 {
 		 _Nx = rand() % (1900 - 100 + 1) + 100;
 		 _Nx = rand() % 700 + 1;
-		 AlienNest * _Atemp = new AlienNest(sf::Vector2f(350, 400), sf::Vector2f(0, 0), _nestTexture);
+		 AlienNest * _Atemp = new AlienNest(sf::Vector2f(1200, 400), sf::Vector2f(0, 0), _nestTexture);
 		 m_nests.push_back(_Atemp);
 	 }
 
@@ -139,7 +139,7 @@ void Play::update()
 		{
 			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
 			{
-				m_nests[i]->_nestBulletVector[k]->getSprite();
+				game->window.draw(m_nests[i]->_nestBulletVector[k]->getSprite());
 			}
 		}
 	}
@@ -165,6 +165,7 @@ void Play::updateCamera()
 	sf::View _playerView(sf::Vector2f(_player->getSprite().getPosition().x, gameHeight/2), sf::Vector2f(800, gameHeight));
 	game->window.setView(_playerView);
 }
+
 void Play::wrapAround()
 {
 	
@@ -264,9 +265,8 @@ void Play::handleInput()
 	}
 }
 
-
-Play::~Play(
-){
+Play::~Play()
+{
 
 
 }
