@@ -158,6 +158,7 @@
     <ClInclude Include="include\AlienNest.h" />
     <ClInclude Include="include\Astronaut.h" />
     <ClInclude Include="include\Bullet.h" />
+    <ClInclude Include="include\Flock.h" />
     <ClInclude Include="include\game.hpp" />
     <ClInclude Include="include\game_state.hpp" />
     <ClInclude Include="include\Menu.hpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="src\AlienNest.cpp" />
     <ClCompile Include="src\Astronaut.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\Flock.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Mutant.cpp" />
