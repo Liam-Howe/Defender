@@ -9,6 +9,8 @@
 #include "Astronaut.h"
 #include "Bullet.h"
 #include "AlienNest.h"
+#include "Abductor.h"
+
 class Play : public GameState
 {
 private:
@@ -37,6 +39,10 @@ private:
 	sf::Texture _backgorundTexture;
 	sf::Sprite _backgroundSprite;
 	
+	//abductores
+	sf::Texture _abtuctorTexture;
+	std::vector<Abductor*> _abductors;
+	int _abductorCount;
 
 	float gameHeight;
 	float gameWidth;

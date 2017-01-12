@@ -15,6 +15,7 @@ public :
 	void setdecelerating(bool value);
 	void setdirection(bool value);
 	bool getDirection();
+	void handleInput(float);
 private :
 	float m_friction;
 	sf::Vector2f m_Pos;

@@ -18,7 +18,7 @@ Play::Play(Game* game)
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 	_playerBullet.loadFromFile("Assets/playerBullet.png");
 	_alienMissile.loadFromFile("Assets/alienMissile.png");
-
+	_abtuctorTexture.loadFromFile("Assets/abductor.png");
 	 gameHeight = 1056;
 	 gameWidth = 5400;
 	 cameraoffset = 400;
@@ -62,39 +62,20 @@ Play::Play(Game* game)
 		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
 		 m_obstacles.push_back(_temp);
 	 }
+
+	 _abductorCount = 2;
+	 for (int i = 0; i < _abductorCount; i++)
+	 {
+		 Abductor* _temp = new Abductor(sf::Vector2f(1424, 100), sf::Vector2f(0, 0), _abtuctorTexture);
+		 _abductors.push_back(_temp);
+	 }
+	
 } 
 
 
 void Play::draw()
 {	
-	return;
-}
 
-
-void Play::update()
-{
-
-	_dt = _clock.restart().asSeconds();
-	updateCamera();
-	wrapAround();
-	_player->update(_dt);
-	
-
-	if (_playerBulletVector.size() != 0)
-	{
-		updatePlayerBullet();
-	}
-
-	for (int i = 0; i < m_obstacles.size(); i++)
-	{
-		m_obstacles[i]->update();
-	}
-
-	for (int i = 0; i < m_astronauts.size(); i++)
-	{
-		m_astronauts[i]->movement(_player->getPosition());
-	}
-	//game->window.clear(sf::Color::Red);
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 	for (int i = 0; i < m_astronauts.size(); i++)
@@ -110,28 +91,13 @@ void Play::update()
 		}
 	}
 
-	for (int i = 0; i < m_nests.size(); i++)
+	if (_abductors.size() >0)
 	{
-			m_nests[i]->update(_player->getPosition(), _alienMissile);
-	}
-
-	for (int i = 0; i < m_nests.size(); i++)
-	{
-		if (m_nests[i]->_nestBulletVector.size() > 0)
+		for (int i = 0; i < _abductorCount; i++)
 		{
-			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
-			{
-				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
-
-				if (m_nests[i]->_nestBulletVector[k]->lifeTime > 300)
-				{
-					m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
-					m_nests[i]->bulletCount--;
-				}
-			}
+			game->window.draw(_abductors[i]->getSprite());
 		}
 	}
-	
 
 	game->window.draw(_astro->getSprite());
 	for (int i = 0; i < m_nests.size(); i++)
@@ -154,7 +120,63 @@ void Play::update()
 	{
 		game->window.draw(m_obstacles[i]->getSprite());
 	}
+	
+	return;
+}
+
+
+void Play::update()
+{
+
+	_dt = _clock.restart().asSeconds();
+	draw();
+	updateCamera();
+	wrapAround();
+	_player->update(_dt);
+	
+
+	if (_playerBulletVector.size() != 0)
+	{
+		updatePlayerBullet();
+	}
+
+	for (int i = 0; i < m_obstacles.size(); i++)
+	{
+		m_obstacles[i]->update();
+	}
+
+	for (int i = 0; i < m_astronauts.size(); i++)
+	{
+		m_astronauts[i]->movement(_player->getPosition());
+	}
+
+	
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+			m_nests[i]->update(_player->getPosition(), _alienMissile);
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->_nestBulletVector.size() > 0)
+		{
+			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			{
+				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
+
+				if (m_nests[i]->_nestBulletVector[k]->lifeTime > 300)
+				{
+					m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+					m_nests[i]->bulletCount--;
+				}
+			}
+		}
+	}
+
+	_abductors[0]->seek(m_astronauts[0]->getPosition());
+
 	game->window.display();
+	
 	return;
 }
 
@@ -203,6 +225,9 @@ void Play::handleInput()
 		}
 		/* Resize the window */
 
+		
+
+
 		case sf::Event::KeyReleased:
 			if (event.key.code == sf::Keyboard::D)
 			{
@@ -241,13 +266,7 @@ void Play::handleInput()
 			break;
 		}
 
-		if (_player->getSprite().getPosition().y - _player->getSprite().getGlobalBounds().height/2 > 0)
-		{
-			if (event.key.code == sf::Keyboard::W)
-			{
-				_player->move(sf::Vector2f(0, -10), _dt);
-			}
-		}
+
 
 		if (_player->getSprite().getPosition().y + _player->getSprite().getGlobalBounds().height / 2 < gameHeight)
 		{
@@ -257,18 +276,9 @@ void Play::handleInput()
 			}
 		}
 
-		if (event.key.code == sf::Keyboard::D)
-		{
-			_player->move(sf::Vector2f(2, 0),_dt);
-		}
-		
-		if (event.key.code == sf::Keyboard::A)
-		{
-			_player->move(sf::Vector2f (-2,0),_dt);
-		}
-
 		return;
 	}
+
 }
 
 Play::~Play()

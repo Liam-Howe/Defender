@@ -9,8 +9,8 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_decelerate = false;
 	m_Sprite.setRotation(90);
 	m_direction = false;
-	m_friction = 0.987f;
-	m_maxAcceleration = 200;
+	m_friction = 0.997f;
+	m_maxAcceleration = 100;
 }
 Player::~Player()
 {
@@ -23,7 +23,7 @@ void Player::move(sf::Vector2f speed , float _dt)
 {
 	if (m_accel.x < m_maxAcceleration && m_decelerate == false)
 	{
-		m_accel.x += 10;
+		m_accel.x += 5;
 	}
 	if (m_direction == true && m_Vel.x > 0)
 	{
@@ -87,11 +87,42 @@ void Player::setdecelerating(bool value )
 {
 	m_decelerate = value;
 }
+
+void Player::handleInput(float _dt)
+{
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		if (m_Pos.y - m_Sprite.getGlobalBounds().height / 2 > 0)
+		{
+			move(sf::Vector2f(0, -10), _dt);
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		move(sf::Vector2f(2, 0), _dt);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		if (m_Pos.y + m_Sprite.getGlobalBounds().height / 2 < 1056)// +_player->getSprite().getGlobalBounds().height / 2 < gameHeight)
+		{
+			move(sf::Vector2f(0, 10), _dt);
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		move(sf::Vector2f(-2, 0), _dt);
+	}
+
+
+}
 void Player::update(float _dt)
 {
+	handleInput(_dt);
+
 	if (m_decelerate ==true && m_Vel.x >0)
 	{
-		m_accel.x += -0.1;
+		m_accel.x += -0.5;
 		m_Vel.x = m_accel.x * _dt;
 		m_Vel.x *= m_friction;
 		m_Pos.x += m_Vel.x;
@@ -103,7 +134,7 @@ void Player::update(float _dt)
 	}	
 	 if (m_decelerate == true && m_Vel.x < 0)
 	{
-		m_accel.x += -0.1;
+		m_accel.x += -0.5;
 		m_Vel.x = -m_accel.x * _dt;
 		m_Vel.x *= m_friction;
 		m_Pos.x += m_Vel.x;
