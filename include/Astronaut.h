@@ -18,6 +18,8 @@ public:
 
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	void update();
+	sf::RectangleShape *collisionBox;
+	bool m_abducted;
 
 private:
 
@@ -28,4 +30,5 @@ private:
 	float abductorDist;
 	float generatedPos;
 	bool m_fleeing;
+//	bool m_abducted;
 };

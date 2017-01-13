@@ -64,6 +64,7 @@ public:
 	virtual void update();
 	virtual void handleInput();
 	void updatePlayerBullet();
+	void CollisionManager();
 	~Play();
 
 	Play(Game* game);

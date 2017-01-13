@@ -133,6 +133,7 @@ void Play::update()
 	updateCamera();
 	wrapAround();
 	_player->update(_dt);
+	CollisionManager();
 	
 
 	if (_playerBulletVector.size() != 0)
@@ -173,14 +174,54 @@ void Play::update()
 		}
 	}
 
-	//_abductors[0]->seek(m_astronauts[0]->getPosition());
-	for (int i = 0; i < _abductors.size(); i++)
-	{
-		_abductors[i]->run(_abductors);
-	}
+	///_abductors[0]->seek(m_astronauts[0]->getPosition());
+	_abductors[0]->movement(m_astronauts[0]->getPosition());
+	//for (int i = 0; i < _abductors.size(); i++)
+	//{
+	//	_abductors[i]->run(_abductors);
+	//}
 	game->window.display();
 	
 	return;
+}
+
+void Play::CollisionManager()
+{
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		for (int k = 0; k < m_astronauts.size(); k++)
+		{
+			if (_abductors[i]->collisionBox->getGlobalBounds().intersects(m_astronauts[k]->collisionBox->getGlobalBounds()))
+			{
+				_abductors[i]->m_abducting = true;
+				m_astronauts[k]->m_abducted = true;
+			}
+		}
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		for (int k = 0; k < _playerBulletVector.size(); k++)
+		{
+			if (m_nests[i]->collisionBox->getGlobalBounds().intersects(_playerBulletVector[k]->collisionBox->getGlobalBounds()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + k);
+				m_nests.erase(m_nests.begin() + i);
+			}
+		}
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+		{
+			if (m_nests[i]->_nestBulletVector[k]->collisionBox->getGlobalBounds().intersects(_player->collisionBox->getGlobalBounds()))
+			{
+				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+				m_nests[i]->bulletCount--;
+			}
+		}
+	}
 }
 
 void Play::updatePlayerBullet()

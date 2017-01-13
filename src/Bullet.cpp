@@ -13,6 +13,8 @@ Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, float _sp
 
 	PI = 3.14159265;
 	lifeTime = 0;
+
+	collisionBox = new sf::RectangleShape(sf::Vector2f(m_Texture.getSize().x, m_Texture.getSize().y));
 }
 
 Bullet::~Bullet()
@@ -32,6 +34,7 @@ void Bullet::seekerUpdate(sf::Vector2f targetPos)
 	rotation = (atan2(rotationVec.y, rotationVec.x)) * 180 / PI;
 
 	m_Sprite.setRotation(rotation);
+	collisionBox->setPosition(m_pos.x, m_pos.y);
 }
 
 sf::Vector2f Bullet::Normalise(sf::Vector2f velocity)
@@ -46,6 +49,7 @@ void Bullet::update()
 {
 	m_pos.x += m_speed;
 	m_Sprite.setPosition(m_pos);
+	collisionBox->setPosition(m_pos.x, m_pos.y);
 }
 
 sf::Sprite Bullet::getSprite()

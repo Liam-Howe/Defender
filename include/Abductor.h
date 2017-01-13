@@ -32,6 +32,8 @@ public :
 	sf::Vector2f cohesion(std::vector<Abductor*>_abductor);
 	sf::Vector2f flockSeek(sf::Vector2f v);
 	sf::Vector2f subVector(sf::Vector2f _pos, sf::Vector2f _currentVector);
+	sf::RectangleShape *collisionBox;
+	bool m_abducting;
 	
 private : 
 	sf::Vector2f m_pos;
@@ -46,5 +48,7 @@ private :
 	float maxForce;
 	bool m_flock;
 	bool m_seek;
+	bool m_following;
+	//bool m_abducting;
 
 };

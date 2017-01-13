@@ -24,6 +24,8 @@ public :
 
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 
+	sf::RectangleShape *collisionBox;
+
 private:
 
 	sf::Vector2f generatedPos;

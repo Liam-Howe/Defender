@@ -11,13 +11,13 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_direction = false;
 	m_friction = 0.997f;
 	m_maxAcceleration = 100;
+
+	collisionBox = new sf::RectangleShape(sf::Vector2f(m_Tex.getSize().x, m_Tex.getSize().y));
 }
 Player::~Player()
 {
 
-
 }
-
 
 void Player::move(sf::Vector2f speed , float _dt)
 {
@@ -42,10 +42,9 @@ void Player::move(sf::Vector2f speed , float _dt)
 		m_Sprite.setRotation(90);
 	}
 	
-	 if (speed.x < 0 && speed.y ==0)
+	if (speed.x < 0 && speed.y ==0)
 	{
 		m_Vel.x = 0;
-	
 		m_Sprite.setScale(1, 1);
 		m_Vel.x = speed.x * m_accel.x * _dt;
 		m_Sprite.setRotation(-90);
@@ -62,17 +61,17 @@ void Player::move(sf::Vector2f speed , float _dt)
 		m_Vel.y += speed.y;
 	}
 
-
 	m_Pos.x += m_Vel.x;
 	m_Pos.y += m_Vel.y;
 	m_Sprite.setPosition(m_Pos);
-
+	collisionBox->setPosition(m_Pos.x, m_Pos.y);
 }
 
 void Player::setdirection(bool value)
 {
 	m_direction = value;
 }
+
 bool Player::getDirection()
 {
 	return m_direction;
@@ -80,9 +79,9 @@ bool Player::getDirection()
 
 bool Player::isdecelerating()
 {
-
 	return m_decelerate;
 }
+
 void Player::setdecelerating(bool value )
 {
 	m_decelerate = value;
@@ -90,7 +89,6 @@ void Player::setdecelerating(bool value )
 
 void Player::handleInput(float _dt)
 {
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		if (m_Pos.y - m_Sprite.getGlobalBounds().height / 2 > 0)
@@ -113,9 +111,8 @@ void Player::handleInput(float _dt)
 	{
 		move(sf::Vector2f(-2, 0), _dt);
 	}
-
-
 }
+
 void Player::update(float _dt)
 {
 	handleInput(_dt);
@@ -132,7 +129,7 @@ void Player::update(float _dt)
 		}
 		m_Sprite.setPosition(m_Pos);
 	}	
-	 if (m_decelerate == true && m_Vel.x < 0)
+	if (m_decelerate == true && m_Vel.x < 0)
 	{
 		m_accel.x += -0.5;
 		m_Vel.x = -m_accel.x * _dt;
@@ -145,10 +142,12 @@ void Player::update(float _dt)
 		m_Sprite.setPosition(m_Pos);
 	}
 }
+
 sf::Vector2f Player::getPosition()
 {
 	return m_Pos;
 }
+
 void Player::setPosition(sf::Vector2f _tempPos)
 {
 	m_Pos = _tempPos;

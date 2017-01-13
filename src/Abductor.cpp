@@ -7,6 +7,13 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	m_sprite.setTexture(m_tex);
 	m_sprite.setPosition(m_pos);
 	maxSpeed = 3.5;
+
+	m_seek = false;
+	m_following = false;
+	m_abducting = false;
+
+	collisionBox = new sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
+	collisionBox->setPosition(m_pos.x, m_pos.y);
 }
 Abductor::~Abductor()
 {
@@ -169,13 +176,28 @@ void Abductor::movement(sf::Vector2f targetPos)
 {
 	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
 
-	if (Dist > 100)
+	if (Dist < 700 && m_following == false)
 	{
 		m_seek = true;
+		m_following = true;
 	}
-	if (Dist < 300)
+	//if (Dist < 300)
+	//{
+	//	m_seek = false;
+	//}
+
+	if (m_seek == true && m_abducting == false)
 	{
-		m_seek = false;
+		seek(targetPos);
+	}
+	else if (m_seek == false && m_abducting == false)
+	{
+//		wander();
+	}
+
+	if (m_abducting == true)
+	{
+		m_pos.y = m_pos.y - 10;
 	}
 }
 
