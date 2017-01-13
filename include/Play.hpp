@@ -2,6 +2,7 @@
 #define PLAY_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "game_state.hpp"
 #include "Player.h"
 #include "Menu.hpp"
@@ -10,15 +11,19 @@
 #include "Bullet.h"
 #include "AlienNest.h"
 #include "Abductor.h"
+#include "CollisionManager.h"
 
 class Play : public GameState
 {
 private:
 	
+	CollisionManager _collisionManager;
+
 	//Player porperties
 	Player * _player;
 	sf::Texture _playerTexture;
 	sf::View _playerView;
+	sf::View _radarView;
 	std::vector<Bullet *> _playerBulletVector;
 	sf::Texture _playerBullet;
 	sf::Texture _nestTexture;
@@ -59,6 +64,7 @@ private:
 public:
 
 	virtual void draw();
+	void CollisionManager();
 	void updateCamera();
 	void wrapAround();
 	virtual void update();

@@ -1,5 +1,7 @@
 #pragma once
+#include <iostream>
 #include "SFML\Graphics.hpp"
+#include <string>
 class Player {
 
 public : 
@@ -16,7 +18,11 @@ public :
 	void setdirection(bool value);
 	bool getDirection();
 	void handleInput(float);
+	void spawn(sf::Vector2f _newPos);
+	sf::RectangleShape getCollisionRect();
+
 private :
+	sf::RectangleShape collisionBox;
 	float m_friction;
 	sf::Vector2f m_Pos;
 	sf::Vector2f m_Vel;
@@ -26,4 +32,5 @@ private :
 	int m_maxAcceleration;
 	bool m_decelerate;
 	bool m_direction;
+	bool m_canHyperJump;
 };

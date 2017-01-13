@@ -23,6 +23,8 @@ public :
 	int bulletCount;
 
 	sf::Vector2f Normalise(sf::Vector2f velocity);
+	sf::RectangleShape getCollisionRect();
+	sf::RectangleShape collisionBox;
 
 private:
 

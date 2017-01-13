@@ -11,6 +11,9 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	generatedPos = rand() % 2048 + 1;
 	m_fleeing = false;
+
+	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
+	collisionBox.setPosition(m_Pos.x, m_Pos.y);
 }
 
 Astronaut::~Astronaut()
@@ -31,22 +34,38 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 		 m_fleeing = false;
 	}
 
-	 if (abductorDist < 300  && m_fleeing == true)
+	 if (abductorDist < 300 && m_fleeing == true && m_Pos.y >= 690)
 	 {
 		 flee(abductorPos);
 	 }
-	 else if (m_fleeing == false)
+	 else if (m_fleeing == false && m_Pos.y >= 690)
 	 {
 		 wander();
 	 }
-}
 
+	 if (m_abducted == true)
+	 {
+		 m_Pos.x = abductorPos.x;
+		 m_Pos.y = abductorPos.y;
+	 }
+
+	 if (m_Pos.y < 690 && m_abducted == false)
+	 {
+		 m_Pos.y += 5;
+		 m_Sprite.setPosition(m_Pos);
+	 }
+}
+sf::RectangleShape Astronaut::getCollisionRect()
+{
+	return collisionBox;
+}
 void Astronaut::wander()
 {
 	m_Vel.x = generatedPos - m_Pos.x;
 	m_Vel = Normalise(m_Vel);
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
+	
 
 	if (m_Pos.x == generatedPos)
 	{
@@ -62,6 +81,7 @@ void Astronaut::flee(sf::Vector2f abductorPos)
 	m_Vel = Normalise(m_Vel);
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
+	
 }
 
 sf::Vector2f Astronaut::Normalise(sf::Vector2f velocity)
@@ -75,6 +95,7 @@ sf::Vector2f Astronaut::Normalise(sf::Vector2f velocity)
 void Astronaut::update()
 {
 	m_Sprite.setPosition(m_Pos);
+	collisionBox.setPosition(m_Pos.x, m_Pos.y);
 }
 
 sf::Vector2f Astronaut::getPosition()

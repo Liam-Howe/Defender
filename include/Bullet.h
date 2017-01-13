@@ -13,10 +13,12 @@ public :
 	void seekerUpdate(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	int lifeTime;
+	sf::RectangleShape getCollisionRect();
+	
 private:
 
 	
-
+	sf::RectangleShape collisionBox;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_vel;
 	sf::Sprite m_Sprite;

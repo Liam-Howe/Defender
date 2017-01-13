@@ -7,6 +7,11 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	m_sprite.setTexture(m_tex);
 	m_sprite.setPosition(m_pos);
 	maxSpeed = 3.5;
+	maxForce = 0.5;
+	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
+
+	collisionBox =  sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
+	collisionBox.setPosition(m_pos.x, m_pos.y);
 }
 Abductor::~Abductor()
 {
@@ -20,7 +25,8 @@ void Abductor::update()
 	m_pos = addVector(m_vel, m_pos);
 	m_acceleration = mulScalar(0, m_acceleration);
 	m_sprite.setPosition(m_pos);
-
+	collisionBox.setPosition(m_pos.x, m_pos.y);
+	
 }
 void Abductor::flock(std::vector<Abductor*>_abductor)
 {
@@ -169,13 +175,28 @@ void Abductor::movement(sf::Vector2f targetPos)
 {
 	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
 
-	if (Dist > 100)
+	if (Dist < 700 && m_following == false)
 	{
 		m_seek = true;
+		m_following = true;
 	}
-	if (Dist < 300)
+	//if (Dist < 300)
+	//{
+	//	m_seek = false;
+	//}
+
+	if (m_seek == true && m_abducting == false)
 	{
-		m_seek = false;
+		seek(targetPos);
+	}
+	else if (m_seek == false && m_abducting == false)
+	{
+		//		wander();
+	}
+
+	if (m_abducting == true)
+	{
+		m_pos.y = m_pos.y - 10;
 	}
 }
 
@@ -199,7 +220,10 @@ sf::Vector2f Abductor::flockSeek(sf::Vector2f v)
 	m_acceleration = limit(maxForce,m_acceleration);  // Limit to maximum steering force
 	return m_acceleration;
 }
-
+sf::RectangleShape Abductor::getCollisionRect()
+{
+	return collisionBox;
+}
 
 
 void Abductor::seek(sf::Vector2f targetPos)
@@ -234,6 +258,13 @@ sf::Sprite Abductor::getSprite()
 
 void Abductor::run(std::vector<Abductor*>_abductors)
 {
-	flock(_abductors);
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (sqrt(((m_pos.x - _abductors[i]->getPosition().x) * (m_pos.x - _abductors[i]->getPosition().x)) + ((m_pos.y - _abductors[i]->getPosition().y) * (m_pos.y - _abductors[i]->getPosition().y))) < 100)
+		{
+			flock(_abductors);
+		}
+	}
+	
 	update();
 }

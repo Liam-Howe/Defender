@@ -33,7 +33,10 @@ public :
 	sf::Vector2f flockSeek(sf::Vector2f v);
 	sf::Vector2f subVector(sf::Vector2f _pos, sf::Vector2f _currentVector);
 	
+	bool m_abducting;
+	sf::RectangleShape getCollisionRect();
 private : 
+	sf::RectangleShape collisionBox;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_vel;
 	sf::Vector2f diff;
@@ -46,5 +49,5 @@ private :
 	float maxForce;
 	bool m_flock;
 	bool m_seek;
-
+	bool m_following;
 };

@@ -11,6 +11,8 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_direction = false;
 	m_friction = 0.997f;
 	m_maxAcceleration = 100;
+	m_canHyperJump = true;
+	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Tex.getSize().x, m_Tex.getSize().y));
 }
 Player::~Player()
 {
@@ -66,6 +68,7 @@ void Player::move(sf::Vector2f speed , float _dt)
 	m_Pos.x += m_Vel.x;
 	m_Pos.y += m_Vel.y;
 	m_Sprite.setPosition(m_Pos);
+	collisionBox.setPosition(m_Pos.x, m_Pos.y);
 
 }
 
@@ -95,7 +98,7 @@ void Player::handleInput(float _dt)
 	{
 		if (m_Pos.y - m_Sprite.getGlobalBounds().height / 2 > 0)
 		{
-			move(sf::Vector2f(0, -10), _dt);
+			move(sf::Vector2f(0, -2), _dt);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -106,16 +109,34 @@ void Player::handleInput(float _dt)
 	{
 		if (m_Pos.y + m_Sprite.getGlobalBounds().height / 2 < 1056)// +_player->getSprite().getGlobalBounds().height / 2 < gameHeight)
 		{
-			move(sf::Vector2f(0, 10), _dt);
+			move(sf::Vector2f(0, 2), _dt);
+		
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		move(sf::Vector2f(-2, 0), _dt);
 	}
-
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		if (m_canHyperJump)
+		{
+			spawn(sf::Vector2f((rand() % 2000 - 1000 + 1000), rand() % 900 - 100 + 100));
+			m_canHyperJump = false;
+		}
+	}
 }
+
+
+void Player::spawn(sf::Vector2f _newPos)
+{
+	m_Pos = _newPos;
+}
+sf::RectangleShape Player::getCollisionRect()
+{
+	return collisionBox;
+}
+
 void Player::update(float _dt)
 {
 	handleInput(_dt);
@@ -131,6 +152,7 @@ void Player::update(float _dt)
 			m_accel = sf::Vector2f(0, 0);
 		}
 		m_Sprite.setPosition(m_Pos);
+		collisionBox.setPosition(m_Pos.x, m_Pos.y);
 	}	
 	 if (m_decelerate == true && m_Vel.x < 0)
 	{
@@ -143,7 +165,9 @@ void Player::update(float _dt)
 			m_accel = sf::Vector2f(0, 0);
 		}
 		m_Sprite.setPosition(m_Pos);
+		collisionBox.setPosition(m_Pos.x, m_Pos.y);
 	}
+	// std::cout << "velocity : " << m_Vel.x << " acceleration : " << m_accel.x << " speed :  std::endl;
 }
 sf::Vector2f Player::getPosition()
 {

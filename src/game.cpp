@@ -11,7 +11,6 @@ void Game::popState()
 {
 	delete this->states.top();
 	this->states.pop();
-
 	return;
 }
 
@@ -20,7 +19,6 @@ void Game::changeState(GameState* state)
 	if (!this->states.empty())
 		popState();
 	pushState(state);
-
 	return;
 }
 
@@ -33,16 +31,13 @@ GameState* Game::peekState()
 void Game::gameLoop()
 {
 	sf::Clock clock;
-
 	while (this->window.isOpen())
 	{
 		sf::Time elapsed = clock.restart();
-
 		if (peekState() == nullptr) continue;
 		peekState()->handleInput();
 		peekState()->update();
 		peekState()->draw();
-
 	}
 }
 
@@ -55,6 +50,5 @@ Game::Game()
 
 Game::~Game()
 {
-	
 	while (!this->states.empty()) popState();
 }
