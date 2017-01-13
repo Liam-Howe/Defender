@@ -173,8 +173,11 @@ void Play::update()
 		}
 	}
 
-	_abductors[0]->seek(m_astronauts[0]->getPosition());
-
+	//_abductors[0]->seek(m_astronauts[0]->getPosition());
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		_abductors[i]->run(_abductors);
+	}
 	game->window.display();
 	
 	return;
