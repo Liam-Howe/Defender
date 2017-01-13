@@ -32,7 +32,7 @@ Play::Play(Game* game)
 	 _leftSpawnBoundary = 300;
 	 _radarView.setCenter(sf::Vector2f(gameWidth/2, gameHeight / 2));
 	 _radarView.setSize(sf::Vector2f(6600, 1056));
-	 _radarView.setViewport(sf::FloatRect(0, 0.75, 1, 0.25));
+	 _radarView.setViewport(sf::FloatRect(0.2, 0.83, 0.6, 0.25));
 	 
 	 
 	 srand(time(NULL));
@@ -214,7 +214,6 @@ void Play::update()
 		}
 	}
 
-	//_abductors[0]->seek(m_astronauts[0]->getPosition());
 	for (int i = 0; i < _abductors.size(); i++)
 	{
 		_abductors[i]->run(_abductors);
