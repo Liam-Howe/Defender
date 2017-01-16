@@ -8,9 +8,14 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	m_sprite.setPosition(m_pos);
 	maxSpeed = 3.5;
 	maxForce = 0.5;
-	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
+	//m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
 	m_abducting = false;
+	m_seek = false;
+	m_following = false;
 
+	int randX = rand() % (3500 - 600 + 1) + 600;
+	int randy = rand() % (600 - 100 + 1) + 100;
+	m_generatedPos = sf::Vector2f(randX, randy);
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
 	collisionBox.setPosition(m_pos.x, m_pos.y);
 }
@@ -176,44 +181,79 @@ sf::Vector2f Abductor::addVector(sf::Vector2f v , sf::Vector2f _currentVector)
 	return _currentVector;
 }
 
-
-void Abductor::movement(sf::Vector2f targetPos)
+bool Abductor::getAbducting()
+{
+	return m_abducting;
+}
+void Abductor::movement(sf::Vector2f targetPos, Astronaut& _astronaut)
 {
 	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
 
-	//if (Dist < 700 && m_following == false)
+	//if (Dist < 700 && m_following == false && m_abducting == false && _astronaut.getFollowed() ==false)
 	//{
 	//	m_seek = true;
 	//	m_following = true;
+	//	_astronaut.setFollowed(true);
 	//}
 
-	//if (Dist < 300)
+	//if (m_seek == true && m_abducting == false && _astronaut.getAbducted() ==false )
 	//{
-	//	m_seek = false;
+	//	seek(targetPos);
 	//}
-
-	//if (m_seek == true && m_abducting == false)
+ //  /* if (m_seek == false && m_abducting == false)
 	//{
-	if(m_abducting == false)
+	//	wander();
+	//}*/
+
+	if (Dist < 700)
 	{
 		seek(targetPos);
 	}
-
-	//else if (m_seek == false && m_abducting == false)
-//	{
-		//		wander();
-	//}
-
-	if (m_abducting == true)
+	else
 	{
-		m_pos.y = m_pos.y - 0.5;
-	
+		wander();
 	}
+
+	//else if (Dist < 700)// if (_astronaut.getAbducted() == false && _astronaut.getFollowed() == false)
+	//{
+	
+		//seek(targetPos);
+	//	m_abducting = true;
+//	}
+//	
 
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
 }
 
+void Abductor::abducting(sf::Vector2f astronautPos)
+{
+	
+	m_pos.y = m_pos.y - 0.5;
+	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
+}
+void Abductor::wander()
+{
+	m_vel.x = m_generatedPos.x - m_pos.x;
+	m_vel.y = m_generatedPos.y - m_pos.y;
+	m_vel = Normalise(m_vel);
+	m_pos.x += m_vel.x;
+	m_pos.y += m_vel.y;
+	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
+	float Dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + ((m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y)));
+	if (Dist < 10)
+	{	
+		m_vel.x = 0;
+		m_vel.y = 0;
+		m_pos.x = m_generatedPos.x + 10;
+		int randX = rand() % (3500 - 600 + 1) + 600;
+		int randy = rand() % (600 - 100 + 1) + 100;
+		m_generatedPos.x = randX;
+		m_generatedPos.y = randy;
+	}
+}
 sf::Vector2f Abductor::subVector(sf::Vector2f _pos ,sf::Vector2f _currentVector)
 {
 	_currentVector.x -= _pos.x;
@@ -247,6 +287,7 @@ void Abductor::seek(sf::Vector2f targetPos)
 	m_vel = Normalise(m_vel);
 	m_pos += m_vel;
 	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
 
 }
 sf::Vector2f Abductor::Normalise(sf::Vector2f velocity)

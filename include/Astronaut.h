@@ -19,15 +19,21 @@ public:
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	void update();
 	sf::RectangleShape getCollisionRect();
-	bool m_abducted;
-
+	void setAbducted(bool);
+	bool getFollowed();
+	bool getAbducted();
+	void setFollowed(bool);
+	void abducted(sf::Vector2f abductorPos);
 private:
 	sf::RectangleShape collisionBox;
 	sf::Vector2f m_Pos;
+	bool m_abducted;
 	sf::Vector2f m_Vel;
 	sf::Texture m_Tex;
 	sf::Sprite m_Sprite;
 	float abductorDist;
 	float generatedPos;
 	bool m_fleeing;
+	bool m_followed;
+	float m_groundHeight;
 };

@@ -47,14 +47,14 @@ Play::Play(Game* game)
 
 	 for (int i = 0; i < 2; i++)
 	 {
-		 _Ax = rand() % (1900 - 100 + 1) + 100;
+		 _Ax = rand() % (5500 - 400 + 1) + 400;
 		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
 		 m_astronauts.push_back(_temp);
 	 }
 
 	 for (int i = 0; i < 1; i++)
 	 {
-		 _Nx = rand() % (1900 - 100 + 1) + 100;
+		 _Nx = rand() % (5500 - 400 + 1) + 400;
 		 _Nx = rand() % 700 + 1;
 		 AlienNest * _Atemp = new AlienNest(sf::Vector2f(1200, 400), sf::Vector2f(0, 0), _nestTexture);
 		 m_nests.push_back(_Atemp);
@@ -62,30 +62,21 @@ Play::Play(Game* game)
 
 	 for (int i = 0; i < 2; i++)
 	 {
-		 _x = rand() % (2200 - 600 + 1) + 100;
+		 _x = rand() % (5500 - 400 + 1) + 400;
 		 _y = rand() % (600 - 100 + 1) + 100;
 		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
 		 m_obstacles.push_back(_temp);
 	 }
 
-	 _abductorCount = 1;
+	 _abductorCount = 3;
 	 float _tx = 0;
 
 	 for (int i = 0; i < _abductorCount; i++)
 	 {
-		 float _x = rand() % (2200 - 600 + 1) + 100;
-		 Abductor* _temp = new Abductor(sf::Vector2f(1424, 100), sf::Vector2f(0, 0), _abtuctorTexture);
+		 float _x  = rand() % (5500 - 400 + 1) + 400;
+		 Abductor* _temp = new Abductor(sf::Vector2f(_x, 100), sf::Vector2f(0, 0), _abtuctorTexture);
 		 _abductors.push_back(_temp);
 	}
-
-	//_mutantCount = 1;
-
-	//for (int i = 0; i < _mutantCount; i++)
-	//{
-	//	float _x = rand() % (2200 - 600 + 1) + 100;
-	//	Mutant* _temp = new Mutant(sf::Vector2f(1600, 100), sf::Vector2f(0, 0), _mutantTexture);
-	//	m_mutants.push_back(_temp);
-	//}
 } 
 
 
@@ -160,17 +151,17 @@ void Play::draw()
 
 void Play::CollisionManager()
 {
-	for (int i = 0; i < _abductors.size(); i++)
+	/*for (int i = 0; i < _abductors.size(); i++)
 	{
 		for (int k = 0; k < m_astronauts.size(); k++)
 		{
-			if (_collisionManager.collision(_abductors[i]->getCollisionRect(),m_astronauts[0]->getCollisionRect()))
+			if (_collisionManager.collision(_abductors[i]->getCollisionRect(),m_astronauts[k]->getCollisionRect()))
 			{
-				_abductors[i]->m_abducting = true;
-				m_astronauts[0]->m_abducted = true;
+				_abductors[i]->setAbducting(true);
+				m_astronauts[k]->setAbducted(true);
 			}
 		}
-	}
+	}*/
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
@@ -178,20 +169,21 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(m_nests[i]->_nestBulletVector[k]->getCollisionRect(),_player->getCollisionRect()))
 			{
-				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + k);
 				m_nests[i]->bulletCount--;
 			}
 		}
 	}
-
+	
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
 		for (int k = 0; k < m_mutants[i]->_mutantBulletVector.size(); k++)
 		{
+			
 			if (_collisionManager.collision(m_mutants[i]->_mutantBulletVector[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
-				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + i);
-				//m_mutant[i]->bulletCount--;
+				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + k);
+				//m_mutants[i]->bulletCount--;
 			}
 		}
 	}
@@ -217,26 +209,27 @@ void Play::update()
 		m_obstacles[i]->update();
 	}
 
-	for (int i = 0; i < m_astronauts.size(); i++)
+	/*for (int i = 0; i < m_astronauts.size(); i++)
 	{
 		for (int j = 0; j < _abductors.size(); j++)
 		{
 			m_astronauts[i]->movement(_abductors[j]->getPosition());
 		}
-	}
+	}*/
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
 		m_mutants[i]->movement(_player->getPosition(), _alienMissile);
 	}
 
-	for (int i = 0; i < _abductors.size(); i++)
+	/*for (int i = 0; i < _abductors.size(); i++)
 	{
 		if (_abductors[i]->getPosition().y < 0)
 		{
 			_abductors.erase(_abductors.begin() + i);
+			i--;
 		}
-	}
+	}*/
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
@@ -280,15 +273,38 @@ void Play::update()
 			}
 		}
 	}
+	float prevDist = 10000;
 
 	for (int i = 0; i < _abductors.size(); i++)
 	{
 		for (int k = 0; k < m_astronauts.size(); k++)
 		{
-			//_abductors[i]->run(_abductors);
-			_abductors[i]->movement(m_astronauts[0]->getPosition());
+			//float Dist = sqrt(((m_astronauts[k]->getPosition().x - _abductors[i]->getPosition().x) * (m_astronauts[k]->getPosition().x - _abductors[i]->getPosition().x)) + ((m_astronauts[k]->getPosition().y - _abductors[i]->getPosition().y) * (m_astronauts[k]->getPosition().y - _abductors[i]->getPosition().y)));
+			//if (Dist < prevDist)
+			//{
+			//	Dist = prevDist;
+			//}
+
+			if (_collisionManager.collision(_abductors[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()) == true)
+			{
+				_abductors[i]->abducting(m_astronauts[k]->getPosition());
+				m_astronauts[k]->abducted(_abductors[i]->getPosition());
+			}
+			if (_abductors[i]->getAbducting() == false)
+			{
+				_abductors[i]->movement(m_astronauts[k]->getPosition(), *m_astronauts.at(k));
+			}
+			if (m_astronauts[k]->getAbducted() == false)
+			{
+				m_astronauts[k]->movement(_abductors[i]->getPosition());
+			}
 		}
 	}
+
+
+
+
+
 
 	CollisionManager();
 	game->window.display();
