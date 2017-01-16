@@ -20,7 +20,8 @@ public :
 	void handleInput(float);
 	void spawn(sf::Vector2f _newPos);
 	sf::RectangleShape getCollisionRect();
-
+	void setMaxAcceleration(int);
+	void setCanHyperJump(bool value);
 private :
 	sf::RectangleShape collisionBox;
 	float m_friction;

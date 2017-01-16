@@ -167,6 +167,8 @@
     <ClInclude Include="include\obstacles.h" />
     <ClInclude Include="include\Play.hpp" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\PowerUp.h" />
+    <ClInclude Include="include\PowerUpType.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,7 @@
     <ClCompile Include="src\obstacles.cpp" />
     <ClCompile Include="src\Play.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PowerUp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,7 @@ Play::Play(Game* game)
 
 	game->window.setFramerateLimit(60); 
 	
-	
+	m_powerUpTex.loadFromFile("Assets/powerup.png");
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(1424,400),sf::Vector2f(0,0),_playerTexture);
 	_nestTexture.loadFromFile("Assets/nest.png");
@@ -77,6 +77,8 @@ Play::Play(Game* game)
 		 Abductor* _temp = new Abductor(sf::Vector2f(_x, 100), sf::Vector2f(0, 0), _abtuctorTexture);
 		 _abductors.push_back(_temp);
 	}
+	
+	 m_powerUptimer = 1000;
 } 
 
 
@@ -84,6 +86,14 @@ void Play::draw()
 {	
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
+	
+
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		game->window.draw(m_powerUps[i]->getSprite());
+	}
+
+
 
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
@@ -198,6 +208,8 @@ void Play::update()
 	updateCamera();
 	wrapAround();
 	_player->update(_dt);
+	updatePowerUps();
+
 
 	if (_playerBulletVector.size() != 0)
 	{
@@ -310,6 +322,52 @@ void Play::update()
 	game->window.display();
 	
 	return;
+}
+
+
+void Play::updatePowerUps()
+{
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		m_powerUps[i]->update();
+	}
+
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		if (_collisionManager.collision(_player->getCollisionRect(), m_powerUps[i]->getCollisionRect())==true)
+		{
+			if (m_powerUps[i]->getType() == PowerUPType::Speed)
+			{
+				_player->setMaxAcceleration(200);
+				m_powerUps.erase(m_powerUps.begin() + i);
+			}
+			else if (m_powerUps[i]->getType() == PowerUPType::INVINCIBILITY)
+			{
+
+			}
+			else if (m_powerUps[i]->getType() == PowerUPType::TELEPORT)
+			{
+				_player->setCanHyperJump(true);
+				m_powerUps.erase(m_powerUps.begin() + i);
+			}
+		}
+	}
+
+
+	m_powerUptimer--;
+	if (m_powerUptimer <=0)
+	{
+		if (m_powerUps.size() !=0)
+		{
+			m_powerUps.pop_back();
+		}
+		int  _x = rand() % (5500 - 400 + 1) + 400;
+		int  _y = rand() % (600 - 100 + 1) + 100;
+		int type = rand() % (2 - 0 + 1) + 0;
+		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex,static_cast<PowerUPType>(type));
+		m_powerUps.push_back(_temp);
+		m_powerUptimer = 1000;
+	}
 }
 
 void Play::updatePlayerBullet()

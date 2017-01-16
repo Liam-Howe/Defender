@@ -69,7 +69,15 @@ void Player::move(sf::Vector2f speed , float _dt)
 	m_Pos.y += m_Vel.y;
 	m_Sprite.setPosition(m_Pos);
 	collisionBox.setPosition(m_Pos.x, m_Pos.y);
-	std::cout << "vel : " << m_Vel.x << " accel : " << m_accel.x << std::endl;
+
+}
+void Player::setMaxAcceleration(int value )
+{
+	m_maxAcceleration = value;
+}
+void Player::setCanHyperJump(bool value)
+{
+	m_canHyperJump = value;
 }
 
 void Player::setdirection(bool value)
