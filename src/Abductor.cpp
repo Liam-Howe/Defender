@@ -9,6 +9,7 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	maxSpeed = 3.5;
 	maxForce = 0.5;
 	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
+	m_abducting = false;
 
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
 	collisionBox.setPosition(m_pos.x, m_pos.y);
@@ -47,6 +48,11 @@ void Abductor::flock(std::vector<Abductor*>_abductor)
 void Abductor::applyForce(sf::Vector2f force)
 {
 	addVector(force, m_acceleration);
+}
+
+void Abductor::setAbducting(bool value)
+{
+	m_abducting = value;
 }
 
 sf::Vector2f Abductor::getVelocity()
@@ -175,29 +181,37 @@ void Abductor::movement(sf::Vector2f targetPos)
 {
 	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
 
-	if (Dist < 700 && m_following == false)
-	{
-		m_seek = true;
-		m_following = true;
-	}
+	//if (Dist < 700 && m_following == false)
+	//{
+	//	m_seek = true;
+	//	m_following = true;
+	//}
+
 	//if (Dist < 300)
 	//{
 	//	m_seek = false;
 	//}
 
-	if (m_seek == true && m_abducting == false)
+	//if (m_seek == true && m_abducting == false)
+	//{
+	if(m_abducting == false)
 	{
 		seek(targetPos);
 	}
-	else if (m_seek == false && m_abducting == false)
-	{
+
+	//else if (m_seek == false && m_abducting == false)
+//	{
 		//		wander();
-	}
+	//}
 
 	if (m_abducting == true)
 	{
-		m_pos.y = m_pos.y - 10;
+		m_pos.y = m_pos.y - 0.5;
+	
 	}
+
+	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
 }
 
 sf::Vector2f Abductor::subVector(sf::Vector2f _pos ,sf::Vector2f _currentVector)

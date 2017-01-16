@@ -18,6 +18,7 @@ public :
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	void movement(sf::Vector2f abductorPos);
 	void applyForce(sf::Vector2f force);
+	void setAbducting(bool value);
 	void flock(std::vector<Abductor*>_abductor);
 	 sf::Vector2f alignment(std::vector<Abductor*>_abductor);
 	sf::Vector2f seperation(std::vector<Abductor*>_abductor);

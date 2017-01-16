@@ -52,8 +52,11 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 	 if (m_Pos.y < 690 && m_abducted == false)
 	 {
 		 m_Pos.y += 5;
-		 m_Sprite.setPosition(m_Pos);
+
 	 }
+
+	 m_Sprite.setPosition(m_Pos);
+	 collisionBox.setPosition(m_Pos.x, m_Pos.y);
 }
 sf::RectangleShape Astronaut::getCollisionRect()
 {
@@ -63,6 +66,7 @@ void Astronaut::wander()
 {
 	m_Vel.x = generatedPos - m_Pos.x;
 	m_Vel = Normalise(m_Vel);
+	m_Vel.x = m_Vel.x / 5;
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
 	
@@ -79,6 +83,7 @@ void Astronaut::flee(sf::Vector2f abductorPos)
 {
 	m_Vel.x = m_Pos.x - abductorPos.x;
 	m_Vel = Normalise(m_Vel);
+	m_Vel.x = m_Vel.x / 5;
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
 	

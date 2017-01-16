@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Menu.hpp"
 #include "obstacles.h"
+#include "Mutant.h"
 #include "Astronaut.h"
 #include "Bullet.h"
 #include "AlienNest.h"
@@ -27,11 +28,11 @@ class Play : public GameState
 private:
 	
 	CollisionManager _collisionManager;
-	thor::ParticleSystem system;
+//	thor::ParticleSystem system;
 	sf::Clock Particleclock;
-	thor::UniversalEmitter Snowemitter1;
-	thor::UniversalEmitter Snowemitter2;
-	thor::UniversalEmitter Snowemitter3;
+//	thor::UniversalEmitter Snowemitter1;
+	//thor::UniversalEmitter Snowemitter2;
+	//thor::UniversalEmitter Snowemitter3;
 	//Player porperties
 	Player * _player;
 	sf::Texture _playerTexture;
@@ -48,6 +49,10 @@ private:
 
 	std::vector<AlienNest*> m_nests;
 	sf::Texture _alienMissile;
+
+	std::vector<Mutant*> m_mutants;
+	sf::Texture _mutantTexture;
+	int _mutantCount;
 
 	std::vector<Astronaut*> m_astronauts;
 	sf::Texture _astronautTexture;

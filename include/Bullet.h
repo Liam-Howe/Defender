@@ -11,6 +11,7 @@ public :
 	Bullet(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, float _speed);
 	~Bullet();
 	void seekerUpdate(sf::Vector2f targetPos);
+	void mutantUpdate(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	int lifeTime;
 	sf::RectangleShape getCollisionRect();
@@ -26,6 +27,7 @@ private:
 	float m_speed;
 	float PI;
 	float rotation;
+	bool mutantFired;
 	sf::Vector2f rotationVec;
 
 
