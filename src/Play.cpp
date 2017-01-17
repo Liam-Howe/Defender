@@ -169,6 +169,16 @@ void Play::CollisionManager()
 				_abductors[i]->m_abducting = true;
 				m_astronauts[0]->m_abducted = true;
 			}
+			else
+			{
+				_abductors[i]->m_abducting = false;
+				m_astronauts[0]->m_abducted = false;
+			}
+
+			/*if (_collisionManager.collision(_abductors[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()) == false)
+			{
+				m_astronauts[k]->m_abducted = false;
+			}*/
 		}
 	}
 
@@ -240,16 +250,31 @@ void Play::CollisionManager()
 
 	for (int i = 0; i < _playerBulletVector.size(); i++)
 	{
-		for (int k = 0; k < m_mutants.size(); k++)
+		for (int k = 0; k < _abductors.size(); k++)
 		{
-			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), _abductors[k]->getCollisionRect()))
 			{
 				_playerBulletVector.erase(_playerBulletVector.begin() + i);
 
-				if (m_mutants[k]->getHealth() > 0)
+				if (_abductors[k]->getHealth() > 0)
 				{
-					m_mutants[k]->takeDamage(1);
+					_abductors[k]->m_abducting = false;
+					//_abductors[k]->setPosition(sf::Vector2f(_abductors[k]->getPosition().x, 2000));
+					_abductors[k]->takeDamage(1);
 				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_astronauts.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()))
+			{
+				//_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+				m_astronauts[k]->m_abducted = false;
 			}
 		}
 	}
@@ -359,18 +384,6 @@ void Play::updatePlayerBullet()
 	{
 		_playerBulletVector[i]->update();
 	}
-
-	/*for (int i = 0; i < m_nests.size(); i++)
-	{
-		for (int k = 0; k < _playerBulletVector.size(); k++)
-		{
-			if (_collisionManager.collision(m_nests[i]->getCollisionRect(), _playerBulletVector[k]->getCollisionRect()))
-			{
-				_playerBulletVector.erase(_playerBulletVector.begin() + k);
-				m_nests.erase(m_nests.begin() + i);
-			}
-		}
-	}*/
 }
 
 void Play::checkHealth()
@@ -388,8 +401,8 @@ void Play::checkHealth()
 		if (m_nests[i]->getHealth() <= 0)
 		{
 			m_nests[i]->_nestBulletVector.clear();
-			m_nests.erase(m_nests.begin() + i);
 			m_nests[i]->bulletCount = 0;
+			m_nests.erase(m_nests.begin() + i);
 		}
 	}
 

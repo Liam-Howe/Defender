@@ -19,7 +19,6 @@ AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_ASprite.getGlobalBounds().width,m_ASprite.getGlobalBounds().width));
 	collisionBox.setPosition(m_APos);
-	
 }
 
 AlienNest::~AlienNest()
@@ -84,7 +83,6 @@ void AlienNest::wander()
 	m_APos.y += m_AVel.y;
 	m_ASprite.setPosition(m_APos);
 
-
 	if (m_APos == generatedPos)
 	{
 		m_AVel.x = 0;
@@ -102,7 +100,6 @@ void AlienNest::flee(sf::Vector2f playerPos)
 	m_AVel = Normalise(m_AVel);
 	m_APos += m_AVel;
 	m_ASprite.setPosition(m_APos);
-	
 }
 
 sf::RectangleShape AlienNest::getCollisionRect()
