@@ -88,6 +88,7 @@ public:
 	virtual void update();
 	virtual void handleInput();
 	void updatePlayerBullet();
+	void checkHealth();
 	~Play();
 
 	Play(Game* game);

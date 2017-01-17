@@ -33,7 +33,9 @@ public :
 	sf::Vector2f cohesion(std::vector<Abductor*>_abductor);
 	sf::Vector2f flockSeek(sf::Vector2f v);
 	sf::Vector2f subVector(sf::Vector2f _pos, sf::Vector2f _currentVector);
-	
+	int getHealth();
+	void takeDamage(int value);
+
 	bool m_abducting;
 	sf::RectangleShape getCollisionRect();
 private : 
@@ -51,4 +53,5 @@ private :
 	bool m_flock;
 	bool m_seek;
 	bool m_following;
+	int health;
 };

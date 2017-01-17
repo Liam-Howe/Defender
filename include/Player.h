@@ -20,6 +20,10 @@ public :
 	void handleInput(float);
 	void spawn(sf::Vector2f _newPos);
 	sf::RectangleShape getCollisionRect();
+	int getHealth();
+	void takeDamage(int value);
+	int getBombCount();
+	void useBomb();
 
 private :
 	sf::RectangleShape collisionBox;
@@ -33,4 +37,6 @@ private :
 	bool m_decelerate;
 	bool m_direction;
 	bool m_canHyperJump;
+	int health;
+	int m_smartBombCount
 };

@@ -10,6 +10,7 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	maxForce = 0.5;
 	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
 	m_abducting = false;
+	health = 1;
 
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
 	collisionBox.setPosition(m_pos.x, m_pos.y);
@@ -219,6 +220,16 @@ sf::Vector2f Abductor::subVector(sf::Vector2f _pos ,sf::Vector2f _currentVector)
 	_currentVector.x -= _pos.x;
 	_currentVector.y -= _pos.y;
 	return _currentVector;
+}
+
+int Abductor::getHealth()
+{
+	return health;
+}
+
+void Abductor::takeDamage(int value)
+{
+	health = health - value;
 }
 
 sf::Vector2f Abductor::flockSeek(sf::Vector2f v)

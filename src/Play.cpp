@@ -180,6 +180,11 @@ void Play::CollisionManager()
 			{
 				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
 				m_nests[i]->bulletCount--;
+		
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(1);
+				}
 			}
 		}
 	}
@@ -192,15 +197,69 @@ void Play::CollisionManager()
 			{
 				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + i);
 				//m_mutant[i]->bulletCount--;
+
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_mutants.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+
+				if (m_mutants[k]->getHealth() > 0)
+				{
+					m_mutants[k]->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_nests.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_nests[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+
+				if (m_nests[k]->getHealth() > 0)
+				{
+					m_nests[k]->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_mutants.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+
+				if (m_mutants[k]->getHealth() > 0)
+				{
+					m_mutants[k]->takeDamage(1);
+				}
 			}
 		}
 	}
 }
 
-
 void Play::update()
 {
-
 	_dt = _clock.restart().asSeconds();
 
 	updateCamera();
@@ -290,6 +349,7 @@ void Play::update()
 		}
 	}
 
+	checkHealth();
 	CollisionManager();
 	game->window.display();
 	
@@ -312,6 +372,36 @@ void Play::updatePlayerBullet()
 				_playerBulletVector.erase(_playerBulletVector.begin() + k);
 				m_nests.erase(m_nests.begin() + i);
 			}
+		}
+	}
+}
+
+void Play::checkHealth()
+{
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (_abductors[i]->getHealth() <= 0)
+		{
+			_abductors.erase(_abductors.begin() + i);
+		}
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->getHealth() <= 0)
+		{
+			m_nests[i]->_nestBulletVector.clear();
+			m_nests.erase(m_nests.begin() + i);
+			m_nests[i]->bulletCount = 0;
+		}
+	}
+
+	for (int i = 0; i < m_mutants.size(); i++)
+	{
+		if (m_mutants[i]->getHealth() <= 0)
+		{
+			m_mutants[i]->_mutantBulletVector.clear();
+			m_mutants.erase(m_mutants.begin() + i);
 		}
 	}
 }
@@ -377,6 +467,41 @@ void Play::handleInput()
 				_player->setdecelerating(false);
 				_player->setdirection(true);
 			}
+
+			if (event.key.code == sf::Keyboard::B)
+			{
+				if (_player->getBombCount() > 0)
+				{
+					for (int i = 0; i < m_mutants.size(); i++)
+					{
+						float playerMutantDist = sqrt(((_player->getPosition().x - m_mutants[i]->getPosition().x) * (_player->getPosition().x - m_mutants[i]->getPosition().x)) + ((_player->getPosition().y - m_mutants[i]->getPosition().y) * (_player->getPosition().y - m_mutants[i]->getPosition().y)));
+						if (playerMutantDist < 600)
+						{
+							m_mutants[i]->takeDamage(2);
+						}
+					}
+
+					for (int i = 0; i < m_nests.size(); i++)
+					{
+						float playerNestDist = sqrt(((_player->getPosition().x - m_nests[i]->getPosition().x) * (_player->getPosition().x - m_nests[i]->getPosition().x)) + ((_player->getPosition().y - m_nests[i]->getPosition().y) * (_player->getPosition().y - m_nests[i]->getPosition().y)));
+						if (playerNestDist < 600)
+						{
+							m_nests[i]->takeDamage(2);
+						}
+					}
+
+					for (int i = 0; i < _abductors.size(); i++)
+					{
+						float playerAbductorDist = sqrt(((_player->getPosition().x - _abductors[i]->getPosition().x) * (_player->getPosition().x - _abductors[i]->getPosition().x)) + ((_player->getPosition().y - _abductors[i]->getPosition().y) * (_player->getPosition().y - _abductors[i]->getPosition().y)));
+						if (playerAbductorDist < 600)
+						{
+							_abductors[i]->takeDamage(2);
+						}
+					}
+					_player->useBomb();
+				}
+			}
+
 			if (event.key.code == sf::Keyboard::Space)
 			{
 				if (_player->getDirection() == false)

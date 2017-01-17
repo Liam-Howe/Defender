@@ -12,6 +12,8 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_friction = 0.997f;
 	m_maxAcceleration = 100;
 	m_canHyperJump = true;
+	health = 2;
+	m_smartBombCount = 1;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Tex.getSize().x, m_Tex.getSize().y));
 }
 Player::~Player()
@@ -135,6 +137,26 @@ void Player::spawn(sf::Vector2f _newPos)
 sf::RectangleShape Player::getCollisionRect()
 {
 	return collisionBox;
+}
+
+int Player::getHealth()
+{
+	return health;
+}
+
+void Player::takeDamage(int value)
+{
+	health = health - value;
+}
+
+int Player::getBombCount()
+{
+	return m_smartBombCount;
+}
+
+void Player::useBomb()
+{
+	m_smartBombCount -= 1;
 }
 
 void Player::update(float _dt)

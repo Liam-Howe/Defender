@@ -15,6 +15,8 @@ AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	bulletCount = 0;
 	m_Afleeing = false;
 
+	health = 2;
+
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_ASprite.getGlobalBounds().width,m_ASprite.getGlobalBounds().width));
 	collisionBox.setPosition(m_APos);
 	
@@ -106,6 +108,16 @@ void AlienNest::flee(sf::Vector2f playerPos)
 sf::RectangleShape AlienNest::getCollisionRect()
 {
 	return collisionBox;
+}
+
+int AlienNest::getHealth()
+{
+	return health;
+}
+
+void AlienNest::takeDamage(int value)
+{
+	health = health - value;
 }
 
 sf::Vector2f AlienNest::Normalise(sf::Vector2f velocity)

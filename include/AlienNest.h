@@ -26,6 +26,9 @@ public :
 	sf::RectangleShape getCollisionRect();
 	sf::RectangleShape collisionBox;
 
+	int getHealth();
+	void takeDamage(int value);
+
 private:
 
 	sf::Vector2f generatedPos;
@@ -38,5 +41,7 @@ private:
 	sf::Vector2f m_AVel;
 	sf::Texture m_ATex;
 	sf::Sprite m_ASprite;
+
+	int health;
 
 };

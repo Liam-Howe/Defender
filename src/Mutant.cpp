@@ -9,6 +9,8 @@ Mutant::Mutant(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_pos(_
 	bulletTimer = 0;
 	m_seek = false;
 
+	health = 1;
+
 	collisionBox = sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
 	collisionBox.setPosition(m_pos.x, m_pos.y);
 }
@@ -103,4 +105,14 @@ void Mutant::fire(sf::Vector2f targetPos, sf::Texture _playerBullet)
 void Mutant::swarm()
 {
 
+}
+
+int Mutant::getHealth()
+{
+	return health;
+}
+
+void Mutant::takeDamage(int value)
+{
+	health = health - value;
 }
