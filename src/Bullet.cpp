@@ -13,10 +13,10 @@ Bullet::Bullet(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, float _sp
 
 	mutantFired = false;
 	PI = 3.14159265;
-	lifeTime = 0;
+	m_lifeTime = 0;
 	collisionBox = sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().width));
+	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 	collisionBox.setPosition(m_pos);
-	
 }
 
 Bullet::~Bullet()
@@ -32,7 +32,7 @@ void Bullet::seekerUpdate(sf::Vector2f targetPos)
 	m_pos += m_vel;
 	m_Sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
-	lifeTime += 1;
+	m_lifeTime += 1;
 	rotationVec = m_pos - targetPos;
 	rotation = (atan2(rotationVec.y, rotationVec.x)) * 180 / PI;
 
@@ -76,6 +76,7 @@ void Bullet::update()
 	m_pos.x += m_speed;
 	m_Sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos.x, m_pos.y);
+	m_lifeTime += 1;
 }
 
 sf::Sprite Bullet::getSprite()
@@ -85,4 +86,14 @@ sf::Sprite Bullet::getSprite()
 sf::RectangleShape Bullet::getCollisionRect()
 {
 	return collisionBox;
+}
+
+void Bullet::setLifetime(int value)
+{
+	m_lifeTime = value;
+}
+
+int Bullet::getLifeTime()
+{
+	return m_lifeTime;
 }

@@ -17,7 +17,9 @@ public :
 	void update();
 	void seek(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
-	void movement(sf::Vector2f abductorPos, Astronaut& _astronaut);
+	void movement(Astronaut& abductorPos);
+	void wander();
+	void abducting();
 	void applyForce(sf::Vector2f force);
 	void setAbducting(bool value);
 	void flock(std::vector<Abductor*>_abductor);
@@ -34,12 +36,12 @@ public :
 	sf::Vector2f cohesion(std::vector<Abductor*>_abductor);
 	sf::Vector2f flockSeek(sf::Vector2f v);
 	sf::Vector2f subVector(sf::Vector2f _pos, sf::Vector2f _currentVector);
-	void wander();
-	bool getAbducting();
-	void abducting(sf::Vector2f astronautPos);
+	int getHealth();
+	void takeDamage(int value);
+
+	bool m_abducting;
 	sf::RectangleShape getCollisionRect();
 private : 
-	bool m_abducting;
 	sf::RectangleShape collisionBox;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_vel;
@@ -53,7 +55,7 @@ private :
 	float maxForce;
 	bool m_flock;
 	bool m_seek;
-	float previousDistance;
 	bool m_following;
-	sf::Vector2f  m_generatedPos;
+	int health;
+	sf::Vector2f m_generatedPos;
 };

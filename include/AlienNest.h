@@ -21,10 +21,14 @@ public :
 	void wander();
 	void flee(sf::Vector2f playerPos);
 	int bulletCount;
+	int abductorSpawnTimer;
 
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	sf::RectangleShape getCollisionRect();
 	sf::RectangleShape collisionBox;
+
+	int getHealth();
+	void takeDamage(int value);
 
 private:
 
@@ -38,5 +42,7 @@ private:
 	sf::Vector2f m_AVel;
 	sf::Texture m_ATex;
 	sf::Sprite m_ASprite;
+
+	int health;
 
 };

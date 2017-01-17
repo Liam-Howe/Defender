@@ -19,3 +19,15 @@ bool CollisionManager::collision(sf::RectangleShape _rect1, sf::RectangleShape _
 		return false;
 	}
 }
+
+bool CollisionManager::circleRectcollision(sf::CircleShape circle, sf::RectangleShape rect)
+{
+	if (circle.getGlobalBounds().intersects(rect.getGlobalBounds()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

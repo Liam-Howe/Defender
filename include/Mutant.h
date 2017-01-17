@@ -20,6 +20,8 @@ public:
 	void movement(sf::Vector2f targetPos, sf::Texture _playerBullet);
 	void fire(sf::Vector2f targetPos, sf::Texture _playerBullet);
 	void swarm();
+	int getHealth();
+	void takeDamage(int value);
 	std::vector<Bullet *> _mutantBulletVector;
 
 private:
@@ -32,5 +34,5 @@ private:
 	float bulletTimer;
 	bool m_seek;
 	bool m_following;
-
+	int health;
 };

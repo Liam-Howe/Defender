@@ -7,95 +7,114 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	m_Sprite.setPosition(m_Pos);
 	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 
+	srand(time(NULL));
 
-	float _x = rand() % (5500 - 400 + 1) + 400;
-	generatedPos = _x;
+	generatedPos = rand() % 5500;
 	m_fleeing = false;
-	m_followed = false;
 	m_abducted = false;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
-	collisionBox.setPosition(m_Pos.x, m_Pos.y);
-	m_groundHeight = 690;
+	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
+	collisionBox.setPosition(m_Pos);
+	
+	seekBox = sf::RectangleShape(sf::Vector2f(200, 500));
+	seekBox.setOrigin(seekBox.getGlobalBounds().width / 2, seekBox.getGlobalBounds().height / 2);
+	seekBox.setPosition(m_Pos);
+
+
+	//m_circle.setRadius(300);
+	//m_circle.setPosition(m_Pos);
+	//m_circle.setOrigin(m_circle.getGlobalBounds().width/2,m_circle.getGlobalBounds().height/2);
 }
 
 Astronaut::~Astronaut()
 {
 
 }
+void Astronaut::setAbducted(bool value)
+{
+	m_abducted = value;
+}
+
+bool Astronaut::getAbducted()
+{
+	return m_abducted;
+}
+
+sf::CircleShape Astronaut::getCircle()
+{
+	return m_circle;
+}
+sf::RectangleShape Astronaut::getSeekRect()
+{
+	return seekBox;
+}
+
+void Astronaut::setPosition(sf::Vector2f _pos)
+{
+	m_Pos = _pos;
+}
 
 void Astronaut::movement(sf::Vector2f abductorPos)
 {
 	abductorDist = sqrt(((m_Pos.x - abductorPos.x) * (m_Pos.x - abductorPos.x)) + ((m_Pos.y - abductorPos.y) * (m_Pos.y - abductorPos.y)));
 
-	if(abductorDist < 200)
+	if(abductorDist < 100)
 	{
 		m_fleeing = true;
 	}
-	if (abductorDist > 500)
+	 if (abductorDist > 300)
 	{
 		 m_fleeing = false;
 	}
 
-	 if (m_fleeing)
+	 if (abductorDist < 300 && m_fleeing == true && m_Pos.y >= 690)
 	 {
 		 flee(abductorPos);
 	 }
-	  if (m_fleeing == false)
+	 else if (m_fleeing == false && m_Pos.y >= 690)
 	 {
 		 wander();
 	 }
 
 	
 
-	 if (m_Pos.y < m_groundHeight && m_abducted == false)
+	 if (m_Pos.y < 690 && m_abducted == false)
 	 {
 		 m_Pos.y += 5;
 	 }
 
 	 m_Sprite.setPosition(m_Pos);
-	 collisionBox.setPosition(m_Pos.x, m_Pos.y);
+	 collisionBox.setPosition(m_Pos);
+	// m_circle.setPosition(m_Pos);
+	 seekBox.setPosition(m_Pos);
 }
-
-void Astronaut::abducted(sf::Vector2f abductorPos)
-{
-		m_abducted = true;
-		m_Pos.x = abductorPos.x;
-		m_Pos.y = abductorPos.y;
-		m_Sprite.setPosition(m_Pos);
-		collisionBox.setPosition(m_Pos.x, m_Pos.y);
-}
-
-
 sf::RectangleShape Astronaut::getCollisionRect()
 {
 	return collisionBox;
 }
-bool Astronaut::getFollowed()
+void Astronaut::abducted(sf::Vector2f _abductorPos)
 {
-	return m_followed;
-}
-bool Astronaut::getAbducted()
-{
-	return m_abducted;
-}
-void Astronaut::setFollowed(bool value)
-{
-	m_followed = value;
+	    m_abducted = true;
+		m_Pos.x = _abductorPos.x;
+		m_Pos.y = _abductorPos.y - 15;
+		m_Sprite.setPosition(m_Pos);
+		collisionBox.setPosition(m_Pos);
+		//m_circle.setRadius(0);
 }
 void Astronaut::wander()
 {
 	m_Vel.x = generatedPos - m_Pos.x;
 	m_Vel = Normalise(m_Vel);
-	m_Vel.x = m_Vel.x / 5;
+	m_Vel.x = m_Vel.x / 15;
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
-	
+	collisionBox.setPosition(m_Pos);
 
 	if (m_Pos.x == generatedPos)
 	{
 		m_Vel.x = 0;
 		m_Pos.x = generatedPos + 10;
-		generatedPos =  rand() % (5500 - 400 + 1) + 400;
+		generatedPos = rand() % 2048 + 1;
 	}
 }
 
@@ -106,14 +125,8 @@ void Astronaut::flee(sf::Vector2f abductorPos)
 	m_Vel.x = m_Vel.x / 5;
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
-	
+	collisionBox.setPosition(m_Pos);
 }
-
-void Astronaut::setAbducted(bool value)
-{
-	m_abducted = value;
-}
-
 
 sf::Vector2f Astronaut::Normalise(sf::Vector2f velocity)
 {
