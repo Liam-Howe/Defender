@@ -6,13 +6,16 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 {
 	m_sprite.setTexture(m_tex);
 	m_sprite.setPosition(m_pos);
+	m_sprite.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
 	maxSpeed = 3.5;
 	maxForce = 0.5;
 	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
 	m_abducting = false;
+	health = 1;
 
-	collisionBox =  sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
-	collisionBox.setPosition(m_pos.x, m_pos.y);
+	collisionBox =  sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().width));
+	collisionBox.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
+	collisionBox.setPosition(m_pos);
 }
 Abductor::~Abductor()
 {
@@ -27,7 +30,6 @@ void Abductor::update()
 	m_acceleration = mulScalar(0, m_acceleration);
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos.x, m_pos.y);
-	
 }
 void Abductor::flock(std::vector<Abductor*>_abductor)
 {
@@ -221,6 +223,16 @@ sf::Vector2f Abductor::subVector(sf::Vector2f _pos ,sf::Vector2f _currentVector)
 	return _currentVector;
 }
 
+int Abductor::getHealth()
+{
+	return health;
+}
+
+void Abductor::takeDamage(int value)
+{
+	health = health - value;
+}
+
 sf::Vector2f Abductor::flockSeek(sf::Vector2f v)
 {
 
@@ -239,7 +251,6 @@ sf::RectangleShape Abductor::getCollisionRect()
 	return collisionBox;
 }
 
-
 void Abductor::seek(sf::Vector2f targetPos)
 {
 	m_vel.x = targetPos.x - m_pos.x;
@@ -247,7 +258,7 @@ void Abductor::seek(sf::Vector2f targetPos)
 	m_vel = Normalise(m_vel);
 	m_pos += m_vel;
 	m_sprite.setPosition(m_pos);
-
+	collisionBox.setPosition(m_pos);
 }
 sf::Vector2f Abductor::Normalise(sf::Vector2f velocity)
 {
@@ -279,6 +290,5 @@ void Abductor::run(std::vector<Abductor*>_abductors)
 			flock(_abductors);
 		}
 	}
-	
 	update();
 }

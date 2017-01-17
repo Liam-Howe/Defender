@@ -8,7 +8,7 @@ Play::Play(Game* game)
 
 	game->window.setFramerateLimit(60); 
 	
-	
+	m_powerUpTex.loadFromFile("Assets/powerup.png");
 	_playerTexture.loadFromFile("Assets/ship.png");
 	_player = new Player(sf::Vector2f(1424,400),sf::Vector2f(0,0),_playerTexture);
 	_nestTexture.loadFromFile("Assets/nest.png");
@@ -24,6 +24,7 @@ Play::Play(Game* game)
 	 gameHeight = 1056;
 	 gameWidth = 6600;
 	 cameraoffset = 300;
+	 //abductorSpawnTimer = 0;
 	
 	 WidthOffset = gameWidth - cameraoffset;
 
@@ -75,7 +76,7 @@ Play::Play(Game* game)
 	 {
 		 float _x = rand() % (2200 - 600 + 1) + 100;
 		 Abductor* _temp = new Abductor(sf::Vector2f(1424, 100), sf::Vector2f(0, 0), _abtuctorTexture);
-		 _abductors.push_back(_temp);
+	//	 _abductors.push_back(_temp);
 	}
 
 	//_mutantCount = 1;
@@ -86,6 +87,8 @@ Play::Play(Game* game)
 	//	Mutant* _temp = new Mutant(sf::Vector2f(1600, 100), sf::Vector2f(0, 0), _mutantTexture);
 	//	m_mutants.push_back(_temp);
 	//}
+
+	 m_powerUptimer = 1000;
 } 
 
 
@@ -93,6 +96,30 @@ void Play::draw()
 {	
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
+
+	//game->window.draw(_player->getCollisionRect());
+
+	//for (int i = 0; i < m_nests.size(); i++)
+	//{
+	//	game->window.draw(m_nests[i]->getCollisionRect());
+	//}
+	//for (int i = 0; i < m_mutants.size(); i++)
+	//{
+	//	game->window.draw(m_mutants[i]->getCollisionRect());
+	//}
+	//for (int i = 0; i < _abductors.size(); i++)
+	//{
+	//	game->window.draw(_abductors[i]->getCollisionRect());
+	//}
+	//for (int i = 0; i < m_astronauts.size(); i++)
+	//{
+	//	game->window.draw(m_astronauts[i]->getCollisionRect());
+	//}
+
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		game->window.draw(m_powerUps[i]->getSprite());
+	}
 
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
@@ -169,6 +196,16 @@ void Play::CollisionManager()
 				_abductors[i]->m_abducting = true;
 				m_astronauts[0]->m_abducted = true;
 			}
+			else
+			{
+				_abductors[i]->m_abducting = false;
+				m_astronauts[0]->m_abducted = false;
+			}
+
+			/*if (_collisionManager.collision(_abductors[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()) == false)
+			{
+				m_astronauts[k]->m_abducted = false;
+			}*/
 		}
 	}
 
@@ -180,6 +217,11 @@ void Play::CollisionManager()
 			{
 				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
 				m_nests[i]->bulletCount--;
+		
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(1);
+				}
 			}
 		}
 	}
@@ -192,24 +234,103 @@ void Play::CollisionManager()
 			{
 				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + i);
 				//m_mutant[i]->bulletCount--;
+
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_mutants.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+				if (m_mutants[k]->getHealth() > 0)
+				{
+					m_mutants[k]->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_nests.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_nests[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+				if (m_nests[k]->getHealth() > 0)
+				{
+					m_nests[k]->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < _abductors.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), _abductors[k]->getCollisionRect()))
+			{
+				_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+				if (_abductors[k]->getHealth() > 0)
+				{
+					_abductors[k]->m_abducting = false;
+					//_abductors[k]->setPosition(sf::Vector2f(_abductors[k]->getPosition().x, 2000));
+					_abductors[k]->takeDamage(1);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < _playerBulletVector.size(); i++)
+	{
+		for (int k = 0; k < m_astronauts.size(); k++)
+		{
+			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()))
+			{
+				//_playerBulletVector.erase(_playerBulletVector.begin() + i);
+
+				m_astronauts[k]->m_abducted = false;
 			}
 		}
 	}
 }
 
-
 void Play::update()
 {
-
 	_dt = _clock.restart().asSeconds();
 
 	updateCamera();
 	wrapAround();
 	_player->update(_dt);
+	updatePowerUps();
 
 	if (_playerBulletVector.size() != 0)
 	{
 		updatePlayerBullet();
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		if (m_nests[i]->abductorSpawnTimer > 150)
+		{
+			float _x = rand() % (2200 - 600 + 1) + 100;
+			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture);
+			_abductors.push_back(_temp);
+	
+			m_nests[i]->abductorSpawnTimer = 0;
+		}
 	}
 
 	for (int i = 0; i < m_obstacles.size(); i++)
@@ -290,10 +411,56 @@ void Play::update()
 		}
 	}
 
+	checkHealth();
 	CollisionManager();
 	game->window.display();
 	
 	return;
+}
+
+void Play::updatePowerUps()
+{
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		m_powerUps[i]->update();
+	}
+
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		if (_collisionManager.collision(_player->getCollisionRect(), m_powerUps[i]->getCollisionRect()) == true)
+		{
+			if (m_powerUps[i]->getType() == PowerUPType::Speed)
+			{
+				_player->setMaxAcceleration(200);
+				m_powerUps.erase(m_powerUps.begin() + i);
+			}
+			else if (m_powerUps[i]->getType() == PowerUPType::INVINCIBILITY)
+			{
+
+			}
+			else if (m_powerUps[i]->getType() == PowerUPType::TELEPORT)
+			{
+				_player->setCanHyperjump(true);
+				m_powerUps.erase(m_powerUps.begin() + i);
+			}
+		}
+	}
+
+	m_powerUptimer--;
+
+	if (m_powerUptimer <= 0)
+	{
+		if (m_powerUps.size() != 0)
+		{
+			m_powerUps.pop_back();
+		}
+		int  _x = rand() % (5500 - 400 + 1) + 400;
+		int  _y = rand() % (600 - 100 + 1) + 100;
+		int type = rand() % (2 - 0 + 1) + 0;
+		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, static_cast<PowerUPType>(type));
+		m_powerUps.push_back(_temp);
+		m_powerUptimer = 1000;
+	}
 }
 
 void Play::updatePlayerBullet()
@@ -302,16 +469,34 @@ void Play::updatePlayerBullet()
 	{
 		_playerBulletVector[i]->update();
 	}
+}
+
+void Play::checkHealth()
+{
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (_abductors[i]->getHealth() <= 0)
+		{
+			_abductors.erase(_abductors.begin() + i);
+		}
+	}
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		for (int k = 0; k < _playerBulletVector.size(); k++)
+		if (m_nests[i]->getHealth() <= 0)
 		{
-			if (_collisionManager.collision(m_nests[i]->getCollisionRect(), _playerBulletVector[k]->getCollisionRect()))
-			{
-				_playerBulletVector.erase(_playerBulletVector.begin() + k);
-				m_nests.erase(m_nests.begin() + i);
-			}
+			//m_nests[i]->_nestBulletVector.clear();
+			//m_nests[i]->bulletCount = 0;
+			m_nests.erase(m_nests.begin() + i);
+		}
+	}
+
+	for (int i = 0; i < m_mutants.size(); i++)
+	{
+		if (m_mutants[i]->getHealth() <= 0)
+		{
+			m_mutants[i]->_mutantBulletVector.clear();
+			m_mutants.erase(m_mutants.begin() + i);
 		}
 	}
 }
@@ -377,6 +562,41 @@ void Play::handleInput()
 				_player->setdecelerating(false);
 				_player->setdirection(true);
 			}
+
+			if (event.key.code == sf::Keyboard::B)
+			{
+				if (_player->getBombCount() > 0)
+				{
+					for (int i = 0; i < m_mutants.size(); i++)
+					{
+						float playerMutantDist = sqrt(((_player->getPosition().x - m_mutants[i]->getPosition().x) * (_player->getPosition().x - m_mutants[i]->getPosition().x)) + ((_player->getPosition().y - m_mutants[i]->getPosition().y) * (_player->getPosition().y - m_mutants[i]->getPosition().y)));
+						if (playerMutantDist < 600)
+						{
+							m_mutants[i]->takeDamage(2);
+						}
+					}
+
+					for (int i = 0; i < m_nests.size(); i++)
+					{
+						float playerNestDist = sqrt(((_player->getPosition().x - m_nests[i]->getPosition().x) * (_player->getPosition().x - m_nests[i]->getPosition().x)) + ((_player->getPosition().y - m_nests[i]->getPosition().y) * (_player->getPosition().y - m_nests[i]->getPosition().y)));
+						if (playerNestDist < 600)
+						{
+							m_nests[i]->takeDamage(2);
+						}
+					}
+
+					for (int i = 0; i < _abductors.size(); i++)
+					{
+						float playerAbductorDist = sqrt(((_player->getPosition().x - _abductors[i]->getPosition().x) * (_player->getPosition().x - _abductors[i]->getPosition().x)) + ((_player->getPosition().y - _abductors[i]->getPosition().y) * (_player->getPosition().y - _abductors[i]->getPosition().y)));
+						if (playerAbductorDist < 600)
+						{
+							_abductors[i]->takeDamage(2);
+						}
+					}
+					_player->useBomb();
+				}
+			}
+
 			if (event.key.code == sf::Keyboard::Space)
 			{
 				if (_player->getDirection() == false)

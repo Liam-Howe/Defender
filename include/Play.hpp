@@ -13,26 +13,16 @@
 #include "AlienNest.h"
 #include "Abductor.h"
 #include "CollisionManager.h"
-#include "../Dependencies/Thor/include/Particles.hpp"
-#include "../Dependencies/Thor/include/Particles/Affectors.hpp"
-#include "../Dependencies/Thor/include/Particles/EmissionInterface.hpp"
-#include "../Dependencies/Thor/include/Particles/Emitters.hpp"
-#include "../Dependencies/Thor/include/Particles/ParticleSystem.hpp"
-#include "../Dependencies/Thor/include/Vectors/VectorAlgebra3D.hpp"
-#include "../Dependencies/Thor/include/Particles/ParticleSystem.hpp"
-#include "../Dependencies/Thor/include/Math/Distributions.hpp"
-
+#include "PowerUp.h"
+#include "PowerUpType.h"
 
 class Play : public GameState
 {
 private:
 	
 	CollisionManager _collisionManager;
-//	thor::ParticleSystem system;
-	sf::Clock Particleclock;
-//	thor::UniversalEmitter Snowemitter1;
-	//thor::UniversalEmitter Snowemitter2;
-	//thor::UniversalEmitter Snowemitter3;
+
+	float m_powerUptimer;
 	//Player porperties
 	Player * _player;
 	sf::Texture _playerTexture;
@@ -49,6 +39,7 @@ private:
 
 	std::vector<AlienNest*> m_nests;
 	sf::Texture _alienMissile;
+	//int abductorSpawnTimer;
 
 	std::vector<Mutant*> m_mutants;
 	sf::Texture _mutantTexture;
@@ -79,8 +70,11 @@ private:
 	float  _dt;
 	sf::Clock _clock;
 
-public:
+	sf::Texture m_powerUpTex;
+	std::vector<PowerUp*> m_powerUps;
 
+public:
+	void updatePowerUps();
 	virtual void draw();
 	void CollisionManager();
 	void updateCamera();
@@ -88,6 +82,7 @@ public:
 	virtual void update();
 	virtual void handleInput();
 	void updatePlayerBullet();
+	void checkHealth();
 	~Play();
 
 	Play(Game* game);
