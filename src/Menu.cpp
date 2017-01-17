@@ -10,7 +10,11 @@ Menu::Menu(Game* game)
 	DefaultView.setCenter(400, 300);
 	DefaultView.setSize(800, 600);
 	game->window.setView(DefaultView);
-
+	m_buttonTexture.loadFromFile("Assets/play1.png");
+	m_background.loadFromFile("Assets/Menu2.png");
+	m_playSprite.setTexture(m_background);
+	m_backgroundsprite.setTexture(m_background);
+	m_playSprite.setPosition(1500, 500);
 }
 void Menu::draw()
 {
@@ -20,8 +24,15 @@ void Menu::draw()
 void Menu::update()
 {
 	game->window.clear(sf::Color::Cyan);
-
+	game->window.draw(m_backgroundsprite);
+	game->window.draw(m_playSprite);
 	game->window.display();
+	if (checkClicked(m_playSprite, m_Mouseposition) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left) == false)
+	{
+		m_playSprite.setTextureRect(sf::IntRect(0, 72, 201, 71));
+	}
+
+
 
 	return;
 		
@@ -67,4 +78,19 @@ void Menu::handleInput()
 	}
 
 	return;
+}
+
+bool Menu::checkClicked(sf::Sprite sprite, sf::Vector2i position)
+{
+	if (position.x > sprite.getGlobalBounds().left
+		&& position.x < (sprite.getGlobalBounds().left + sprite.getGlobalBounds().width)
+		&& position.y > sprite.getGlobalBounds().top
+		&& position.y < (sprite.getGlobalBounds().top + sprite.getGlobalBounds().height))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

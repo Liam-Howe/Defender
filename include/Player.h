@@ -26,7 +26,8 @@ public :
 	void useBomb();
 	void setCanHyperjump(bool value);
 	void setMaxAcceleration(int value);
-
+	bool getAlive();
+	void setAlive(bool);
 private :
 	sf::RectangleShape collisionBox;
 	float m_friction;
@@ -41,4 +42,6 @@ private :
 	bool m_canHyperJump;
 	int health;
 	int m_smartBombCount;
+	bool m_alive;
+	
 };

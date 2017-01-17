@@ -2,6 +2,7 @@
 #include <iostream>
 Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_Pos), m_Vel(_Vel), m_Tex(_Tex)
 {
+	
 	m_Sprite.setTexture(m_Tex);
 	m_Sprite.setPosition(m_Pos);
 	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
@@ -16,6 +17,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_smartBombCount = 1;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
 	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
+	m_alive = true;
 }
 Player::~Player()
 {
@@ -168,6 +170,16 @@ void Player::setCanHyperjump(bool value)
 void Player::setMaxAcceleration(int value)
 {
 	m_maxAcceleration = value;
+}
+
+bool Player::getAlive()
+{
+	return m_alive;
+}
+
+void Player::setAlive(bool value)
+{
+	m_alive = value;
 }
 
 void Player::update(float _dt)

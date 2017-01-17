@@ -89,6 +89,11 @@ Play::Play(Game* game)
 	//}
 
 	 m_powerUptimer = 1000;
+	 m_buffer.loadFromFile("Assets/laser.wav");
+	 m_explosionbuffer.loadFromFile("Assets/bomb.wav");
+	 m_explosion.setBuffer(m_explosionbuffer);
+	 m_playerFire.setBuffer(m_buffer);
+
 } 
 
 
@@ -96,7 +101,7 @@ void Play::draw()
 {	
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
-
+	
 	//game->window.draw(_player->getCollisionRect());
 
 	//for (int i = 0; i < m_nests.size(); i++)
@@ -126,14 +131,17 @@ void Play::draw()
 	{
 		game->window.draw(m_astronauts[i]->getSprite());
 	}
-
-	for (int i = 0; i < _playerBulletVector.size(); i++)
+	if (_playerBulletVector.size() >0)
 	{
-		//if (_playerBulletVector[i] != nullptr)
-		//{
-		  game->window.draw(_playerBulletVector[i]->getSprite());
-		//}		
+		for (int i = 0; i < _playerBulletVector.size(); i++)
+		{
+			//if (_playerBulletVector[i] != nullptr)
+			//{
+			//game->window.draw(_playerBulletVector[i]->getSprite());
+			//}		
+		}
 	}
+	
 	
 		
 	
@@ -196,6 +204,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(m_nests[i]->_nestBulletVector[k]->getCollisionRect(),_player->getCollisionRect()))
 			{
+				m_explosion.play();
 				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
 				m_nests[i]->bulletCount--;
 		
@@ -213,6 +222,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(m_mutants[i]->_mutantBulletVector[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
+				m_explosion.play();
 				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + i);
 				//m_mutant[i]->bulletCount--;
 
@@ -230,7 +240,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
 			{
-				
+				m_explosion.play();
 			
 				if (m_mutants[k]->getHealth() > 0)
 				{
@@ -247,6 +257,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_nests[k]->getCollisionRect()))
 			{
+
 				if (m_nests[k]->getHealth() > 0)
 				{
 					m_nests[k]->takeDamage(1);
@@ -262,6 +273,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), _abductors[k]->getCollisionRect()))
 			{
+				m_explosion.play();
 				if (_abductors[k]->getHealth() > 0)
 				{
 					_abductors[k]->m_abducting = false;
@@ -295,6 +307,8 @@ void Play::update()
 	wrapAround();
 	_player->update(_dt);
 	updatePowerUps();
+	
+	
 
 
 	updatePlayerBullet();
@@ -414,8 +428,24 @@ void Play::update()
 	checkHealth();
 	CollisionManager();
 	game->window.display();
-	
+
+	if (_player->getAlive() == false)
+	{
+		this->game->changeState(new GameOver(this->game));
+	}
+
 	return;
+	
+}
+
+void Play::setWin(bool value)
+{
+	m_win = value;
+}
+
+bool Play::getWin()
+{
+	return m_win;
 }
 
 void Play::updatePowerUps()
@@ -600,6 +630,7 @@ void Play::handleInput()
 
 			if (event.key.code == sf::Keyboard::Space)
 			{
+				_player->setAlive(false);
 				if (_player->getDirection() == false)
 				{
 					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, 10);
@@ -610,6 +641,7 @@ void Play::handleInput()
 					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, -10);
 					_playerBulletVector.push_back(_temp);
 				}	
+				m_playerFire.play();
 			}
 			break;
 		}
