@@ -78,6 +78,11 @@ void AlienNest::update(sf::Vector2f playerPos, sf::Texture _alienMissile)
 	}
 }
 
+std::vector<Bullet*> AlienNest::getBullets()
+{
+	return _nestBulletVector;
+}
+
 void AlienNest::wander()
 {
 	m_AVel.x = generatedPos.x - m_APos.x;
@@ -106,6 +111,26 @@ void AlienNest::flee(sf::Vector2f playerPos)
 	m_ASprite.setPosition(m_APos);
 }
 
+void AlienNest::setBulletCount(int value)
+{
+	bulletCount = value;
+}
+
+int AlienNest::getBulletCount()
+{
+	return bulletCount;
+}
+
+void AlienNest::setAbductorSpawnTimer(int value)
+{
+	abductorSpawnTimer = value;
+}
+
+int AlienNest::getAbductorSpawnTimer()
+{
+	return abductorSpawnTimer;
+}
+
 sf::RectangleShape AlienNest::getCollisionRect()
 {
 	return collisionBox;
@@ -119,6 +144,16 @@ int AlienNest::getHealth()
 void AlienNest::takeDamage(int value)
 {
 	health = health - value;
+}
+
+void AlienNest::setAbductors(int value)
+{
+	abductorCount = value;
+}
+
+int AlienNest::getAbductors()
+{
+	return abductorCount;
 }
 
 sf::Vector2f AlienNest::Normalise(sf::Vector2f velocity)

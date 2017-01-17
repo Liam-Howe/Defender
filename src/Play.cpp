@@ -46,14 +46,14 @@ Play::Play(Game* game)
 	 int _Ny = 0;
 
 
-	 for (int i = 0; i < 2; i++)
+	 for (int i = 0; i < 10; i++)
 	 {
 		 _Ax = rand() % (5500 - 600 + 1) + 600;
 		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
 		 m_astronauts.push_back(_temp);
 	 }
 
-	 for (int i = 0; i < 1; i++)
+	 for (int i = 0; i < 3; i++)
 	 {
 		 _Nx = rand() % (5500 - 600 + 1) + 600;
 		 _Ny = rand() % 700 + 1;
@@ -148,11 +148,11 @@ void Play::draw()
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
-		if (m_mutants[i]->_mutantBulletVector.size() > 0)
+		if (m_mutants[i]->getBullets().size() > 0)
 		{
-			for (int k = 0; k < m_mutants[i]->_mutantBulletVector.size(); k++)
+			for (int k = 0; k < m_mutants[i]->getBullets().size(); k++)
 			{
-				game->window.draw(m_mutants[i]->_mutantBulletVector[k]->getSprite());
+				game->window.draw(m_mutants[i]->getBullets()[k]->getSprite());
 			}
 		}
 	}
@@ -171,11 +171,11 @@ void Play::draw()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->_nestBulletVector.size() > 0)
+		if (m_nests[i]->getBullets().size() > 0)
 		{
-			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			for (int k = 0; k < m_nests[i]->getBullets().size(); k++)
 			{
-				game->window.draw(m_nests[i]->_nestBulletVector[k]->getSprite());
+				game->window.draw(m_nests[i]->getBullets()[k]->getSprite());
 			}
 		}
 	}
@@ -192,11 +192,11 @@ void Play::CollisionManager()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+		for (int k = 0; k < m_nests[i]->getBullets().size(); k++)
 		{
-			if (_collisionManager.collision(m_nests[i]->_nestBulletVector[k]->getCollisionRect(),_player->getCollisionRect()))
+			if (_collisionManager.collision(m_nests[i]->getBullets()[k]->getCollisionRect(),_player->getCollisionRect()))
 			{
-				m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+				m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
 				m_nests[i]->bulletCount--;
 		
 				if (_player->getHealth() > 0)
@@ -209,11 +209,11 @@ void Play::CollisionManager()
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
-		for (int k = 0; k < m_mutants[i]->_mutantBulletVector.size(); k++)
+		for (int k = 0; k < m_mutants[i]->getBullets().size(); k++)
 		{
-			if (_collisionManager.collision(m_mutants[i]->_mutantBulletVector[k]->getCollisionRect(), _player->getCollisionRect()))
+			if (_collisionManager.collision(m_mutants[i]->getBullets()[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
-				m_mutants[i]->_mutantBulletVector.erase(m_mutants[i]->_mutantBulletVector.begin() + i);
+				m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + i);
 				//m_mutant[i]->bulletCount--;
 
 				if (_player->getHealth() > 0)
@@ -264,7 +264,7 @@ void Play::CollisionManager()
 			{
 				if (_abductors[k]->getHealth() > 0)
 				{
-					_abductors[k]->m_abducting = false;
+					_abductors[k]->setAbducting(false);
 					//_abductors[k]->setPosition(sf::Vector2f(_abductors[k]->getPosition().x, 2000));
 					_abductors[k]->takeDamage(1);
 				}
@@ -302,10 +302,11 @@ void Play::update()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->abductorSpawnTimer > 150)
+		if (m_nests[i]->abductorSpawnTimer > 150 && m_nests[i]->getAbductors() < 10)
 		{
 			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture);
 			_abductors.push_back(_temp);
+			m_nests[i]->setAbductors(m_nests[i]->getAductors() + 1);
 			m_nests[i]->abductorSpawnTimer = 0;
 		}
 	}
@@ -338,11 +339,11 @@ void Play::update()
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
-		if (m_mutants[i]->_mutantBulletVector.size() > 0)
+		if (m_mutants[i]->getBullets().size() > 0)
 		{
-			for (int k = 0; k < m_mutants[i]->_mutantBulletVector.size(); k++)
+			for (int k = 0; k < m_mutants[i]->getBullets().size(); k++)
 			{
-				m_mutants[i]->_mutantBulletVector[k]->mutantUpdate(_player->getPosition());
+				m_mutants[i]->getBullets()[k]->mutantUpdate(_player->getPosition());
 			}
 		}
 	}
@@ -364,15 +365,15 @@ void Play::update()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->_nestBulletVector.size() > 0)
+		if (m_nests[i]->getBullets().size() > 0)
 		{
-			for (int k = 0; k < m_nests[i]->_nestBulletVector.size(); k++)
+			for (int k = 0; k < m_nests[i]->getBullets().size(); k++)
 			{
-				m_nests[i]->_nestBulletVector[k]->seekerUpdate(_player->getPosition());
+				m_nests[i]->getBullets()[k]->seekerUpdate(_player->getPosition());
 
-				if (m_nests[i]->_nestBulletVector[k]->getLifeTime() > 300)
+				if (m_nests[i]->getBullets()[k]->getLifeTime() > 300)
 				{
-					m_nests[i]->_nestBulletVector.erase(m_nests[i]->_nestBulletVector.begin() + i);
+					m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
 					m_nests[i]->bulletCount--;
 				}
 			}
@@ -495,7 +496,7 @@ void Play::checkHealth()
 	{
 		if (m_mutants[i]->getHealth() <= 0)
 		{
-			m_mutants[i]->_mutantBulletVector.clear();
+			m_mutants[i]->getBullets().clear();
 			m_mutants.erase(m_mutants.begin() + i);
 			//m_mutants.erase(std::remove(m_mutants.begin(), m_mutants.end(), i), m_mutants.end());
 		}

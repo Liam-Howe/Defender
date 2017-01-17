@@ -22,10 +22,10 @@ public:
 	void swarm();
 	int getHealth();
 	void takeDamage(int value);
-	std::vector<Bullet *> _mutantBulletVector;
+	std::vector<Bullet*> getBullets();
 
 private:
-
+	std::vector<Bullet *> _mutantBulletVector;
 	sf::RectangleShape collisionBox;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_vel;

@@ -59,6 +59,11 @@ void Abductor::setAbducting(bool value)
 	m_abducting = value;
 }
 
+bool Abductor::getAbducting()
+{
+	return m_abducting;
+}
+
 sf::Vector2f Abductor::getVelocity()
 {
 	return m_vel;
