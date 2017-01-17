@@ -214,7 +214,6 @@ void Play::CollisionManager()
 			{
 				_playerBulletVector.erase(_playerBulletVector.begin() + i);
 
-
 				if (m_mutants[k]->getHealth() > 0)
 				{
 					m_mutants[k]->takeDamage(1);
@@ -231,7 +230,6 @@ void Play::CollisionManager()
 			{
 				_playerBulletVector.erase(_playerBulletVector.begin() + i);
 
-
 				if (m_nests[k]->getHealth() > 0)
 				{
 					m_nests[k]->takeDamage(1);
@@ -247,7 +245,6 @@ void Play::CollisionManager()
 			if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
 			{
 				_playerBulletVector.erase(_playerBulletVector.begin() + i);
-
 
 				if (m_mutants[k]->getHealth() > 0)
 				{
@@ -363,7 +360,7 @@ void Play::updatePlayerBullet()
 		_playerBulletVector[i]->update();
 	}
 
-	for (int i = 0; i < m_nests.size(); i++)
+	/*for (int i = 0; i < m_nests.size(); i++)
 	{
 		for (int k = 0; k < _playerBulletVector.size(); k++)
 		{
@@ -373,7 +370,7 @@ void Play::updatePlayerBullet()
 				m_nests.erase(m_nests.begin() + i);
 			}
 		}
-	}
+	}*/
 }
 
 void Play::checkHealth()

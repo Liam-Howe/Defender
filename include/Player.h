@@ -38,5 +38,5 @@ private :
 	bool m_direction;
 	bool m_canHyperJump;
 	int health;
-	int m_smartBombCount
+	int m_smartBombCount;
 };
