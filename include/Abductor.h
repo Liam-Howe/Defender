@@ -21,7 +21,6 @@ public :
 	void wander();
 	void abducting();
 	void applyForce(sf::Vector2f force);
-	void setAbducting(bool value);
 	void flock(std::vector<Abductor*>_abductor);
 	 sf::Vector2f alignment(std::vector<Abductor*>_abductor);
 	sf::Vector2f seperation(std::vector<Abductor*>_abductor);
@@ -30,7 +29,6 @@ public :
 	sf::Vector2f addVector(sf::Vector2f,sf::Vector2f);
 	sf::Vector2f getVelocity();
 	sf::Vector2f mulScalar(float s, sf::Vector2f _currentVector);
-	//sf::Vector2f sum;
 	void run(std::vector<Abductor*>_abductors);
 	sf::Vector2f limit(double max, sf::Vector2f _currentVector);
 	sf::Vector2f cohesion(std::vector<Abductor*>_abductor);
@@ -49,6 +47,7 @@ private :
 	sf::Vector2f steer;
 	sf::Texture m_tex;
 	sf::Sprite m_sprite;
+	sf::Vector2f sum;
 	sf::Vector2f m_acceleration;
 	float m_health;
 	bool m_abducting;

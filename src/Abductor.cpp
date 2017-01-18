@@ -53,17 +53,14 @@ void Abductor::applyForce(sf::Vector2f force)
 {
 	addVector(force, m_acceleration);
 }
-
 void Abductor::setAbducting(bool value)
 {
 	m_abducting = value;
 }
-
 bool Abductor::getAbducting()
 {
 	return m_abducting;
 }
-
 sf::Vector2f Abductor::getVelocity()
 {
 	return m_vel;
@@ -75,7 +72,6 @@ sf::Vector2f Abductor::mulScalar(float s,sf::Vector2f _currentVector)
 	_currentVector.y *= s;
 	return _currentVector;
 }
-
 sf::Vector2f Abductor::cohesion(std::vector<Abductor*>_abductor)
 {
 	float neghbourDist = 50;
@@ -101,7 +97,6 @@ sf::Vector2f Abductor::cohesion(std::vector<Abductor*>_abductor)
 		return temp;
 	}
 }
-
 sf::Vector2f Abductor::alignment(std::vector<Abductor*>_abductor)
 {
 	float neighbordist = 50;
@@ -133,7 +128,6 @@ sf::Vector2f Abductor::alignment(std::vector<Abductor*>_abductor)
 		return temp;
 	}
 }
-
 sf::Vector2f Abductor::limit(double max, sf::Vector2f _currentVector)
 {
 	double size = sqrt(_currentVector.x * _currentVector.x + _currentVector.y * _currentVector.y);
@@ -171,7 +165,6 @@ sf::Vector2f Abductor::subTwoVector(sf::Vector2f _currentVector,sf::Vector2f a_p
 	_currentVector.y -= a_pos.y;
 	return _currentVector;
 }
-
 sf::Vector2f Abductor::divScalar(float d,sf::Vector2f _currentVector)
 {
 	_currentVector.x /= d;
@@ -184,8 +177,6 @@ sf::Vector2f Abductor::addVector(sf::Vector2f v , sf::Vector2f _currentVector)
 	_currentVector.y += v.y;
 	return _currentVector;
 }
-
-
 void Abductor::movement(Astronaut& _astronaut)
 {
 	float Dist = sqrt(((m_pos.x - _astronaut.getPosition().x) * (m_pos.x - _astronaut.getPosition().x)) + ((m_pos.y - _astronaut.getPosition().y) * (m_pos.y - _astronaut.getPosition().y)));
@@ -235,8 +226,6 @@ void Abductor::abducting()
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
 }
-
-
 void Abductor::wander()
 {
 	
@@ -257,24 +246,20 @@ void Abductor::wander()
 	}
 	collisionBox.setPosition(m_pos);
 }
-
 sf::Vector2f Abductor::subVector(sf::Vector2f _pos ,sf::Vector2f _currentVector)
 {
 	_currentVector.x -= _pos.x;
 	_currentVector.y -= _pos.y;
 	return _currentVector;
 }
-
 int Abductor::getHealth()
 {
 	return health;
 }
-
 void Abductor::takeDamage(int value)
 {
 	health = health - value;
 }
-
 sf::Vector2f Abductor::flockSeek(sf::Vector2f v)
 {
 
@@ -292,7 +277,6 @@ sf::RectangleShape Abductor::getCollisionRect()
 {
 	return collisionBox;
 }
-
 void Abductor::seek(sf::Vector2f targetPos)
 {
 	m_vel.x = targetPos.x - m_pos.x;
@@ -317,12 +301,10 @@ void Abductor::setPosition(sf::Vector2f _tempPos)
 {
 	m_pos = _tempPos;
 }
-
 sf::Sprite Abductor::getSprite()
 {
 	return m_sprite;
 }
-
 void Abductor::run(std::vector<Abductor*>_abductors)
 {
 	for (int i = 0; i < _abductors.size(); i++)

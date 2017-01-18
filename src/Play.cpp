@@ -197,7 +197,7 @@ void Play::CollisionManager()
 			if (_collisionManager.collision(m_nests[i]->getBullets()[k]->getCollisionRect(),_player->getCollisionRect()))
 			{
 				m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
-				m_nests[i]->bulletCount--;
+				m_nests[i]->setBulletCount(m_nests[i]->getBulletCount()-1);
 		
 				if (_player->getHealth() > 0)
 				{
@@ -302,12 +302,12 @@ void Play::update()
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->abductorSpawnTimer > 150 && m_nests[i]->getAbductors() < 10)
+		if (m_nests[i]->getAbductorSpawnTimer() > 150 && m_nests[i]->getAbductors() < 10)
 		{
 			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture);
 			_abductors.push_back(_temp);
-			m_nests[i]->setAbductors(m_nests[i]->getAductors() + 1);
-			m_nests[i]->abductorSpawnTimer = 0;
+			m_nests[i]->setAbductors(m_nests[i]->getAbductors() + 1);
+			m_nests[i]->setAbductorSpawnTimer(0);
 		}
 	}
 
@@ -374,7 +374,7 @@ void Play::update()
 				if (m_nests[i]->getBullets()[k]->getLifeTime() > 300)
 				{
 					m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
-					m_nests[i]->bulletCount--;
+					m_nests[i]->setBulletCount(m_nests[i]->getBulletCount()-1);
 				}
 			}
 		}
