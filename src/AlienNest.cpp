@@ -7,7 +7,7 @@ AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	m_ASprite.setPosition(m_APos);
 	m_ASprite.setOrigin(m_ASprite.getGlobalBounds().width / 2, m_ASprite.getGlobalBounds().height / 2);
 
-	srand(time(NULL));
+
 
 	generatedPos.x = rand() % (5500 - 600 + 1) + 600;
 	generatedPos.y = rand() % 400;

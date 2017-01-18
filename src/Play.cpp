@@ -7,7 +7,7 @@ Play::Play(Game* game)
 	this->game = game;
 
 	game->window.setFramerateLimit(60); 
-	m_round = 0;
+
 	
 	m_powerUpTex.loadFromFile("Assets/powerup.png");
 	_playerTexture.loadFromFile("Assets/ship.png");
@@ -37,7 +37,6 @@ Play::Play(Game* game)
 	 _radarView.setSize(sf::Vector2f(6600, 1056));
 	 _radarView.setViewport(sf::FloatRect(0.2, 0.83, 0.6, 0.25));
 	 
-	 
 	 srand(time(NULL));
 
 	 int _x =0;
@@ -45,16 +44,16 @@ Play::Play(Game* game)
 	 int _Ax = 0;
 	 int _Nx = 0;
 	 int _Ny = 0;
-
-
-	 for (int i = 0; i < 2; i++)
+	 m_nestCount = 1;
+	 m_astronautCount = 1;
+	 for (int i = 0; i < m_astronautCount; i++)
 	 {
-		 _Ax = rand() % (5500 - 600 + 1) + 600;
+		 int _Ax = rand() % (5500 - 600 + 1) + 600;
 		 Astronaut * _temp = new Astronaut(sf::Vector2f(_Ax, 690), sf::Vector2f(0, 0), _astronautTexture);
 		 m_astronauts.push_back(_temp);
 	 }
 
-	 for (int i = 0; i < 1; i++)
+	 for (int i = 0; i < m_nestCount; i++)
 	 {
 		 _Nx = rand() % (5500 - 600 + 1) + 600;
 		 _Ny = rand() % 700 + 1;
@@ -90,6 +89,7 @@ Play::Play(Game* game)
 	 }
 
 	 font.loadFromFile("Assets/arial.ttf");
+	 m_round = 1;
 	 m_roundText = sf::Text(" Round  : " +std::to_string(m_round), font);
 	 m_roundText.setCharacterSize(30);
 	 m_roundText.setStyle(sf::Text::Bold);
@@ -97,7 +97,12 @@ Play::Play(Game* game)
 	 m_scoreText = sf::Text(" Score  : " + std::to_string(m_score), font);
 	 m_scoreText.setCharacterSize(30);
 	 m_scoreText.setStyle(sf::Text::Bold);
-
+	 m_hyperJumpText = sf::Text(" Hyper jump available", font);
+	 m_hyperJumpText.setCharacterSize(25);
+	 m_hyperJumpText.setStyle(sf::Text::Bold);
+	 m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+	 m_health.setCharacterSize(30);
+	 m_health.setStyle(sf::Text::Bold);
 	
 } 
 
@@ -107,46 +112,31 @@ void Play::draw()
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 
-	//game->window.draw(_player->getCollisionRect());
-
-	//for (int i = 0; i < m_nests.size(); i++)
-	//{
-	//	game->window.draw(m_nests[i]->getCollisionRect());
-	//}
-	
-
-
-	for (int i = 0; i < _abductors.size(); i++)
+	/*for (int i = 0; i < _abductors.size(); i++)
 	{
 		game->window.draw(_abductors[i]->getCollisionRect());
-	}
+	}*/
 	for (int i = 0; i < _player->getBullets().size(); i++)
 	{
 		game->window.draw(_player->getBullets()[i]->getSprite());
 	}
-	//for (int i = 0; i < m_astronauts.size(); i++)
-	//{
-	//	game->window.draw(m_astronauts[i]->getCollisionRect());
-	//}
-	for (int i = 0; i < m_astronauts.size(); i++)
+	game->window.draw(m_health);
+
+	/*for (int i = 0; i < m_astronauts.size(); i++)
 	{
 		game->window.draw(m_astronauts[i]->getSeekRect());
-	}
+	}*/
 
 	for (int i = 0; i < m_powerUps.size(); i++)
 	{
 		game->window.draw(m_powerUps[i]->getSprite());
 	}
+	
 
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
 		game->window.draw(m_astronauts[i]->getSprite());
 	}
-
-
-	
-		
-	
 
 	if(m_mutants.size() > 0)
 	{
@@ -167,13 +157,11 @@ void Play::draw()
 		}
 	}
 
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		game->window.draw(_abductors[i]->getSprite());
+	}
 	
-		for (int i = 0; i < _abductors.size(); i++)
-		{
-			game->window.draw(_abductors[i]->getSprite());
-		}
-	
-
 	for (int i = 0; i < m_nests.size(); i++)
 	{
 		game->window.draw(m_nests[i]->getSprite());
@@ -194,13 +182,22 @@ void Play::draw()
 	{
 		game->window.draw(m_obstacles[i]->getSprite());
 	}
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (_abductors[i]->getBullets().size() > 0)
+		{
+			for (int k = 0; k < _abductors[i]->getBullets().size(); k++)
+			{
+				game->window.draw(_abductors[i]->getBullets()[k]->getSprite());
+			}
+		}
+	}
+
 
 	game->window.draw(m_roundText);
 	game->window.draw(m_scoreText);
-	/*for (int i = 0; i < m_powerUps.size(); i++)
-	{
-		game->window.draw(m_powerUps[i]->getCollisionRect());
-	}*/
+	game->window.draw(m_hyperJumpText);
+
 	return;
 }
 
@@ -219,7 +216,8 @@ void Play::CollisionManager()
 		
 				if (_player->getHealth() > 0)
 				{
-					_player->takeDamage(1);
+					_player->takeDamage(30);
+					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
 				}
 			}
 		}
@@ -232,12 +230,36 @@ void Play::CollisionManager()
 			if (_collisionManager.collision(m_mutants[i]->getBullets()[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
 				m_explosion.play();
-				m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + i);
+				
 				if (_player->getHealth() > 0)
 				{
-					_player->takeDamage(1);
+					_player->takeDamage(20);
+					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+
 				}
+				m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + k);
 			}
+		}
+	}
+
+
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		for (int k = 0; k < _abductors[i]->getBullets().size(); k++)
+		{
+			if (_collisionManager.collision(_abductors[i]->getBullets()[k]->getCollisionRect(), _player->getCollisionRect()))
+			{
+				m_explosion.play();
+				
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(10);
+					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+				}
+				_abductors[i]->getBullets().erase(_abductors[i]->getBullets().begin() + k);
+				
+			}
+			
 		}
 	}
 
@@ -248,7 +270,7 @@ void Play::CollisionManager()
 
 			if (_collisionManager.collision( _player->getBullets()[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
 			{
-				m_explosion.play();
+				
 				if (m_mutants[k]->getHealth() > 0)
 				{
 					m_mutants[k]->takeDamage(1);
@@ -274,39 +296,45 @@ void Play::CollisionManager()
 		}
 	}
 
-	
-		for (int k = 0; k < _abductors.size(); k++)
+	for (int k = 0; k < _abductors.size(); k++)
+	{
+		for (int i = 0; i < _player->getBullets().size(); i++)
 		{
-			for (int i = 0; i < _player->getBullets().size(); i++)
-			{
 			if (_collisionManager.collision(_player->getBullets()[i]->getCollisionRect(), _abductors[k]->getCollisionRect()))
 			{
 				m_explosion.play();
 				if (_abductors[k]->getHealth() > 0)
 				{
 					_abductors[k]->m_abducting = false;
-					//_abductors[k]->setPosition(sf::Vector2f(_abductors[k]->getPosition().x, 2000));
+
+					for (int j = 0; j < m_astronauts.size(); j++)
+					{
+						if (_collisionManager.collision(_abductors[k]->getCollisionRect(), m_astronauts[j]->getCollisionRect()))
+						{
+							m_astronauts[j]->setAbducted(false);
+						}
+					}
 					_abductors[k]->takeDamage(1);
 				}
 				_player->getBullets().erase(_player->getBullets().begin() + i);
 			}
 		}
 	}
-
-	//for (int i = 0; i < _playerBulletVector.size(); i++)
-	//{
-	//	for (int k = 0; k < m_astronauts.size(); k++)
-	//	{
-	//		if (_collisionManager.collision(_playerBulletVector[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()))
-	//		{
-	//			//_playerBulletVector.erase(_playerBulletVector.begin() + i);
-
-	//			m_astronauts[k]->setAbducted(false);
-	//		}
-	//	}
-	//}
 }
-
+void Play::updateRounds()
+{
+	if (m_nests.size() ==0 && _abductors.size() ==0 && m_mutants.size() ==0)
+	{
+		increaseRound();
+		for (int i = 0; i < m_nestCount; i++)
+		{
+			int _Nx = rand() % (5500 - 600 + 1) + 600;
+			int _Ny = rand() % 700 + 1;
+			AlienNest * _Atemp = new AlienNest(sf::Vector2f(_Nx, _Ny), sf::Vector2f(0, 0), _nestTexture);
+			m_nests.push_back(_Atemp);
+		}
+	}
+}
 void Play::update()
 {
 	_dt = _clock.restart().asSeconds();
@@ -315,11 +343,13 @@ void Play::update()
 	wrapAround();
 	_player->update(_dt);
 	updatePowerUps();
-	
+	updateRounds();
 	
 	m_roundText.setPosition(sf::Vector2f(_playerView.getCenter().x + _playerView.getSize().x/4.5,_playerView.getCenter().y - _playerView.getSize().y / 2));
-	m_scoreText.setPosition(sf::Vector2f(_playerView.getCenter().x + _playerView.getSize().x / 4.5, _playerView.getCenter().y - _playerView.getSize().y / 2.5));
-	
+	m_scoreText.setPosition(sf::Vector2f(_playerView.getCenter().x - _playerView.getSize().x / 2, _playerView.getCenter().y - _playerView.getSize().y / 2));
+	m_hyperJumpText.setPosition(sf::Vector2f(_playerView.getCenter().x - +_playerView.getSize().x / 4.5, _playerView.getCenter().y + _playerView.getSize().y / 4.5));
+	m_health.setPosition(sf::Vector2f(_playerView.getCenter().x - +_playerView.getSize().x / 6.5, _playerView.getCenter().y + _playerView.getSize().y / 3.5));
+
 
 	for (int i = 0; i < _player->getBullets().size(); i++)
 	{
@@ -328,12 +358,13 @@ void Play::update()
 
 	//updatePlayerBullet();
 	
+	
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
 		if (m_nests[i]->abductorSpawnTimer > 150)
 		{
-			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture);
+			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture,_playerBullet);
 			_abductors.push_back(_temp);
 			m_nests[i]->abductorSpawnTimer = 0;
 		}
@@ -376,6 +407,22 @@ void Play::update()
 		}
 	}
 
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		if (_abductors[i]->getBullets().size() > 0)
+		{
+			for (int k = 0; k < _abductors[i]->getBullets().size(); k++)
+			{
+				_abductors[i]->getBullets()[k]->mutantUpdate(_player->getPosition());
+			}
+		}
+	}
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		_abductors[i]->movement(_player->getPosition());
+	}
+
+
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
 		if (m_astronauts[i]->getPosition().y < 10)
@@ -416,6 +463,7 @@ void Play::update()
 			_player->getBullets().erase(_player->getBullets().begin() + t1);
 		}
 	}
+	
 
 	/*if (_player->getBullets().size() !=0)
 	{
@@ -432,7 +480,6 @@ void Play::update()
 			}
 		}
 	}*/
-	
 
 	for (int i = 0; i < _abductors.size(); i++)
 	{
@@ -440,7 +487,9 @@ void Play::update()
 		{	
 			if (_collisionManager.collision(m_astronauts[k]->getSeekRect(), _abductors[i]->getCollisionRect()) == false)
 			{
-				_abductors[i]->wander();
+				_abductors[i]->setIndex(i);
+
+				_abductors[i]->wander(_abductors);
 			}
 			
 			if ((_collisionManager.collision(m_astronauts[k]->getSeekRect(), _abductors[i]->getCollisionRect()) == true))
@@ -465,19 +514,27 @@ void Play::update()
 	
 	activateGameOverState();
 	
-	
 	return;
 }
 
 void Play::activateGameOverState()
 {
+	if (m_astronauts.size() <= 0)
+	{
+		m_music.stop();
+		m_playerFire.stop();
+		m_explosion.stop();
+		m_powerUpSound.stop();
+		this->game->changeState(new GameOver(this->game, m_score));
+	}
+
 	if (_player->getAlive() == false)
 	{
 		m_music.stop();
 		m_playerFire.stop();
 		m_explosion.stop();
 		m_powerUpSound.stop();
-		this->game->changeState(new GameOver(this->game));
+		this->game->changeState(new GameOver(this->game,m_score));
 	}
 }
 
@@ -505,6 +562,8 @@ void Play::updatePowerUps()
 			else if (m_powerUps[i]->getType() == PowerUPType::TELEPORT)
 			{
 				_player->setCanHyperjump(true);
+				m_hyperJumpText = sf::Text("Hyperjump Ready", font);
+				m_hyperJumpText.setCharacterSize(25);
 				m_powerUps.erase(m_powerUps.begin() + i);
 			}
 		}
@@ -521,7 +580,7 @@ void Play::updatePowerUps()
 		int  _x = rand() % (5500 - 400 + 1) + 400;
 		int  _y = rand() % (600 - 100 + 1) + 100;
 		int type = rand() % (2 - 0 + 1) + 0;
-		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, PowerUPType::Speed); //static_cast<PowerUPType>(type));
+		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, static_cast<PowerUPType>(type));
 		m_powerUps.push_back(_temp);
 		m_powerUptimer = 1000;
 	}
@@ -537,10 +596,15 @@ void Play::updatePowerUps()
 
 void Play::checkHealth()
 {
+	if (_player->getHealth() <=0)
+	{
+		_player->setAlive(false);
+	}
 	for (int i = 0; i < _abductors.size(); i++)
 	{
 		if (_abductors[i]->getHealth() <= 0)
 		{
+			increaseScore();
 			_abductors.erase(_abductors.begin() + i);
 		}
 	}
@@ -549,6 +613,7 @@ void Play::checkHealth()
 	{
 		if (m_nests[i]->getHealth() <= 0)
 		{
+			increaseScore();
 			//m_nests[i]->_nestBulletVector.clear();
 			//m_nests[i]->bulletCount = 0;
 			m_nests.erase(m_nests.begin() + i);
@@ -559,6 +624,7 @@ void Play::checkHealth()
 	{
 		if (m_mutants[i]->getHealth() <= 0)
 		{
+			increaseScore();
 			m_mutants[i]->getBullets().clear();
 			m_mutants.erase(m_mutants.begin() + i);
 			//m_mutants.erase(std::remove(m_mutants.begin(), m_mutants.end(), i), m_mutants.end());
@@ -578,12 +644,17 @@ void Play::updateCamera()
 void Play::increaseRound()
 {
 	m_round++;
+	if (m_round > 5)
+	{
+		m_nestCount++;
+	}
 	m_roundText = sf::Text(" Round  : " + std::to_string(m_round), font);
 }
 
 void Play::increaseScore()
 {
 	m_score++;
+	m_scoreText = sf::Text(" Score  : " + std::to_string(m_score), font);
 }
 
 void Play::wrapAround()
@@ -625,6 +696,7 @@ void Play::handleInput()
 			{
 				_player->setdecelerating(true);	
 			}
+			
 			break;
 
 		case sf::Event::KeyPressed:
@@ -635,8 +707,7 @@ void Play::handleInput()
 			}
 			if (event.key.code == sf::Keyboard::Space)
 			{
-
-				_player->setAlive(false);
+				//_player->setAlive(false);
 				m_playerFire.play();
 				if (_player->getDirection() == false)
 				{
@@ -646,6 +717,13 @@ void Play::handleInput()
 				{
 					_player->createBullet(_playerBullet, -10);
 				}
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			{
+				_player->hyperJump();
+				_player->setCanHyperjump(false);
+				m_hyperJumpText = sf::Text("Hyper jump unavailable", font);
+				m_hyperJumpText.setCharacterSize(25);
 			}
 			if (event.key.code == sf::Keyboard::A)
 			{

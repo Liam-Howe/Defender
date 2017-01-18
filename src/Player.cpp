@@ -12,7 +12,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_friction = 0.997f;
 	m_maxAcceleration = 100;
 	m_canHyperJump = true;
-	health = 2;
+	health = 100;
 	m_smartBombCount = 1;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
 	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
@@ -134,14 +134,7 @@ void Player::handleInput(float _dt)
 	{
 		move(sf::Vector2f(-2, 0), _dt);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-	{
-		if (m_canHyperJump)
-		{
-			spawn(sf::Vector2f((rand() % 2000 - 1000 + 1000), rand() % 900 - 100 + 100));
-			m_canHyperJump = false;
-		}
-	}
+	
 }
 
 
@@ -179,6 +172,11 @@ void Player::setCanHyperjump(bool value)
 	m_canHyperJump = value;
 }
 
+bool Player::getCanHyperJump()
+{
+	return m_canHyperJump;
+}
+
 void Player::setMaxAcceleration(int value)
 {
 	m_maxAcceleration = value;
@@ -213,6 +211,15 @@ bool Player::getFastAccel()
 void Player::setFastAccel(bool value)
 {
 	m_fastAccel = value;
+}
+
+void Player::hyperJump()
+{
+		if (m_canHyperJump)
+		{
+			spawn(sf::Vector2f((rand() % 2000 - 1000 + 1000), rand() % 900 - 100 + 100));
+			
+		}
 }
 
 void Player::update(float _dt)

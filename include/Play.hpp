@@ -77,7 +77,8 @@ private:
 	sf::Texture m_powerUpTex;
 	std::vector<PowerUp*> m_powerUps;
 
-
+	int m_nestCount;
+	int m_astronautCount;
 	//sound
 	sf::SoundBuffer m_buffer, m_explosionbuffer, m_powerUpBuffer;
 	sf::Sound m_playerFire;
@@ -89,7 +90,9 @@ private:
 
 	//round text
 	sf::Text m_roundText;
+	sf::Text m_hyperJumpText;
 	sf::Text m_scoreText;
+	sf::Text m_health;
 	int m_round;
 	int m_score;
 	sf::Font font;
@@ -108,7 +111,7 @@ public:
 	//void updatePlayerBullet();
 	void checkHealth();
 	~Play();
-
+	void updateRounds();
 	Play(Game* game);
 };
 

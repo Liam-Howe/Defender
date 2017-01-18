@@ -14,6 +14,9 @@ private:
 	sf::Texture m_background;
 	sf::Sprite m_playSprite, m_backgroundsprite;
 	bool m_state;
+	sf::Text m_scoreText;
+	sf::Font font;
+	int m_score;
 public:
 
 	virtual void draw();
@@ -22,5 +25,5 @@ public:
 	bool m_winState;
 	bool checkClicked(sf::Sprite sprite, sf::Vector2i pos);
 	~GameOver();
-	GameOver(Game* game);
+	GameOver(Game* game,int);
 };

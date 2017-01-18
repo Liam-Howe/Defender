@@ -26,6 +26,7 @@ public :
 	int getBombCount();
 	void useBomb();
 	void setCanHyperjump(bool value);
+	bool getCanHyperJump();
 	void setMaxAcceleration(int value);
 	std::vector<Bullet*>& getBullets();
 	void createBullet(sf::Texture,int );
@@ -33,6 +34,7 @@ public :
 	void setAlive(bool);
 	bool getFastAccel();
 	void setFastAccel(bool);
+	void hyperJump();
 
 private :
 	std::vector<Bullet*> m_bullets;

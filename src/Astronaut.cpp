@@ -7,7 +7,7 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	m_Sprite.setPosition(m_Pos);
 	m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 
-	srand(time(NULL));
+	
 
 	generatedPos = rand() % 5500;
 	m_fleeing = false;
@@ -75,8 +75,6 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 	 {
 		 wander();
 	 }
-
-	
 
 	 if (m_Pos.y < 690 && m_abducted == false)
 	 {

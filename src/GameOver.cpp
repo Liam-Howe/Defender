@@ -1,6 +1,6 @@
 #include "../include/GameOver.h"
 
-GameOver::GameOver(Game* game)
+GameOver::GameOver(Game* game ,int _score ) : m_score(_score)
 {
 	this->game = game;
 	
@@ -19,6 +19,12 @@ GameOver::GameOver(Game* game)
 	game->window.setView(_view);
 	m_buttonTexture.loadFromFile("Assets/exit2.png");
 	
+	font.loadFromFile("Assets/arial.ttf");
+	m_scoreText = sf::Text(" Your Score  : " + std::to_string(m_score), font);
+	m_scoreText.setCharacterSize(30);
+	m_scoreText.setStyle(sf::Text::Bold);
+	m_scoreText.setPosition(sf::Vector2f(pos.x / 2.5, pos.y / 1.4f));
+
 	m_playSprite.setTexture(m_buttonTexture);
 	m_backgroundsprite.setTexture(m_background);
 	m_playSprite.setPosition(1500, 500);
@@ -37,6 +43,7 @@ void GameOver::update()
 
 	game->window.draw(m_backgroundsprite);
 	game->window.draw(m_playSprite);
+	game->window.draw(m_scoreText);
 	game->window.display();
 	m_Mouseposition = sf::Mouse::getPosition(game->window);
 	if (checkClicked(m_playSprite, m_Mouseposition) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left) == false)
