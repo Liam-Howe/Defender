@@ -28,7 +28,7 @@ private:
 	sf::Texture _playerTexture;
 	sf::View _playerView;
 	sf::View _radarView;
-	std::vector<Bullet *> _playerBulletVector;
+
 	sf::Texture _playerBullet;
 	sf::Texture _nestTexture;
 	
@@ -81,7 +81,7 @@ public:
 	void wrapAround();
 	virtual void update();
 	virtual void handleInput();
-	void updatePlayerBullet();
+	//void updatePlayerBullet();
 	void checkHealth();
 	~Play();
 

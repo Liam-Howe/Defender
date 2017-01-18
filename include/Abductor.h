@@ -3,6 +3,7 @@
 
 #include "SFML\Graphics.hpp"
 #include "AI.h"
+#include "Astronaut.h"
 class Abductor 
 
 {
@@ -16,7 +17,9 @@ public :
 	void update();
 	void seek(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
-	void movement(sf::Vector2f abductorPos);
+	void movement(Astronaut& abductorPos);
+	void wander();
+	void abducting();
 	void applyForce(sf::Vector2f force);
 	void setAbducting(bool value);
 	void flock(std::vector<Abductor*>_abductor);
@@ -54,4 +57,5 @@ private :
 	bool m_seek;
 	bool m_following;
 	int health;
+	sf::Vector2f m_generatedPos;
 };

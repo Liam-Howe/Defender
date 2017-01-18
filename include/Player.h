@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SFML\Graphics.hpp"
 #include <string>
+#include "Bullet.h"
 class Player {
 
 public : 
@@ -26,8 +27,10 @@ public :
 	void useBomb();
 	void setCanHyperjump(bool value);
 	void setMaxAcceleration(int value);
-
+	std::vector<Bullet*>& getBullets();
+	void createBullet(sf::Texture,int );
 private :
+	std::vector<Bullet*> m_bullets;
 	sf::RectangleShape collisionBox;
 	float m_friction;
 	sf::Vector2f m_Pos;

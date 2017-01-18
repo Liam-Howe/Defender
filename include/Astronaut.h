@@ -19,10 +19,17 @@ public:
 	sf::Vector2f Normalise(sf::Vector2f velocity);
 	void update();
 	sf::RectangleShape getCollisionRect();
-	bool m_abducted;
-
+	sf::RectangleShape getSeekRect();
+	void abducted(sf::Vector2f _abductorPos);
+	void setAbducted(bool);
+	bool getAbducted();
+	sf::CircleShape getCircle();
+	void setPosition(sf::Vector2f);
 private:
+	bool m_abducted;
+	sf::CircleShape m_circle;
 	sf::RectangleShape collisionBox;
+	sf::RectangleShape seekBox;
 	sf::Vector2f m_Pos;
 	sf::Vector2f m_Vel;
 	sf::Texture m_Tex;

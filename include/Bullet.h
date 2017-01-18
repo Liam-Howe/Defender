@@ -13,12 +13,13 @@ public :
 	void seekerUpdate(sf::Vector2f targetPos);
 	void mutantUpdate(sf::Vector2f targetPos);
 	sf::Vector2f Normalise(sf::Vector2f velocity);
-	int lifeTime;
-	sf::RectangleShape getCollisionRect();
 	
+	sf::RectangleShape getCollisionRect();
+	void setLifetime(int value);
+	int getLifeTime();
 private:
 
-	
+	int m_lifeTime;
 	sf::RectangleShape collisionBox;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_vel;

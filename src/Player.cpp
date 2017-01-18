@@ -170,6 +170,17 @@ void Player::setMaxAcceleration(int value)
 	m_maxAcceleration = value;
 }
 
+std::vector<Bullet*>& Player::getBullets()
+{
+	return m_bullets;
+}
+
+void Player::createBullet(sf::Texture _tex,int speed)
+{
+	Bullet* _temp = new Bullet(m_Pos, sf::Vector2f(0, 0), _tex, speed);
+	m_bullets.push_back(_temp);
+}
+
 void Player::update(float _dt)
 {
 	handleInput(_dt);

@@ -1,0 +1,44 @@
+﻿  PowerUp.cpp
+  Player.cpp
+c:\users\liam\desktop\defender\src\player.cpp(127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Play.cpp
+c:\users\liam\desktop\defender\src\play.cpp(37): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\liam\desktop\defender\src\play.cpp(40): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(77): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(328): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(460): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(518): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(523): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  obstacles.cpp
+c:\users\liam\desktop\defender\src\obstacles.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Mutant.cpp
+c:\users\liam\desktop\defender\src\mutant.cpp(16): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Menu.cpp
+  game.cpp
+  Flock.cpp
+  CollisionManager.cpp
+  Bullet.cpp
+c:\users\liam\desktop\defender\src\bullet.cpp(15): warning C4305: '=': truncation from 'double' to 'float'
+  Astronaut.cpp
+c:\users\liam\desktop\defender\src\astronaut.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\liam\desktop\defender\src\astronaut.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\astronaut.cpp(78): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  AlienNest.cpp
+c:\users\liam\desktop\defender\src\aliennest.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(95): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(96): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  AI.cpp
+  Abductor.cpp
+c:\users\liam\desktop\defender\src\abductor.cpp(12): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\abductor.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\liam\desktop\defender\src\abductor.cpp(88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\abductor.cpp(136): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\abductor.cpp(137): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\abductor.cpp(211): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  ConsoleApplication2.cpp
+  Generating Code...
+sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'

@@ -16,7 +16,7 @@ public :
 
 	void update(sf::Vector2f playerPos, sf::Texture _alienMissile);
 
-	std::vector<Bullet *> _nestBulletVector;
+	
 
 	void wander();
 	void flee(sf::Vector2f playerPos);
@@ -29,9 +29,9 @@ public :
 
 	int getHealth();
 	void takeDamage(int value);
-
+	std::vector<Bullet*>& getBullets();
 private:
-
+	std::vector<Bullet *> _nestBulletVector;
 	sf::Vector2f generatedPos;
 	float playerDistance;
 

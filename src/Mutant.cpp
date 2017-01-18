@@ -118,3 +118,8 @@ void Mutant::takeDamage(int value)
 {
 	health = health - value;
 }
+
+std::vector<Bullet*>& Mutant::getBullets()
+{
+	return _mutantBulletVector;
+}

@@ -9,7 +9,7 @@ AlienNest::AlienNest(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	srand(time(NULL));
 
-	generatedPos.x = rand() % 400;
+	generatedPos.x = rand() % (5500 - 600 + 1) + 600;
 	generatedPos.y = rand() % 400;
 
 	bulletCount = 0;
@@ -121,6 +121,10 @@ void AlienNest::takeDamage(int value)
 	health = health - value;
 }
 
+std::vector<Bullet*>& AlienNest::getBullets()
+{
+	return _nestBulletVector;
+}
 sf::Vector2f AlienNest::Normalise(sf::Vector2f velocity)
 {
 	float length;

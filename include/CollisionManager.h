@@ -10,7 +10,7 @@ public:
 	CollisionManager();
 	~CollisionManager();
 	bool collision(sf::RectangleShape, sf::RectangleShape);
-
+	bool circleRectcollision(sf::CircleShape, sf::RectangleShape);
 private:
 
 

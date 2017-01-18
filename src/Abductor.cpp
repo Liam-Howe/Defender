@@ -16,6 +16,8 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_p
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().width));
 	collisionBox.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
 	collisionBox.setPosition(m_pos);
+	m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
+	m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
 }
 Abductor::~Abductor()
 {
@@ -179,9 +181,9 @@ sf::Vector2f Abductor::addVector(sf::Vector2f v , sf::Vector2f _currentVector)
 }
 
 
-void Abductor::movement(sf::Vector2f targetPos)
+void Abductor::movement(Astronaut& _astronaut)
 {
-	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
+	float Dist = sqrt(((m_pos.x - _astronaut.getPosition().x) * (m_pos.x - _astronaut.getPosition().x)) + ((m_pos.y - _astronaut.getPosition().y) * (m_pos.y - _astronaut.getPosition().y)));
 
 	//if (Dist < 700 && m_following == false)
 	//{
@@ -196,15 +198,21 @@ void Abductor::movement(sf::Vector2f targetPos)
 
 	//if (m_seek == true && m_abducting == false)
 	//{
-	if(m_abducting == false)
-	{
-		seek(targetPos);
-	}
 
-	//else if (m_seek == false && m_abducting == false)
-//	{
-		//		wander();
-	//}
+
+		if (Dist < 1000 && m_abducting == false && _astronaut.getAbducted() == false)
+		{
+			seek(_astronaut.getPosition());
+
+		}
+		else if (Dist < 1000 && _astronaut.getAbducted() ==true)
+		{
+			wander();
+		}
+		else if( Dist > 1000)
+		{
+			wander();
+		}
 
 	if (m_abducting == true)
 	{
@@ -213,6 +221,35 @@ void Abductor::movement(sf::Vector2f targetPos)
 	}
 
 	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
+}
+void Abductor::abducting()
+{
+	m_abducting = true;
+	m_pos.y -= 0.5f;
+	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
+}
+
+
+void Abductor::wander()
+{
+	
+	m_vel.x = m_generatedPos.x - m_pos.x;
+	m_vel.y = m_generatedPos.y - m_pos.y;
+	m_vel = Normalise(m_vel);
+	m_pos.x += m_vel.x;
+	m_pos.y += m_vel.y;
+	m_sprite.setPosition(m_pos);
+	float Dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + ((m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y)));
+	if (Dist< 10)
+	{
+		m_vel.x = 0;
+		m_vel.y = 0;
+		m_pos.x = m_generatedPos.x + 10;
+		m_generatedPos.x = rand() % (5500 - 60 + 1) + 600;
+		m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
+	}
 	collisionBox.setPosition(m_pos);
 }
 
@@ -256,7 +293,7 @@ void Abductor::seek(sf::Vector2f targetPos)
 	m_vel.x = targetPos.x - m_pos.x;
 	m_vel.y = targetPos.y - m_pos.y;
 	m_vel = Normalise(m_vel);
-	m_pos += m_vel;
+	m_pos += m_vel *1.5f;
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
 }
