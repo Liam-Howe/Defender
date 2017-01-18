@@ -31,6 +31,9 @@ public :
 	void createBullet(sf::Texture,int );
 	bool getAlive();
 	void setAlive(bool);
+	bool getFastAccel();
+	void setFastAccel(bool);
+
 private :
 	std::vector<Bullet*> m_bullets;
 	sf::RectangleShape collisionBox;
@@ -47,4 +50,6 @@ private :
 	int health;
 	int m_smartBombCount;
 	bool m_alive;
+	bool m_fastAccel;
+	float accelTimer;
 };

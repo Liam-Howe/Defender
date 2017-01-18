@@ -74,6 +74,8 @@ Play::Play(Game* game)
 	 m_powerUptimer = 1000;
 
 	 m_buffer.loadFromFile("Assets/laser.wav");
+	 m_powerUpBuffer.loadFromFile("Assets/powerup.wav");
+	 m_powerUpSound.setBuffer(m_powerUpBuffer);
 	 m_explosionbuffer.loadFromFile("Assets/bomb.wav");
 	 m_explosion.setBuffer(m_explosionbuffer);
 	 m_playerFire.setBuffer(m_buffer);
@@ -111,7 +113,7 @@ void Play::draw()
 	//{
 	//	game->window.draw(m_nests[i]->getCollisionRect());
 	//}
-
+	
 
 
 	for (int i = 0; i < _abductors.size(); i++)
@@ -195,6 +197,10 @@ void Play::draw()
 
 	game->window.draw(m_roundText);
 	game->window.draw(m_scoreText);
+	/*for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		game->window.draw(m_powerUps[i]->getCollisionRect());
+	}*/
 	return;
 }
 
@@ -470,6 +476,7 @@ void Play::activateGameOverState()
 		m_music.stop();
 		m_playerFire.stop();
 		m_explosion.stop();
+		m_powerUpSound.stop();
 		this->game->changeState(new GameOver(this->game));
 	}
 }
@@ -485,9 +492,10 @@ void Play::updatePowerUps()
 	{
 		if (_collisionManager.collision(_player->getCollisionRect(), m_powerUps[i]->getCollisionRect()) == true)
 		{
+			m_powerUpSound.play();
 			if (m_powerUps[i]->getType() == PowerUPType::Speed)
 			{
-				_player->setMaxAcceleration(200);
+				_player->setFastAccel(true);
 				m_powerUps.erase(m_powerUps.begin() + i);
 			}
 			else if (m_powerUps[i]->getType() == PowerUPType::INVINCIBILITY)
@@ -513,7 +521,7 @@ void Play::updatePowerUps()
 		int  _x = rand() % (5500 - 400 + 1) + 400;
 		int  _y = rand() % (600 - 100 + 1) + 100;
 		int type = rand() % (2 - 0 + 1) + 0;
-		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, static_cast<PowerUPType>(type));
+		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, PowerUPType::Speed); //static_cast<PowerUPType>(type));
 		m_powerUps.push_back(_temp);
 		m_powerUptimer = 1000;
 	}

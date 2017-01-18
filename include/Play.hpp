@@ -79,8 +79,9 @@ private:
 
 
 	//sound
-	sf::SoundBuffer m_buffer, m_explosionbuffer;
+	sf::SoundBuffer m_buffer, m_explosionbuffer, m_powerUpBuffer;
 	sf::Sound m_playerFire;
+	sf::Sound m_powerUpSound;
 	sf::Sound m_nestBullet;
 	sf::Sound m_seekerBullet;
 	sf::Sound m_explosion;

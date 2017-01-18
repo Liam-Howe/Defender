@@ -17,6 +17,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
 	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 	m_alive = true;
+	accelTimer = 1000;
 }
 Player::~Player()
 {
@@ -27,6 +28,18 @@ Player::~Player()
 
 void Player::move(sf::Vector2f speed , float _dt)
 {
+	if (m_fastAccel)
+	{
+		m_maxAcceleration = 200;
+		accelTimer--;
+		if (accelTimer <= 0)
+		{
+			m_maxAcceleration = 100;
+			accelTimer = 1000;
+			m_fastAccel = false;
+		}
+	}
+
 	if (m_accel.x < m_maxAcceleration && m_decelerate == false)
 	{
 		m_accel.x += 5;
@@ -190,6 +203,16 @@ bool Player::getAlive()
 void Player::setAlive(bool value)
 {
 	m_alive = value;
+}
+
+bool Player::getFastAccel()
+{
+	return m_fastAccel;
+}
+
+void Player::setFastAccel(bool value)
+{
+	m_fastAccel = value;
 }
 
 void Player::update(float _dt)
