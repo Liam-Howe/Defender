@@ -89,6 +89,11 @@ Play::Play(Game* game)
 	//}
 
 	 m_powerUptimer = 1000;
+
+	 m_buffer.loadFromFile("Assets/laser.wav");
+	 m_explosionbuffer.loadFromFile("Assets/bomb.wav");
+	 m_explosion.setBuffer(m_explosionbuffer);
+	 m_playerFire.setBuffer(m_buffer);
 } 
 
 
@@ -196,6 +201,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(m_nests[i]->getBullets()[k]->getCollisionRect(),_player->getCollisionRect()))
 			{
+				m_explosion.play();
 				m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
 				m_nests[i]->bulletCount--;
 		
@@ -213,6 +219,7 @@ void Play::CollisionManager()
 		{
 			if (_collisionManager.collision(m_mutants[i]->getBullets()[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
+				m_explosion.play();
 				m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + i);
 				if (_player->getHealth() > 0)
 				{
@@ -229,6 +236,7 @@ void Play::CollisionManager()
 
 			if (_collisionManager.collision( _player->getBullets()[i]->getCollisionRect(), m_mutants[k]->getCollisionRect()))
 			{
+				m_explosion.play();
 				if (m_mutants[k]->getHealth() > 0)
 				{
 					m_mutants[k]->takeDamage(1);
@@ -261,6 +269,7 @@ void Play::CollisionManager()
 			{
 			if (_collisionManager.collision(_player->getBullets()[i]->getCollisionRect(), _abductors[k]->getCollisionRect()))
 			{
+				m_explosion.play();
 				if (_abductors[k]->getHealth() > 0)
 				{
 					_abductors[k]->m_abducting = false;
@@ -580,6 +589,18 @@ void Play::handleInput()
 				_player->setdecelerating(false);
 				_player->setdirection(false);
 			}
+			if (event.key.code == sf::Keyboard::Space)
+			{
+					m_playerFire.play();
+					if (_player->getDirection() == false)
+					{
+						_player->createBullet(_playerBullet, 10);
+					}
+					else
+					{
+						_player->createBullet(_playerBullet, -10);
+				     }
+			}
 			if (event.key.code == sf::Keyboard::A)
 			{
 				_player->setdecelerating(false);
@@ -641,18 +662,6 @@ void Play::handleInput()
 			if (event.key.code == sf::Keyboard::S)
 			{
 				_player->move(sf::Vector2f(0, 10), _dt);
-			}
-		}
-
-		if (event.key.code == sf::Keyboard::Space)
-		{
-			if (_player->getDirection() == false)
-			{
-				_player->createBullet(_playerBullet,10);
-			}
-			else
-			{
-				_player->createBullet(_playerBullet,-10);
 			}
 		}
 

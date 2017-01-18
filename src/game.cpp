@@ -43,7 +43,7 @@ void Game::gameLoop()
 
 Game::Game()
 {
-	this->window.create(sf::VideoMode(2848, 1056), "");
+	this->window.create(sf::VideoMode(1200,800), "");
 	this->window.setFramerateLimit(60);
 	this->window.setVerticalSyncEnabled(true);
 }

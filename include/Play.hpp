@@ -15,6 +15,8 @@
 #include "CollisionManager.h"
 #include "PowerUp.h"
 #include "PowerUpType.h"
+#include "SFML\Audio\Sound.hpp"
+#include "SFML\Audio\SoundBuffer.hpp"
 
 class Play : public GameState
 {
@@ -72,6 +74,14 @@ private:
 
 	sf::Texture m_powerUpTex;
 	std::vector<PowerUp*> m_powerUps;
+
+
+	//sound
+	sf::SoundBuffer m_buffer, m_explosionbuffer;
+	sf::Sound m_playerFire;
+	sf::Sound m_nestBullet;
+	sf::Sound m_seekerBullet;
+	sf::Sound m_explosion;
 
 public:
 	void updatePowerUps();
