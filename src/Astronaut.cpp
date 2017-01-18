@@ -9,7 +9,7 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 
 	
 
-	generatedPos = rand() % 5500;
+	generatedPos = rand() % (5500 - 600 + 1) + 600;
 	m_fleeing = false;
 	m_abducted = false;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
@@ -107,12 +107,12 @@ void Astronaut::wander()
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
 	collisionBox.setPosition(m_Pos);
-
-	if (m_Pos.x == generatedPos)
+	float abductorDist = sqrt(((m_Pos.x - generatedPos) * (m_Pos.x - generatedPos)) + ((m_Pos.y - generatedPos) * (m_Pos.y - generatedPos)));
+	if (abductorDist < 20)
 	{
 		m_Vel.x = 0;
 		m_Pos.x = generatedPos + 10;
-		generatedPos = rand() % 2048 + 1;
+		generatedPos = rand() % (5500 - 600 + 1) + 600;
 	}
 }
 

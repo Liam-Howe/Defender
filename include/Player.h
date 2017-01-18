@@ -9,19 +9,19 @@ public :
 
 	Player(sf::Vector2f m_Pos,sf::Vector2f _Vel,sf::Texture _Tex);
 	~Player();
-	sf::Sprite getSprite();
-	sf::Vector2f getPosition();
-	void move(sf::Vector2f speed, float _dt);
-	void setPosition(sf::Vector2f _tempPos);
-	void update(float _dt);
-	bool  isdecelerating();
-	void setdecelerating(bool value);
-	void setdirection(bool value);
-	bool getDirection();
-	void handleInput(float);
-	void spawn(sf::Vector2f _newPos);
-	sf::RectangleShape getCollisionRect();
-	int getHealth();
+	sf::Sprite getSprite(); //Returns the Player Sprite 
+	sf::Vector2f getPosition(); //Returns the Player Position
+	void move(sf::Vector2f speed, float _dt); //Moves the player object
+	void setPosition(sf::Vector2f _tempPos); //Sets the player position to the recieved position
+	void update(float _dt); //Players update loop
+	bool  isdecelerating(); //Checks if the player is currently decelerating or not
+	void setdecelerating(bool value); //Sets the players decelerating bool
+	void setdirection(bool value); //Sets the direction the player is facing
+	bool getDirection(); //Gets the direction the player is facing
+	void handleInput(float); //Handles key presses for control of the player
+	void spawn(sf::Vector2f _newPos);// Spawns the player at a new position
+	sf::RectangleShape getCollisionRect(); //Returns the collision box for the player
+	int getHealth(); //Returns the value of the players health
 	void takeDamage(int value);
 	int getBombCount();
 	void useBomb();
@@ -35,6 +35,8 @@ public :
 	bool getFastAccel();
 	void setFastAccel(bool);
 	void hyperJump();
+	void setInvincible(bool value);
+	bool getInvincible();
 
 private :
 	std::vector<Bullet*> m_bullets;
@@ -54,4 +56,6 @@ private :
 	bool m_alive;
 	bool m_fastAccel;
 	float accelTimer;
+	bool invincible;
+	int invincibleTimer;
 };

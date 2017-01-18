@@ -230,12 +230,10 @@ void Play::CollisionManager()
 			if (_collisionManager.collision(m_mutants[i]->getBullets()[k]->getCollisionRect(), _player->getCollisionRect()))
 			{
 				m_explosion.play();
-				
 				if (_player->getHealth() > 0)
 				{
 					_player->takeDamage(20);
 					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
-
 				}
 				m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + k);
 			}
@@ -253,8 +251,11 @@ void Play::CollisionManager()
 				
 				if (_player->getHealth() > 0)
 				{
-					_player->takeDamage(10);
-					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+					if (_player->getInvincible() == false)
+					{
+						_player->takeDamage(10);
+						m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+					}
 				}
 				_abductors[i]->getBullets().erase(_abductors[i]->getBullets().begin() + k);
 				
@@ -358,15 +359,19 @@ void Play::update()
 
 	//updatePlayerBullet();
 	
-	
+	/*if (_player->getInvincible() == true)
+	{
+		m_health = sf::Text("Invincibility Active", font);
+	}*/
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->abductorSpawnTimer > 150)
+		if (m_nests[i]->abductorSpawnTimer > 150 && m_nests[i]->getAbductorCount() < 10)
 		{
 			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture,_playerBullet);
 			_abductors.push_back(_temp);
 			m_nests[i]->abductorSpawnTimer = 0;
+			m_nests[i]->setAbductorCount(m_nests[i]->getAbductorCount() + 1);
 		}
 	}
 
@@ -557,6 +562,8 @@ void Play::updatePowerUps()
 			}
 			else if (m_powerUps[i]->getType() == PowerUPType::INVINCIBILITY)
 			{
+				_player->setInvincible(true);
+				m_powerUps.erase(m_powerUps.begin() + i);
 
 			}
 			else if (m_powerUps[i]->getType() == PowerUPType::TELEPORT)
@@ -580,7 +587,7 @@ void Play::updatePowerUps()
 		int  _x = rand() % (5500 - 400 + 1) + 400;
 		int  _y = rand() % (600 - 100 + 1) + 100;
 		int type = rand() % (2 - 0 + 1) + 0;
-		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex, static_cast<PowerUPType>(type));
+		PowerUp* _temp = new PowerUp(sf::Vector2f(_x, _y), m_powerUpTex,static_cast<PowerUPType>(type));
 		m_powerUps.push_back(_temp);
 		m_powerUptimer = 1000;
 	}

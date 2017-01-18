@@ -27,6 +27,9 @@ public :
 	sf::RectangleShape getCollisionRect();
 	sf::RectangleShape collisionBox;
 
+	int getAbductorCount();
+	void setAbductorCount(int value);
+
 	int getHealth();
 	void takeDamage(int value);
 	std::vector<Bullet*>& getBullets();
@@ -42,6 +45,7 @@ private:
 	sf::Vector2f m_AVel;
 	sf::Texture m_ATex;
 	sf::Sprite m_ASprite;
+	int abductorCount;
 
 	int health;
 

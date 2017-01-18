@@ -18,6 +18,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
 	m_alive = true;
 	accelTimer = 1000;
+	invincible = false;
 }
 Player::~Player()
 {
@@ -37,6 +38,16 @@ void Player::move(sf::Vector2f speed , float _dt)
 			m_maxAcceleration = 100;
 			accelTimer = 1000;
 			m_fastAccel = false;
+		}
+	}
+
+	if (invincible == true)
+	{
+		invincibleTimer += 1;
+
+		if (invincibleTimer >= 700)
+		{
+			invincible = false;
 		}
 	}
 
@@ -154,7 +165,10 @@ int Player::getHealth()
 
 void Player::takeDamage(int value)
 {
-	health = health - value;
+	if (invincible == false)
+	{
+		health = health - value;
+	}
 }
 
 int Player::getBombCount()
@@ -220,6 +234,16 @@ void Player::hyperJump()
 			spawn(sf::Vector2f((rand() % 2000 - 1000 + 1000), rand() % 900 - 100 + 100));
 			
 		}
+}
+
+void Player::setInvincible(bool value)
+{
+	invincible = value;
+}
+
+bool Player::getInvincible()
+{
+	return invincible;
 }
 
 void Player::update(float _dt)

@@ -111,6 +111,16 @@ sf::RectangleShape AlienNest::getCollisionRect()
 	return collisionBox;
 }
 
+int AlienNest::getAbductorCount()
+{
+	return abductorCount;
+}
+
+void AlienNest::setAbductorCount(int value)
+{
+	abductorCount = value;
+}
+
 int AlienNest::getHealth()
 {
 	return health;
