@@ -17,6 +17,8 @@
 #include "PowerUpType.h"
 #include "SFML\Audio\Sound.hpp"
 #include "SFML\Audio\SoundBuffer.hpp"
+#include "SFML\Audio\Music.hpp"
+#include "GameOver.h"
 
 class Play : public GameState
 {
@@ -82,14 +84,25 @@ private:
 	sf::Sound m_nestBullet;
 	sf::Sound m_seekerBullet;
 	sf::Sound m_explosion;
+	sf::Music m_music;
+
+	//round text
+	sf::Text m_roundText;
+	sf::Text m_scoreText;
+	int m_round;
+	int m_score;
+	sf::Font font;
 
 public:
 	void updatePowerUps();
 	virtual void draw();
 	void CollisionManager();
 	void updateCamera();
+	void increaseRound();
+	void increaseScore();
 	void wrapAround();
 	virtual void update();
+	void activateGameOverState();
 	virtual void handleInput();
 	//void updatePlayerBullet();
 	void checkHealth();

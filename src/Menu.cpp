@@ -75,7 +75,7 @@ void Menu::handleInput()
 		}
 	}
 
-	if (event.key.code == sf::Keyboard::W)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		this->game->changeState(new Play(this->game));
 	}

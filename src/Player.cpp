@@ -16,6 +16,7 @@ Player::Player(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m_Pos(_
 	m_smartBombCount = 1;
 	collisionBox =  sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
 	collisionBox.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height / 2);
+	m_alive = true;
 }
 Player::~Player()
 {
@@ -179,6 +180,16 @@ void Player::createBullet(sf::Texture _tex,int speed)
 {
 	Bullet* _temp = new Bullet(m_Pos, sf::Vector2f(0, 0), _tex, speed);
 	m_bullets.push_back(_temp);
+}
+
+bool Player::getAlive()
+{
+	return m_alive;
+}
+
+void Player::setAlive(bool value)
+{
+	m_alive = value;
 }
 
 void Player::update(float _dt)

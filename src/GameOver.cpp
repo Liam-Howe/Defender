@@ -4,25 +4,28 @@ GameOver::GameOver(Game* game)
 {
 	this->game = game;
 	
-	/*if (m_play.getWin())
+	if (m_state)
 	{
 		m_background.loadFromFile("Assets/win.png");
 	} 
 	else
 	{
 		m_background.loadFromFile("Assets/lose.png");
-	}*/
-	//states = game->states;
+	}
 	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
-	sf::View DefaultView;
-	DefaultView.setCenter(400, 300);
-	DefaultView.setSize(800, 600);
-	game->window.setView(DefaultView);
-	m_buttonTexture.loadFromFile("Assets/play1.png");
+	sf::View _view;
+	_view.setSize(1200, 800);
+	_view.setCenter(game->window.getSize().x / 2, game->window.getSize().y / 2);
+	game->window.setView(_view);
+	m_buttonTexture.loadFromFile("Assets/exit2.png");
 	
-	m_playSprite.setTexture(m_background);
+	m_playSprite.setTexture(m_buttonTexture);
 	m_backgroundsprite.setTexture(m_background);
 	m_playSprite.setPosition(1500, 500);
+	m_playSprite.setOrigin(m_playSprite.getGlobalBounds().width / 2, m_playSprite.getGlobalBounds().height / 2);
+	m_playSprite.setPosition(pos.x / 2, pos.y/1.2f);
+
+
 }
 void GameOver::draw()
 {
@@ -35,13 +38,20 @@ void GameOver::update()
 	game->window.draw(m_backgroundsprite);
 	game->window.draw(m_playSprite);
 	game->window.display();
+	m_Mouseposition = sf::Mouse::getPosition(game->window);
 	if (checkClicked(m_playSprite, m_Mouseposition) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left) == false)
 	{
-		m_playSprite.setTextureRect(sf::IntRect(0, 72, 201, 71));
+		m_playSprite.setTextureRect(sf::IntRect(0, 0, 0, 0));
+	}
+	else if (checkClicked(m_playSprite, m_Mouseposition) == false)
+	{
+		m_playSprite.setTextureRect(sf::IntRect(0, 0, 201, 71));
 	}
 
-
-
+	if (checkClicked(m_playSprite, m_Mouseposition) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left) == true)
+	{
+		game->changeState(new Menu(this->game));
+	}
 	return;
 
 }
@@ -74,16 +84,17 @@ void GameOver::handleInput()
 			{
 
 			}
+		
 			break;
 		}
 		default: break;
 		}
 	}
 
-	if (event.key.code == sf::Keyboard::W)
+	/*if (event.key.code == sf::Keyboard::W)
 	{
 		this->game->changeState(new Menu(this->game));
-	}
+	}*/
 
 	return;
 }

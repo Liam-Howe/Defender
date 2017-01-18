@@ -161,6 +161,7 @@
     <ClInclude Include="include\CollisionManager.h" />
     <ClInclude Include="include\Flock.h" />
     <ClInclude Include="include\game.hpp" />
+    <ClInclude Include="include\GameOver.h" />
     <ClInclude Include="include\game_state.hpp" />
     <ClInclude Include="include\Menu.hpp" />
     <ClInclude Include="include\Mutant.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\Flock.cpp" />
     <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\GameOver.cpp" />
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Mutant.cpp" />
     <ClCompile Include="src\obstacles.cpp" />

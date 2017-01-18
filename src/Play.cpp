@@ -7,6 +7,7 @@ Play::Play(Game* game)
 	this->game = game;
 
 	game->window.setFramerateLimit(60); 
+	m_round = 0;
 	
 	m_powerUpTex.loadFromFile("Assets/powerup.png");
 	_playerTexture.loadFromFile("Assets/ship.png");
@@ -14,7 +15,7 @@ Play::Play(Game* game)
 	_nestTexture.loadFromFile("Assets/nest.png");
 	_backgorundTexture.loadFromFile("Assets/back2.png");
 	_astronautTexture.loadFromFile("Assets/astronaut.png");
-	//_astro = new Astronaut(sf::Vector2f(100, 100), sf::Vector2f(0, 0), _astronautTexture);
+	
 	_backgroundSprite.setTexture(_backgorundTexture);
 	_asteroidTexture.loadFromFile("Assets/asteroids.png");
 	_playerBullet.loadFromFile("Assets/playerBullet.png");
@@ -24,7 +25,7 @@ Play::Play(Game* game)
 	 gameHeight = 1056;
 	 gameWidth = 6600;
 	 cameraoffset = 300;
-	 //abductorSpawnTimer = 0;
+
 	
 	 WidthOffset = gameWidth - cameraoffset;
 
@@ -69,24 +70,6 @@ Play::Play(Game* game)
 		 m_obstacles.push_back(_temp);
 	 }
 
-	// _abductorCount = 1;
-	// float _tx = 0;
-
-	// for (int i = 0; i < _abductorCount; i++)
-	// {
-	//	 float _x = rand() % (5500 - 600 + 1) + 600;
-	//	 Abductor* _temp = new Abductor(sf::Vector2f(1424, 100), sf::Vector2f(0, 0), _abtuctorTexture);
-	////	 _abductors.push_back(_temp);
-	//}
-
-	//_mutantCount = 1;
-
-	//for (int i = 0; i < _mutantCount; i++)
-	//{
-	//	float _x = rand() % (2200 - 600 + 1) + 100;
-	//	Mutant* _temp = new Mutant(sf::Vector2f(1600, 100), sf::Vector2f(0, 0), _mutantTexture);
-	//	m_mutants.push_back(_temp);
-	//}
 
 	 m_powerUptimer = 1000;
 
@@ -94,6 +77,26 @@ Play::Play(Game* game)
 	 m_explosionbuffer.loadFromFile("Assets/bomb.wav");
 	 m_explosion.setBuffer(m_explosionbuffer);
 	 m_playerFire.setBuffer(m_buffer);
+	 if (!m_music.openFromFile("Assets/background.ogg"))
+	 {
+         // error...
+	 }
+	 else
+	 {
+		 m_music.setLoop(true);
+		 m_music.play();
+	 }
+
+	 font.loadFromFile("Assets/arial.ttf");
+	 m_roundText = sf::Text(" Round  : " +std::to_string(m_round), font);
+	 m_roundText.setCharacterSize(30);
+	 m_roundText.setStyle(sf::Text::Bold);
+	 m_score = 0;
+	 m_scoreText = sf::Text(" Score  : " + std::to_string(m_score), font);
+	 m_scoreText.setCharacterSize(30);
+	 m_scoreText.setStyle(sf::Text::Bold);
+
+	
 } 
 
 
@@ -189,6 +192,9 @@ void Play::draw()
 	{
 		game->window.draw(m_obstacles[i]->getSprite());
 	}
+
+	game->window.draw(m_roundText);
+	game->window.draw(m_scoreText);
 	return;
 }
 
@@ -303,7 +309,11 @@ void Play::update()
 	wrapAround();
 	_player->update(_dt);
 	updatePowerUps();
-
+	
+	
+	m_roundText.setPosition(sf::Vector2f(_playerView.getCenter().x + _playerView.getSize().x/4.5,_playerView.getCenter().y - _playerView.getSize().y / 2));
+	m_scoreText.setPosition(sf::Vector2f(_playerView.getCenter().x + _playerView.getSize().x / 4.5, _playerView.getCenter().y - _playerView.getSize().y / 2.5));
+	
 
 	for (int i = 0; i < _player->getBullets().size(); i++)
 	{
@@ -444,9 +454,24 @@ void Play::update()
 
 	checkHealth();
 	CollisionManager();
+	
 	game->window.display();
 	
+	activateGameOverState();
+	
+	
 	return;
+}
+
+void Play::activateGameOverState()
+{
+	if (_player->getAlive() == false)
+	{
+		m_music.stop();
+		m_playerFire.stop();
+		m_explosion.stop();
+		this->game->changeState(new GameOver(this->game));
+	}
 }
 
 void Play::updatePowerUps()
@@ -542,6 +567,17 @@ void Play::updateCamera()
 	draw();
 }
 
+void Play::increaseRound()
+{
+	m_round++;
+	m_roundText = sf::Text(" Round  : " + std::to_string(m_round), font);
+}
+
+void Play::increaseScore()
+{
+	m_score++;
+}
+
 void Play::wrapAround()
 {
 	if (_player->getPosition().x > _rightSpawnBoundary)
@@ -591,15 +627,17 @@ void Play::handleInput()
 			}
 			if (event.key.code == sf::Keyboard::Space)
 			{
-					m_playerFire.play();
-					if (_player->getDirection() == false)
-					{
-						_player->createBullet(_playerBullet, 10);
-					}
-					else
-					{
-						_player->createBullet(_playerBullet, -10);
-				     }
+
+				_player->setAlive(false);
+				m_playerFire.play();
+				if (_player->getDirection() == false)
+				{
+					_player->createBullet(_playerBullet, 10);
+				}
+				else
+				{
+					_player->createBullet(_playerBullet, -10);
+				}
 			}
 			if (event.key.code == sf::Keyboard::A)
 			{

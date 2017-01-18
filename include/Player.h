@@ -29,6 +29,8 @@ public :
 	void setMaxAcceleration(int value);
 	std::vector<Bullet*>& getBullets();
 	void createBullet(sf::Texture,int );
+	bool getAlive();
+	void setAlive(bool);
 private :
 	std::vector<Bullet*> m_bullets;
 	sf::RectangleShape collisionBox;
@@ -44,4 +46,5 @@ private :
 	bool m_canHyperJump;
 	int health;
 	int m_smartBombCount;
+	bool m_alive;
 };
