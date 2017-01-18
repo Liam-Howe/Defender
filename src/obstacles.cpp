@@ -1,10 +1,15 @@
 
-#include "../include/obstacles.h""
+#include "../include/obstacles.h"
 
-obstacles::obstacles(sf::Vector2f _pos, sf::Texture _tex, sf::Vector2f _vel, float _gameHeight, float _gameWidth) : m_pos(_pos) , m_tex(_tex), m_Vel(_vel) , m_gameHeight(_gameHeight), m_gameWidth(_gameWidth)
+obstacles::obstacles(sf::Vector2f _pos, sf::Texture _tex,  float leftSpawnBoundary, float rightspawnBoundary, float leftSpawn, float rightSpawn) : m_pos(_pos) , m_tex(_tex), m_leftSpawnBoundary(leftSpawnBoundary),
+    m_rightSpawnBoundary(rightspawnBoundary),
+	m_leftSpawn(leftSpawn),
+	m_rightSpawn(rightSpawn)
 {
 	m_Sprite.setTexture(m_tex);
 	m_Sprite.setPosition(m_pos);
+	m_Vel.x = rand() % 2+ (-2);
+	m_Vel.y = rand() % 2 + (-2);
 }
 
 obstacles::~obstacles()
@@ -21,19 +26,19 @@ void obstacles::update()
 
 	if (m_pos.y - m_Sprite.getGlobalBounds().height/2 < 0)
 	{
-		m_Vel = sf::Vector2f(0,1);
+		m_Vel = sf::Vector2f(m_Vel.x, - m_Vel.y);
 	}
-	if (m_pos.y + m_Sprite.getGlobalBounds().height / 2 > m_gameHeight)
+	if (m_pos.y + m_Sprite.getGlobalBounds().height / 2 > 690)
 	{
-		m_Vel = sf::Vector2f(0, -1);
+		m_Vel = sf::Vector2f(m_Vel.x, -m_Vel.y);
 	}
-	if (m_pos.x + m_Sprite.getGlobalBounds().width / 2 > m_gameWidth)
+	if (m_pos.x + m_Sprite.getGlobalBounds().width / 2 > m_rightSpawnBoundary)
 	{
-		m_Vel = sf::Vector2f(-1, -0);
+		m_pos.x = m_leftSpawn;
 	}
-	if (m_pos.x - m_Sprite.getGlobalBounds().width / 2 < 0)
+	if (m_pos.x - m_Sprite.getGlobalBounds().width / 2 < m_leftSpawnBoundary)
 	{
-		m_Vel = sf::Vector2f(1, 0);
+		m_pos.x = m_rightSpawn;
 	}
 
 }

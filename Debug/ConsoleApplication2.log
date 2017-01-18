@@ -1,7 +1,5 @@
-﻿  Menu.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Play.cpp
-  ConsoleApplication2.cpp
+﻿  obstacles.cpp
+c:\users\liam\desktop\defender\src\obstacles.cpp(11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\obstacles.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.exe
   ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.pdb (Full PDB)

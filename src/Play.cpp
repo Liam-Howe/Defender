@@ -65,7 +65,7 @@ Play::Play(Game* game)
 	 {
 		 _x = rand() % (5500 - 600 + 1) + 600;
 		 _y = rand() % (600 - 100 + 1) + 100;
-		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture,sf::Vector2f(0,-1),gameHeight,gameWidth);
+		 obstacles * _temp = new obstacles(sf::Vector2f(_x,_y),_asteroidTexture, _leftSpawnBoundary, _rightSpawnBoundary, _spawnLeft,_spawnRight);
 		 m_obstacles.push_back(_temp);
 	 }
 
