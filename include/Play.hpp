@@ -93,12 +93,13 @@ private:
 	
 
 	//sounds
-	sf::SoundBuffer m_buffer, m_explosionbuffer, m_powerUpBuffer;//sound buffers
+	sf::SoundBuffer m_buffer, m_explosionbuffer, m_powerUpBuffer,m_screamBuffer;//sound buffers
 	sf::Sound m_playerFire;//sound for when the player fires
 	sf::Sound m_powerUpSound;//sound for when the player gets a pwoer up
 	sf::Sound m_nestBullet;//sound for when the nest fires a bullet 
 	sf::Sound m_seekerBullet;//sound for seeker bullets
 	sf::Sound m_explosion;//sound for when entities are destroyed
+	sf::Sound m_abductedSound;//sound for whne an astronaut is being abducted
 	sf::Music m_music;//background music
 
 	//round text

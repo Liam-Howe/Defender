@@ -200,8 +200,8 @@ void Abductor::wander(std::vector<Abductor*> agents)
 		m_vel.x = m_generatedPos.x - m_pos.x;
 		m_vel.y = m_generatedPos.y - m_pos.y;
 		m_vel = Normalise(m_vel);
-		m_pos.x += m_vel.x;
-		m_pos.y += m_vel.y;
+		m_pos.x += m_vel.x * 0.25;
+		m_pos.y += m_vel.y * 0.25;
 		
 
 		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));

@@ -1,14 +1,74 @@
-﻿  Mutant.cpp
-c:\users\liam\desktop\defender\src\mutant.cpp(16): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(43): warning C4018: '<': signed/unsigned mismatch
-c:\users\liam\desktop\defender\src\mutant.cpp(74): warning C4018: '<': signed/unsigned mismatch
-c:\users\liam\desktop\defender\src\mutant.cpp(107): warning C4018: '<': signed/unsigned mismatch
-c:\users\liam\desktop\defender\src\mutant.cpp(165): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(166): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(175): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(176): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(195): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liam\desktop\defender\src\mutant.cpp(196): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+﻿  Play.cpp
+c:\users\liam\desktop\defender\src\play.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\liam\desktop\defender\src\play.cpp(40): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(115): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(121): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(127): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(140): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(144): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(151): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(156): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(161): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(165): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(172): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(176): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(180): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(198): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(200): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(217): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(219): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(233): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(235): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(250): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(262): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(264): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(277): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(279): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(295): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(297): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(318): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(320): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(337): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(339): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(354): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(356): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(365): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(390): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(405): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(407): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(408): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(411): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(417): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(428): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(433): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(435): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(441): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(451): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(459): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(463): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(474): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(478): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(488): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(494): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(504): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(509): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(513): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(538): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(540): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(596): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(601): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(638): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(650): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(659): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(668): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(709): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(714): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\play.cpp(781): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(790): warning C4018: '<': signed/unsigned mismatch
+c:\users\liam\desktop\defender\src\play.cpp(799): warning C4018: '<': signed/unsigned mismatch
   ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.exe
   ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.pdb (Full PDB)

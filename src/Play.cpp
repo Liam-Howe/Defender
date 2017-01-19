@@ -45,7 +45,7 @@ Play::Play(Game* game)
 	 int _Nx = 0;
 	 int _Ny = 0;
 	 m_nestCount = 1;
-	 m_astronautCount = 1;
+	 m_astronautCount = 6;
 	 for (int i = 0; i < m_astronautCount; i++)
 	 {
 		 int _Ax = rand() % (5500 - 600 + 1) + 600;
@@ -69,9 +69,9 @@ Play::Play(Game* game)
 		 m_obstacles.push_back(_temp);
 	 }
 
-
 	 m_powerUptimer = 1000;
-
+	 m_screamBuffer.loadFromFile("Assets/scream.wav");
+	 m_abductedSound.setBuffer(m_screamBuffer);
 	 m_buffer.loadFromFile("Assets/laser.wav");
 	 m_powerUpBuffer.loadFromFile("Assets/powerup.wav");
 	 m_powerUpSound.setBuffer(m_powerUpBuffer);
@@ -326,7 +326,9 @@ void Play::CollisionManager()
 				if (m_mutants[k]->getHealth() > 0)
 				{
 					m_mutants[k]->takeDamage(1);
+					increaseScore();
 				}
+				
 				_player->getBullets().erase(_player->getBullets().begin() + i);
 			}
 		}
@@ -342,6 +344,7 @@ void Play::CollisionManager()
 				if (m_nests[k]->getHealth() > 0)
 				{
 					m_nests[k]->takeDamage(1);
+					increaseScore();
 				}
 				_player->getBullets().erase(_player->getBullets().begin() + i);
 			}
@@ -367,7 +370,9 @@ void Play::CollisionManager()
 						}
 					}
 					_abductors[k]->takeDamage(1);
+					increaseScore();
 				}
+			
 				_player->getBullets().erase(_player->getBullets().begin() + i);
 			}
 		}
@@ -435,6 +440,11 @@ void Play::update()
 
 	for (int i = 0; i < m_mutants.size(); i++)
 	{
+		m_mutants[i]->setindex(i);
+		m_mutants[i]->computeAlignment(m_mutants);
+		m_mutants[i]->computeCohesion(m_mutants);
+		m_mutants[i]->computeSeparation(m_mutants);
+		m_mutants[i]->swarm(m_mutants,_player->getPosition());
 		m_mutants[i]->movement(_player->getPosition(), _alienMissile);
 	}
 
@@ -453,6 +463,10 @@ void Play::update()
 			for (int k = 0; k < m_mutants[i]->getBullets().size(); k++)
 			{
 				m_mutants[i]->getBullets()[k]->mutantUpdate(_player->getPosition());
+				if (m_mutants[i]->getBullets()[k]->getLifeTime() >300)
+				{
+					m_mutants[i]->getBullets().erase(m_mutants[i]->getBullets().begin() + k);
+				}
 			}
 		}
 	}
@@ -464,6 +478,10 @@ void Play::update()
 			for (int k = 0; k < _abductors[i]->getBullets().size(); k++)
 			{
 				_abductors[i]->getBullets()[k]->mutantUpdate(_player->getPosition());
+				if (_abductors[i]->getBullets()[k]->getLifeTime() >300)
+				{
+					_abductors[i]->getBullets().erase(_abductors[i]->getBullets().begin() + k);
+				}
 			}
 		}
 	}
@@ -505,6 +523,10 @@ void Play::update()
 		}
 	}
 
+
+	
+
+
 	for (int t1 = _player->getBullets().size()-1; t1>=0; --t1)
 	{
 		if (_player->getBullets()[t1]->getLifeTime() > 300)
@@ -528,12 +550,17 @@ void Play::update()
 			}
 			if ((_collisionManager.collision(m_astronauts[k]->getSeekRect(), _abductors[i]->getCollisionRect()) == true))
 			{
+				
 				if (m_astronauts[k]->getAbducted() == false)
 				{
 					_abductors[i]->seek(m_astronauts[k]->getPosition());
 				}
 				if (_collisionManager.collision(_abductors[i]->getCollisionRect(), m_astronauts[k]->getCollisionRect()))
 				{
+					if (m_astronauts[k]->getAbducted() == false)
+					{
+						m_abductedSound.play();
+					}
 					_abductors[i]->abducting();
 					m_astronauts[k]->abducted(_abductors[i]->getPosition());
 				}
@@ -559,6 +586,7 @@ void Play::activateGameOverState()
 		m_playerFire.stop();
 		m_explosion.stop();
 		m_powerUpSound.stop();
+		m_abductedSound.stop();
 		this->game->changeState(new GameOver(this->game,m_score));
 	}
 }
@@ -623,7 +651,7 @@ void Play::checkHealth()
 	{
 		if (_abductors[i]->getHealth() <= 0)
 		{
-			increaseScore();
+		
 			_abductors.erase(_abductors.begin() + i);
 		}
 	}
@@ -632,7 +660,7 @@ void Play::checkHealth()
 	{
 		if (m_nests[i]->getHealth() <= 0)
 		{
-			increaseScore();
+			
 			m_nests.erase(m_nests.begin() + i);
 		}
 	}
@@ -641,7 +669,6 @@ void Play::checkHealth()
 	{
 		if (m_mutants[i]->getHealth() <= 0)
 		{
-			increaseScore();
 			m_mutants[i]->getBullets().clear();
 			m_mutants.erase(m_mutants.begin() + i);
 		}
@@ -663,6 +690,7 @@ void Play::increaseRound()
 	if (m_round > 5)
 	{
 		m_nestCount++;
+		
 	}
 	m_roundText = sf::Text(" Round  : " + std::to_string(m_round), font);
 }

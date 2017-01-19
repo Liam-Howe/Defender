@@ -21,10 +21,10 @@ public:
 	void update(); //The mutants update loop
 	void seek(sf::Vector2f targetPos); //Causes the mutant to move towards the passed in target
 	sf::Vector2f Normalise(sf::Vector2f velocity); //Normalises the vector passed into it
-	void wander(std::vector<Mutant*> agents);
+	
 	void movement(sf::Vector2f targetPos, sf::Texture _playerBullet); //Allows the mutant to move and change behaviour 
 	void fire(sf::Vector2f targetPos, sf::Texture _playerBullet); //Creates a new bullet and fires it at the position passed in
-	void swarm(); //Causes a group of mutants to swarm 
+	void swarm(std::vector<Mutant*> agents,sf::Vector2f _playerPos); //Causes a group of mutants to swarm 
 	int getHealth(); //Returns the current value for mutant health
 	void takeDamage(int value); //Decrements the mutants health
 	std::vector<Bullet*>& getBullets(); //Returns the current bullets in the mutants bullet vector

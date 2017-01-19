@@ -46,7 +46,7 @@ sf::Vector2f Mutant::computeAlignment(std::vector<Mutant*> agents)
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
-			if (agentDist < 150)
+			if (agentDist < 300)
 			{
 				v.x += agents[i]->getVelocity().x;
 				v.y += agents[i]->getVelocity().y;
@@ -77,7 +77,7 @@ sf::Vector2f Mutant::computeCohesion(std::vector<Mutant*> agents)
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
-			if (agentDist < 150 && agentDist > 70)
+			if (agentDist < 300 && agentDist > 30)
 			{
 				v.x += agents[i]->getPosition().x;
 				v.y += agents[i]->getPosition().y;
@@ -110,7 +110,7 @@ sf::Vector2f Mutant::computeSeparation(std::vector<Mutant*> agents)
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
-			if (agentDist < 70)
+			if (agentDist < 30)
 			{
 				v.x += agents[i]->getPosition().x - m_pos.x;
 				v.y += agents[i]->getPosition().y - m_pos.y;
@@ -149,12 +149,12 @@ sf::Vector2f Mutant::Normalise(sf::Vector2f velocity)
 	}
 }
 
-void Mutant::wander(std::vector<Mutant*> agents)
+void Mutant::swarm(std::vector<Mutant*> agents, sf::Vector2f _playerPos)
 {
 
 	if (v != sf::Vector2f(0, 0))
 	{
-		m_pointToFlock = m_generatedPos - m_pos;
+		m_pointToFlock = _playerPos - m_pos;
 		m_pointToFlock = Normalise(m_pointToFlock);
 
 		m_vel.x += (m_alignment.x + m_cohesion.x + m_seperation.x) + m_pointToFlock.x;
@@ -170,31 +170,15 @@ void Mutant::wander(std::vector<Mutant*> agents)
 
 		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
 
-		if (dist < 30)
+		if (dist < 200)
 		{
-			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
-			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
+			m_seek = false;
 		}
 
 	}
 	else
 	{
-		m_vel.x = m_generatedPos.x - m_pos.x;
-		m_vel.y = m_generatedPos.y - m_pos.y;
-		m_vel = Normalise(m_vel);
-		m_pos.x += m_vel.x;
-		m_pos.y += m_vel.y;
-
-
-		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
-
-		if (dist < 30)
-		{
-			m_vel.x = 0;
-			m_vel.y = 0;
-			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
-			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
-		}
+		m_seek =true;
 	}
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
@@ -240,12 +224,8 @@ void Mutant::movement(sf::Vector2f targetPos, sf::Texture _playerBullet)
 {
 	float Dist = sqrt(((m_pos.x - targetPos.x) * (m_pos.x - targetPos.x)) + ((m_pos.y - targetPos.y) * (m_pos.y - targetPos.y)));
 
-	if (Dist > 200)
-	{
-		m_seek = true;
-	}
 
-	else if (Dist < 300)
+	if (Dist < 200)
 	{
 		m_seek = false;
 	}
@@ -255,7 +235,7 @@ void Mutant::movement(sf::Vector2f targetPos, sf::Texture _playerBullet)
 		seek(targetPos);
 	}
 
-	else if (m_seek == false)
+	if (m_seek == false)
 	{
 		bulletTimer += 1;
 	}
@@ -265,6 +245,8 @@ void Mutant::movement(sf::Vector2f targetPos, sf::Texture _playerBullet)
 		fire(targetPos, _playerBullet);
 		bulletTimer = 0;
 	}
+
+    
 }
 
 void Mutant::fire(sf::Vector2f targetPos, sf::Texture _playerBullet)
@@ -274,10 +256,7 @@ void Mutant::fire(sf::Vector2f targetPos, sf::Texture _playerBullet)
 	_mutantBulletVector.push_back(_temp);
 }
 
-void Mutant::swarm()
-{
 
-}
 
 int Mutant::getHealth()
 {
