@@ -8,7 +8,7 @@ class GameState
 public:
 
 	Game* game;
-
+	//pure virtual functions that the inherited scenes can override
 	virtual void draw() = 0;
 	virtual void update() = 0;
 	virtual void handleInput() = 0;

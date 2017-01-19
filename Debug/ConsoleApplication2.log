@@ -1,5 +1,7 @@
-﻿  Astronaut.cpp
-c:\users\liam\documents\defender\src\astronaut.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\liam\documents\defender\src\astronaut.cpp(115): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  ConsoleApplication2.vcxproj -> C:\Users\Liam\Documents\Defender\Debug\ConsoleApplication2.exe
-  ConsoleApplication2.vcxproj -> C:\Users\Liam\Documents\Defender\Debug\ConsoleApplication2.pdb (Full PDB)
+﻿  AlienNest.cpp
+c:\users\liam\desktop\defender\src\aliennest.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(95): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\liam\desktop\defender\src\aliennest.cpp(96): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.exe
+  ConsoleApplication2.vcxproj -> C:\Users\Liam\Desktop\Defender\Debug\ConsoleApplication2.pdb (Full PDB)

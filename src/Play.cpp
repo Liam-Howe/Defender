@@ -112,20 +112,11 @@ void Play::draw()
 	game->window.draw(_backgroundSprite);
 	game->window.draw(_player->getSprite());
 
-	/*for (int i = 0; i < _abductors.size(); i++)
-	{
-		game->window.draw(_abductors[i]->getCollisionRect());
-	}*/
 	for (int i = 0; i < _player->getBullets().size(); i++)
 	{
 		game->window.draw(_player->getBullets()[i]->getSprite());
 	}
 	game->window.draw(m_health);
-
-	/*for (int i = 0; i < m_astronauts.size(); i++)
-	{
-		game->window.draw(m_astronauts[i]->getSeekRect());
-	}*/
 
 	for (int i = 0; i < m_powerUps.size(); i++)
 	{
@@ -192,7 +183,7 @@ void Play::draw()
 			}
 		}
 	}
-
+	
 
 	game->window.draw(m_roundText);
 	game->window.draw(m_scoreText);
@@ -212,12 +203,72 @@ void Play::CollisionManager()
 			{
 				m_explosion.play();
 				m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
-				m_nests[i]->bulletCount--;
+				m_nests[i]->setBulletCount(m_nests[i]->getBulletCount() -1);
 		
 				if (_player->getHealth() > 0)
 				{
 					_player->takeDamage(30);
 					m_health = sf::Text("Health : " + std::to_string(_player->getHealth()), font);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < m_nests.size(); i++)
+	{
+		for (int k = 0; k < m_obstacles.size(); k++)
+		{
+			if (_collisionManager.collision(m_nests[i]->getCollisionRect(), m_obstacles[k]->getCollisionRect()))
+			{
+				m_explosion.play();
+				if (m_nests[i]->getHealth() > 0)
+				{
+					m_nests[i]->takeDamage(2);
+				}
+			}
+
+		}
+
+	}
+	for (int i = 0; i < m_mutants.size(); i++)
+	{
+		for (int k = 0; k < m_obstacles.size(); k++)
+		{
+			if (_collisionManager.collision(m_mutants[i]->getCollisionRect(), m_obstacles[k]->getCollisionRect()))
+			{
+				m_explosion.play();
+				if (m_mutants[i]->getHealth() > 0)
+				{
+					m_mutants[i]->takeDamage(2);
+				}
+			}
+
+		}
+
+	}
+	
+		for (int k = 0; k < m_obstacles.size(); k++)
+		{
+			if (_collisionManager.collision(_player->getCollisionRect(), m_obstacles[k]->getCollisionRect()))
+			{
+				m_explosion.play();
+				if (_player->getHealth() > 0)
+				{
+					_player->takeDamage(100);
+				}
+			}
+	}
+
+	for (int i = 0; i < _abductors.size(); i++)
+	{
+		for (int k = 0; k < m_obstacles.size(); k++)
+		{
+			if (_collisionManager.collision(_abductors[i]->getCollisionRect(), m_obstacles[k]->getCollisionRect()))
+			{
+				m_explosion.play();
+				if (_abductors[i]->getHealth() > 0)
+				{
+					_abductors[i]->takeDamage(2);
 				}
 			}
 		}
@@ -306,7 +357,7 @@ void Play::CollisionManager()
 				m_explosion.play();
 				if (_abductors[k]->getHealth() > 0)
 				{
-					_abductors[k]->m_abducting = false;
+					_abductors[k]->setAbducting(false);
 
 					for (int j = 0; j < m_astronauts.size(); j++)
 					{
@@ -357,20 +408,14 @@ void Play::update()
 			_player->getBullets()[i]->update();
 	}
 
-	//updatePlayerBullet();
-	
-	/*if (_player->getInvincible() == true)
-	{
-		m_health = sf::Text("Invincibility Active", font);
-	}*/
 
 	for (int i = 0; i < m_nests.size(); i++)
 	{
-		if (m_nests[i]->abductorSpawnTimer > 150 && m_nests[i]->getAbductorCount() < 10)
+		if (m_nests[i]->getAbductorSpawnTimer() > 150 && m_nests[i]->getAbductorCount() < 10)
 		{
 			Abductor* _temp = new Abductor(sf::Vector2f(m_nests[i]->getPosition().x, m_nests[i]->getPosition().y), sf::Vector2f(0, 0), _abtuctorTexture,_playerBullet);
 			_abductors.push_back(_temp);
-			m_nests[i]->abductorSpawnTimer = 0;
+			m_nests[i]->setAbductorSpawnTimer(0);
 			m_nests[i]->setAbductorCount(m_nests[i]->getAbductorCount() + 1);
 		}
 	}
@@ -454,7 +499,7 @@ void Play::update()
 				if (m_nests[i]->getBullets()[k]->getLifeTime() > 300)
 				{
 					m_nests[i]->getBullets().erase(m_nests[i]->getBullets().begin() + i);
-					m_nests[i]->bulletCount--;
+					m_nests[i]->setBulletCount(m_nests[i]->getBulletCount()-1);
 				}
 			}
 		}
@@ -464,28 +509,10 @@ void Play::update()
 	{
 		if (_player->getBullets()[t1]->getLifeTime() > 300)
 		{
-			//_player->getBullets().erase(std::find//_player->getBullets().begin() + i);
 			_player->getBullets().erase(_player->getBullets().begin() + t1);
 		}
 	}
 	
-
-	/*if (_player->getBullets().size() !=0)
-	{
-		std::vector<Bullet*>::iterator i = _player->getBullets().begin();
-		for (; i != _player->getBullets().end();)
-		{
-			if ((*i)->getLifeTime() > 300)
-			{
-				(i) = _player->getBullets().erase(i);
-			}
-			else
-			{
-				i++;
-			}
-		}
-	}*/
-
 	for (int i = 0; i < _abductors.size(); i++)
 	{
 		for (int k = 0; k < m_astronauts.size(); k++)
@@ -593,14 +620,6 @@ void Play::updatePowerUps()
 	}
 }
 
-//void Play::updatePlayerBullet()
-//{
-//	for (int i = 0; i < _playerBulletVector.size(); i++)
-//	{
-//		_playerBulletVector[i]->update();
-//	}
-//}
-
 void Play::checkHealth()
 {
 	if (_player->getHealth() <=0)
@@ -621,8 +640,6 @@ void Play::checkHealth()
 		if (m_nests[i]->getHealth() <= 0)
 		{
 			increaseScore();
-			//m_nests[i]->_nestBulletVector.clear();
-			//m_nests[i]->bulletCount = 0;
 			m_nests.erase(m_nests.begin() + i);
 		}
 	}
@@ -634,7 +651,6 @@ void Play::checkHealth()
 			increaseScore();
 			m_mutants[i]->getBullets().clear();
 			m_mutants.erase(m_mutants.begin() + i);
-			//m_mutants.erase(std::remove(m_mutants.begin(), m_mutants.end(), i), m_mutants.end());
 		}
 	}
 }
@@ -714,7 +730,6 @@ void Play::handleInput()
 			}
 			if (event.key.code == sf::Keyboard::Space)
 			{
-				//_player->setAlive(false);
 				m_playerFire.play();
 				if (_player->getDirection() == false)
 				{
@@ -771,20 +786,6 @@ void Play::handleInput()
 					_player->useBomb();
 				}
 			}
-
-			/*if (event.key.code == sf::Keyboard::Space)
-			{
-				if (_player->getDirection() == false)
-				{
-					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, 10);
-					_playerBulletVector.push_back(_temp);
-				}
-				else
-				{
-					Bullet * _temp = new Bullet(sf::Vector2f(_player->getPosition().x, _player->getPosition().y), sf::Vector2f(0, 1), _playerBullet, -10);
-					_playerBulletVector.push_back(_temp);
-				}	
-			}*/
 			break;
 		}
 

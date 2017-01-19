@@ -154,12 +154,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Abductor.h" />
-    <ClInclude Include="include\AI.h" />
     <ClInclude Include="include\AlienNest.h" />
     <ClInclude Include="include\Astronaut.h" />
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\CollisionManager.h" />
-    <ClInclude Include="include\Flock.h" />
     <ClInclude Include="include\game.hpp" />
     <ClInclude Include="include\GameOver.h" />
     <ClInclude Include="include\game_state.hpp" />
@@ -175,12 +173,10 @@
   <ItemGroup>
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="src\Abductor.cpp" />
-    <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AlienNest.cpp" />
     <ClCompile Include="src\Astronaut.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\CollisionManager.cpp" />
-    <ClCompile Include="src\Flock.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\GameOver.cpp" />
     <ClCompile Include="src\Menu.cpp" />

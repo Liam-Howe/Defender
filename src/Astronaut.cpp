@@ -19,11 +19,6 @@ Astronaut::Astronaut(sf::Vector2f _Pos, sf::Vector2f _Vel, sf::Texture _Tex) : m
 	seekBox = sf::RectangleShape(sf::Vector2f(200, 500));
 	seekBox.setOrigin(seekBox.getGlobalBounds().width / 2, seekBox.getGlobalBounds().height / 2);
 	seekBox.setPosition(m_Pos);
-
-
-	//m_circle.setRadius(300);
-	//m_circle.setPosition(m_Pos);
-	//m_circle.setOrigin(m_circle.getGlobalBounds().width/2,m_circle.getGlobalBounds().height/2);
 }
 
 Astronaut::~Astronaut()
@@ -40,10 +35,6 @@ bool Astronaut::getAbducted()
 	return m_abducted;
 }
 
-sf::CircleShape Astronaut::getCircle()
-{
-	return m_circle;
-}
 sf::RectangleShape Astronaut::getSeekRect()
 {
 	return seekBox;

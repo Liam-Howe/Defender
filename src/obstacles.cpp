@@ -10,6 +10,8 @@ obstacles::obstacles(sf::Vector2f _pos, sf::Texture _tex,  float leftSpawnBounda
 	m_Sprite.setPosition(m_pos);
 	m_Vel.x = rand() % 2+ (-2);
 	m_Vel.y = rand() % 2 + (-2);
+	m_rectangle = sf::RectangleShape(sf::Vector2f(m_Sprite.getGlobalBounds().width, m_Sprite.getGlobalBounds().height));
+	m_rectangle.setPosition(m_pos);
 }
 
 obstacles::~obstacles()
@@ -22,7 +24,7 @@ void obstacles::update()
 	//m_Vel = sf::Vector2f(0, -1);
 	m_pos += m_Vel;
 	m_Sprite.setPosition(m_pos);
-
+	m_rectangle.setPosition(m_pos);
 
 	if (m_pos.y - m_Sprite.getGlobalBounds().height/2 < 0)
 	{
@@ -40,7 +42,11 @@ void obstacles::update()
 	{
 		m_pos.x = m_rightSpawn;
 	}
-
+	
+}
+sf::RectangleShape obstacles::getCollisionRect()
+{
+	return m_rectangle;
 }
 sf::Sprite obstacles::getSprite()
 {

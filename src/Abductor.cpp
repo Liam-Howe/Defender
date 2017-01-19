@@ -8,7 +8,6 @@ Abductor::Abductor(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex, sf::T
 	m_sprite.setPosition(m_pos);
 	m_sprite.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
 	maxSpeed = 3.5;
-	maxForce = 0.5;
 	m_vel = sf::Vector2f(rand() % 3 - 2, rand() % 3 - 2);
 	m_abducting = false;
 	health = 1;

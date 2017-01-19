@@ -4,14 +4,9 @@ GameOver::GameOver(Game* game ,int _score ) : m_score(_score)
 {
 	this->game = game;
 	
-	if (m_state)
-	{
-		m_background.loadFromFile("Assets/win.png");
-	} 
-	else
-	{
-		m_background.loadFromFile("Assets/lose.png");
-	}
+
+	m_background.loadFromFile("Assets/lose.png");
+	
 	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
 	sf::View _view;
 	_view.setSize(1200, 800);

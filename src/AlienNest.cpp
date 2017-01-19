@@ -121,6 +121,26 @@ void AlienNest::setAbductorCount(int value)
 	abductorCount = value;
 }
 
+int AlienNest::getBulletCount()
+{
+	return bulletCount;
+}
+
+void AlienNest::setBulletCount(int value)
+{
+	bulletCount = value;
+}
+
+int AlienNest::getAbductorSpawnTimer()
+{
+	return abductorSpawnTimer;
+}
+
+void AlienNest::setAbductorSpawnTimer(int value)
+{
+	abductorSpawnTimer = value;
+}
+
 int AlienNest::getHealth()
 {
 	return health;
