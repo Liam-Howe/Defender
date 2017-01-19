@@ -1,0 +1,5 @@
+<map id="CollisionManager::collision" name="CollisionManager::collision">
+<area shape="rect" id="node2" href="$class_play.html#a3dbdeaf231718f05feac075aa4902175" title="Play::CollisionManager" alt="" coords="229,5,384,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="432,56,527,83"/>
+<area shape="rect" id="node4" href="$class_play.html#aa4cf498ba0e0f0d05305d749bd753137" title="Play::updatePowerUps" alt="" coords="229,107,384,133"/>
+</map>

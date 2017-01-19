@@ -1,0 +1,4 @@
+<map id="Play" name="Play">
+<area shape="rect" id="node2" href="$class_game_state.html" title="{GameState\n||+ draw()\l+ update()\l+ handleInput()\l}" alt="" coords="41,248,149,355"/>
+<area shape="rect" id="node3" href="$class_game.html" title="{Game\n|+ states\l+ window\l|+ pushState()\l+ popState()\l+ changeState()\l+ peekState()\l+ gameLoop()\l+ Game()\l+ ~Game()\l}" alt="" coords="37,5,152,185"/>
+</map>

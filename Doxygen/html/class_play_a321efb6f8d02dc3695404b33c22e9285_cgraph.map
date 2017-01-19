@@ -1,0 +1,5 @@
+<map id="Play::updateCamera" name="Play::updateCamera">
+<area shape="rect" id="node2" href="$class_player.html#aabef659f696be314cdb705a1ce77ec2a" title="Player::getSprite" alt="" coords="327,5,446,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a026d1354c1b7ac0df50b7108c78aec61" title="Play::draw" alt="" coords="193,56,276,83"/>
+<area shape="rect" id="node4" href="$class_player.html#a4ad45c4c8298531f45ebed48ce001373" title="Player::getBullets" alt="" coords="324,56,449,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Play::checkHealth" name="Play::checkHealth">
+<area shape="rect" id="node2" href="$class_player.html#abcb15d249bed9a4ab0ab86b52b0d747a" title="Player::getHealth" alt="" coords="181,5,304,32"/>
+<area shape="rect" id="node3" href="$class_player.html#a6a05faf900b692306c66caa43b7ffb4f" title="Player::setAlive" alt="" coords="187,56,299,83"/>
+</map>

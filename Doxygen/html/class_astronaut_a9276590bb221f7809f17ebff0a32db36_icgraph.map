@@ -1,0 +1,5 @@
+<map id="Astronaut::Normalise" name="Astronaut::Normalise">
+<area shape="rect" id="node2" href="$class_astronaut.html#a39d7e43f8604bf561570e2eb2564a8fa" title="Astronaut::wander" alt="" coords="197,5,324,32"/>
+<area shape="rect" id="node4" href="$class_astronaut.html#a81199297e80402f219a58a2fff56372c" title="Astronaut::flee" alt="" coords="207,56,314,83"/>
+<area shape="rect" id="node3" href="$class_astronaut.html#ab5c332ef51826c5ef2f89fcc72160401" title="Astronaut::movement" alt="" coords="372,31,517,57"/>
+</map>

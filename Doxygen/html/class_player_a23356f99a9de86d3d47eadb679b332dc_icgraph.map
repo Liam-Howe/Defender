@@ -1,0 +1,5 @@
+<map id="Player::getPosition" name="Player::getPosition">
+<area shape="rect" id="node2" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="357,5,452,32"/>
+<area shape="rect" id="node3" href="$class_play.html#adaec4a516b2e9317d01d6c7fc255e7ee" title="Play::wrapAround" alt="" coords="185,31,309,57"/>
+<area shape="rect" id="node4" href="$class_play.html#a81bdbd1ef7b3de50dba1a8ebf346a1fc" title="Play::handleInput" alt="" coords="186,81,309,108"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="Mutant::Normalise" name="Mutant::Normalise">
+<area shape="rect" id="node2" href="$class_mutant.html#a1c6dbda519e0d1fa4013478f0337ed96" title="Mutant::computeAlignment" alt="" coords="183,5,362,32"/>
+<area shape="rect" id="node3" href="$class_mutant.html#ab6daf2a25a5a96ccc672ef00d3aa90d4" title="Mutant::computeCohesion" alt="" coords="185,56,360,83"/>
+<area shape="rect" id="node4" href="$class_mutant.html#a3477994ce821511033006866f2f3b987" title="Mutant::computeSeparation" alt="" coords="181,107,364,133"/>
+<area shape="rect" id="node5" href="$class_mutant.html#ab5f88d52695dfbece143049c81e9542d" title="Mutant::swarm" alt="" coords="219,157,327,184"/>
+<area shape="rect" id="node6" href="$class_mutant.html#a24699eb054b6cf95f66bf3e856364b71" title="Mutant::seek" alt="" coords="223,208,322,235"/>
+<area shape="rect" id="node7" href="$class_mutant.html#a95c362ea2f31919f63047b872cfdaf20" title="Mutant::movement" alt="" coords="412,208,541,235"/>
+</map>

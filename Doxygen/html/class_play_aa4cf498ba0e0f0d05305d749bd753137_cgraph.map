@@ -1,0 +1,7 @@
+<map id="Play::updatePowerUps" name="Play::updatePowerUps">
+<area shape="rect" id="node2" href="$class_collision_manager.html#affe670241642e07380fff0050d8ef459" title="CollisionManager::collision" alt="" coords="208,5,384,32"/>
+<area shape="rect" id="node3" href="$class_player.html#ab23a6224f848e8b8fab134c355b8a8de" title="Player::getCollisionRect" alt="" coords="215,56,377,83"/>
+<area shape="rect" id="node4" href="$class_player.html#ac35450b46e8c7555d8098002898a6daa" title="Player::setFastAccel" alt="" coords="224,107,368,133"/>
+<area shape="rect" id="node5" href="$class_player.html#a796610d4bf49196f261a82f5b2c0a044" title="Player::setInvincible" alt="" coords="227,157,365,184"/>
+<area shape="rect" id="node6" href="$class_player.html#ad3994801b0ca5d5da392302bbb56e0e8" title="Player::setCanHyperjump" alt="" coords="211,208,381,235"/>
+</map>

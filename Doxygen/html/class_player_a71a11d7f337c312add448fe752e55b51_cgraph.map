@@ -1,0 +1,4 @@
+<map id="Player::update" name="Player::update">
+<area shape="rect" id="node2" href="$class_player.html#a4d9c040f4b766e3052369bae0fd116d7" title="Player::handleInput" alt="" coords="160,5,293,32"/>
+<area shape="rect" id="node3" href="$class_player.html#a1b72ddc438471f7feb33b2b0b32cf303" title="Player::move" alt="" coords="341,5,439,32"/>
+</map>

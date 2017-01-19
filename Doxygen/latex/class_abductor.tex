@@ -1,0 +1,255 @@
+\hypertarget{class_abductor}{}\section{Abductor Class Reference}
+\label{class_abductor}\index{Abductor@{Abductor}}
+
+
+{\ttfamily \#include $<$Abductor.\+h$>$}
+
+
+
+Collaboration diagram for Abductor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_abductor__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_abductor_a2b772afe64f564d1616f2513dfdb7d3e}{Abductor} (sf\+::\+Vector2f \+\_\+pos, sf\+::\+Vector2f \+\_\+vel, sf\+::\+Texture \+\_\+tex, sf\+::\+Texture \+\_\+bullet\+Texture)
+\item 
+\hyperlink{class_abductor_adc657b211a1b36c55db079caa10d9010}{$\sim$\+Abductor} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_a05b0a89323473488328dafa939e7252a}{get\+Position} ()
+\item 
+void \hyperlink{class_abductor_a8120f5a1284a3269345b213dc1074d17}{set\+Position} (sf\+::\+Vector2f \+\_\+temp\+Pos)
+\item 
+sf\+::\+Sprite \hyperlink{class_abductor_a604e41fd9403b542c83859027e8c67d4}{get\+Sprite} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_a1a22ca1f62b22a3e6ab183c0d07215c9}{compute\+Alignment} (std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$ agents)
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_a8aa45d9b7d770533a60eae180c08d96f}{compute\+Cohesion} (std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$ agents)
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_ac72ef77b379beff56efed7f66442c649}{compute\+Separation} (std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$ agents)
+\item 
+void \hyperlink{class_abductor_a1e3842b4fc70f8667b0e30f23bbce579}{update} ()
+\item 
+void \hyperlink{class_abductor_a6562333549ea4d8ef5d389e0594de7c1}{seek} (sf\+::\+Vector2f target\+Pos)
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_a98f8c01f0131c30842121b0916fe89b2}{Normalise} (sf\+::\+Vector2f velocity)
+\item 
+void \hyperlink{class_abductor_a378997aa8cccf0b840f9ef8ba2970699}{movement} (sf\+::\+Vector2f \+\_\+player\+Pos)
+\item 
+void \hyperlink{class_abductor_a10a4ded56dcad749b1a1656688d135ea}{wander} (std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$ agents)
+\item 
+void \hyperlink{class_abductor_aa790b94b30a6bee13c26ffa4b093af6a}{abducting} ()
+\item 
+void \hyperlink{class_abductor_a1069f5de8e0696be938a741f4b931855}{set\+Abducting} (bool value)
+\item 
+int \hyperlink{class_abductor_a6893de5e10abe1978bfae651751f2a33}{get\+Health} ()
+\item 
+void \hyperlink{class_abductor_aa7086d22f21d43097e7d51dd06b4b074}{take\+Damage} (int value)
+\item 
+sf\+::\+Vector2f \hyperlink{class_abductor_a1f26bdb461e53aa966d744100568d90c}{get\+Velocity} ()
+\item 
+void \hyperlink{class_abductor_a4eab3b0823078780f2129873bcd181ae}{set\+Index} (int value)
+\item 
+std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& \hyperlink{class_abductor_ac9a6ed96e2b0ffce0984656f8cff114e}{get\+Bullets} ()
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_abductor_a52e15ddbcabbe719425cdaf98c02b079}{get\+Collision\+Rect} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_abductor_a2b772afe64f564d1616f2513dfdb7d3e}\label{class_abductor_a2b772afe64f564d1616f2513dfdb7d3e}} 
+\index{Abductor@{Abductor}!Abductor@{Abductor}}
+\index{Abductor@{Abductor}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{Abductor()}{Abductor()}}
+{\footnotesize\ttfamily Abductor\+::\+Abductor (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+pos,  }\item[{sf\+::\+Vector2f}]{\+\_\+vel,  }\item[{sf\+::\+Texture}]{\+\_\+tex,  }\item[{sf\+::\+Texture}]{\+\_\+bullet\+Texture }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_adc657b211a1b36c55db079caa10d9010}\label{class_abductor_adc657b211a1b36c55db079caa10d9010}} 
+\index{Abductor@{Abductor}!````~Abductor@{$\sim$\+Abductor}}
+\index{````~Abductor@{$\sim$\+Abductor}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{$\sim$\+Abductor()}{~Abductor()}}
+{\footnotesize\ttfamily Abductor\+::$\sim$\+Abductor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_abductor_aa790b94b30a6bee13c26ffa4b093af6a}\label{class_abductor_aa790b94b30a6bee13c26ffa4b093af6a}} 
+\index{Abductor@{Abductor}!abducting@{abducting}}
+\index{abducting@{abducting}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{abducting()}{abducting()}}
+{\footnotesize\ttfamily void Abductor\+::abducting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a1a22ca1f62b22a3e6ab183c0d07215c9}\label{class_abductor_a1a22ca1f62b22a3e6ab183c0d07215c9}} 
+\index{Abductor@{Abductor}!compute\+Alignment@{compute\+Alignment}}
+\index{compute\+Alignment@{compute\+Alignment}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{compute\+Alignment()}{computeAlignment()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::compute\+Alignment (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$}]{agents }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_abductor_a1a22ca1f62b22a3e6ab183c0d07215c9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_a8aa45d9b7d770533a60eae180c08d96f}\label{class_abductor_a8aa45d9b7d770533a60eae180c08d96f}} 
+\index{Abductor@{Abductor}!compute\+Cohesion@{compute\+Cohesion}}
+\index{compute\+Cohesion@{compute\+Cohesion}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{compute\+Cohesion()}{computeCohesion()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::compute\+Cohesion (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$}]{agents }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_abductor_a8aa45d9b7d770533a60eae180c08d96f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_ac72ef77b379beff56efed7f66442c649}\label{class_abductor_ac72ef77b379beff56efed7f66442c649}} 
+\index{Abductor@{Abductor}!compute\+Separation@{compute\+Separation}}
+\index{compute\+Separation@{compute\+Separation}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{compute\+Separation()}{computeSeparation()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::compute\+Separation (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$}]{agents }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_abductor_ac72ef77b379beff56efed7f66442c649_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_ac9a6ed96e2b0ffce0984656f8cff114e}\label{class_abductor_ac9a6ed96e2b0ffce0984656f8cff114e}} 
+\index{Abductor@{Abductor}!get\+Bullets@{get\+Bullets}}
+\index{get\+Bullets@{get\+Bullets}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Bullets()}{getBullets()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& Abductor\+::get\+Bullets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a52e15ddbcabbe719425cdaf98c02b079}\label{class_abductor_a52e15ddbcabbe719425cdaf98c02b079}} 
+\index{Abductor@{Abductor}!get\+Collision\+Rect@{get\+Collision\+Rect}}
+\index{get\+Collision\+Rect@{get\+Collision\+Rect}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Collision\+Rect()}{getCollisionRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Abductor\+::get\+Collision\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a6893de5e10abe1978bfae651751f2a33}\label{class_abductor_a6893de5e10abe1978bfae651751f2a33}} 
+\index{Abductor@{Abductor}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Abductor\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a05b0a89323473488328dafa939e7252a}\label{class_abductor_a05b0a89323473488328dafa939e7252a}} 
+\index{Abductor@{Abductor}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_abductor_a05b0a89323473488328dafa939e7252a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_a604e41fd9403b542c83859027e8c67d4}\label{class_abductor_a604e41fd9403b542c83859027e8c67d4}} 
+\index{Abductor@{Abductor}!get\+Sprite@{get\+Sprite}}
+\index{get\+Sprite@{get\+Sprite}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Sprite()}{getSprite()}}
+{\footnotesize\ttfamily sf\+::\+Sprite Abductor\+::get\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a1f26bdb461e53aa966d744100568d90c}\label{class_abductor_a1f26bdb461e53aa966d744100568d90c}} 
+\index{Abductor@{Abductor}!get\+Velocity@{get\+Velocity}}
+\index{get\+Velocity@{get\+Velocity}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{get\+Velocity()}{getVelocity()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a378997aa8cccf0b840f9ef8ba2970699}\label{class_abductor_a378997aa8cccf0b840f9ef8ba2970699}} 
+\index{Abductor@{Abductor}!movement@{movement}}
+\index{movement@{movement}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{movement()}{movement()}}
+{\footnotesize\ttfamily void Abductor\+::movement (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+player\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a98f8c01f0131c30842121b0916fe89b2}\label{class_abductor_a98f8c01f0131c30842121b0916fe89b2}} 
+\index{Abductor@{Abductor}!Normalise@{Normalise}}
+\index{Normalise@{Normalise}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{Normalise()}{Normalise()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Abductor\+::\+Normalise (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{velocity }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_abductor_a98f8c01f0131c30842121b0916fe89b2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_a6562333549ea4d8ef5d389e0594de7c1}\label{class_abductor_a6562333549ea4d8ef5d389e0594de7c1}} 
+\index{Abductor@{Abductor}!seek@{seek}}
+\index{seek@{seek}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily void Abductor\+::seek (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{target\+Pos }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{class_abductor_a6562333549ea4d8ef5d389e0594de7c1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_abductor_a1069f5de8e0696be938a741f4b931855}\label{class_abductor_a1069f5de8e0696be938a741f4b931855}} 
+\index{Abductor@{Abductor}!set\+Abducting@{set\+Abducting}}
+\index{set\+Abducting@{set\+Abducting}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{set\+Abducting()}{setAbducting()}}
+{\footnotesize\ttfamily void Abductor\+::set\+Abducting (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a4eab3b0823078780f2129873bcd181ae}\label{class_abductor_a4eab3b0823078780f2129873bcd181ae}} 
+\index{Abductor@{Abductor}!set\+Index@{set\+Index}}
+\index{set\+Index@{set\+Index}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{set\+Index()}{setIndex()}}
+{\footnotesize\ttfamily void Abductor\+::set\+Index (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a8120f5a1284a3269345b213dc1074d17}\label{class_abductor_a8120f5a1284a3269345b213dc1074d17}} 
+\index{Abductor@{Abductor}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Abductor\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+temp\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_aa7086d22f21d43097e7d51dd06b4b074}\label{class_abductor_aa7086d22f21d43097e7d51dd06b4b074}} 
+\index{Abductor@{Abductor}!take\+Damage@{take\+Damage}}
+\index{take\+Damage@{take\+Damage}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{take\+Damage()}{takeDamage()}}
+{\footnotesize\ttfamily void Abductor\+::take\+Damage (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a1e3842b4fc70f8667b0e30f23bbce579}\label{class_abductor_a1e3842b4fc70f8667b0e30f23bbce579}} 
+\index{Abductor@{Abductor}!update@{update}}
+\index{update@{update}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Abductor\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_abductor_a10a4ded56dcad749b1a1656688d135ea}\label{class_abductor_a10a4ded56dcad749b1a1656688d135ea}} 
+\index{Abductor@{Abductor}!wander@{wander}}
+\index{wander@{wander}!Abductor@{Abductor}}
+\subsubsection{\texorpdfstring{wander()}{wander()}}
+{\footnotesize\ttfamily void Abductor\+::wander (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_abductor}{Abductor} $\ast$$>$}]{agents }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{class_abductor_a10a4ded56dcad749b1a1656688d135ea_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_abductor_8h}{Abductor.\+h}\item 
+\hyperlink{_abductor_8cpp}{Abductor.\+cpp}\end{DoxyCompactItemize}

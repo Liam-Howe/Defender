@@ -1,0 +1,223 @@
+\hypertarget{class_alien_nest}{}\section{Alien\+Nest Class Reference}
+\label{class_alien_nest}\index{Alien\+Nest@{Alien\+Nest}}
+
+
+{\ttfamily \#include $<$Alien\+Nest.\+h$>$}
+
+
+
+Collaboration diagram for Alien\+Nest\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_alien_nest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_alien_nest_ae5468acc196e21772de57cc786bc8922}{Alien\+Nest} (sf\+::\+Vector2f \+\_\+\+Pos, sf\+::\+Vector2f \+\_\+\+Vel, sf\+::\+Texture \+\_\+\+Tex)
+\item 
+\hyperlink{class_alien_nest_adf76d39d4b159b48b685e28b48e65af4}{$\sim$\+Alien\+Nest} ()
+\item 
+sf\+::\+Sprite \hyperlink{class_alien_nest_ab37d12dc080c9433d0b34324160c4540}{get\+Sprite} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_alien_nest_a1d0491e4d757b1f068fcdfdff3af4263}{get\+Position} ()
+\item 
+void \hyperlink{class_alien_nest_a4dc29eea96da989af765ac1c0b92cbe0}{update} (sf\+::\+Vector2f player\+Pos, sf\+::\+Texture \+\_\+alien\+Missile)
+\item 
+void \hyperlink{class_alien_nest_ac2679698409238879ace3367ceba6d9d}{wander} ()
+\item 
+void \hyperlink{class_alien_nest_a79b79e01b2c2c191a62f6522e62e7093}{flee} (sf\+::\+Vector2f player\+Pos)
+\item 
+sf\+::\+Vector2f \hyperlink{class_alien_nest_a1482a4dc78827c14dd442a8d9a0a36e3}{Normalise} (sf\+::\+Vector2f velocity)
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_alien_nest_a7522ad4ae88e2471de29ab62451ec36a}{get\+Collision\+Rect} ()
+\item 
+int \hyperlink{class_alien_nest_ac5004adc73493a1f3f0807cd03b522c8}{get\+Abductor\+Count} ()
+\item 
+void \hyperlink{class_alien_nest_a0b47d6d12801e07c6d59592d37444c81}{set\+Abductor\+Count} (int value)
+\item 
+int \hyperlink{class_alien_nest_a076132ab9da2dae0b0a4eb66b7dc41b8}{get\+Bullet\+Count} ()
+\item 
+void \hyperlink{class_alien_nest_a050a64974389f5f6d4fbd1c74aa30bb5}{set\+Bullet\+Count} (int value)
+\item 
+int \hyperlink{class_alien_nest_ad8eb2e360b956e44ec9da1d0da42cf88}{get\+Abductor\+Spawn\+Timer} ()
+\item 
+void \hyperlink{class_alien_nest_ac19100b42e3fda84431a918517411573}{set\+Abductor\+Spawn\+Timer} (int value)
+\item 
+int \hyperlink{class_alien_nest_adca5cfd4eae3e3f72dd76960a29588e9}{get\+Health} ()
+\item 
+void \hyperlink{class_alien_nest_a49b484cdb9ba5c49e1d2912f359b66c5}{take\+Damage} (int value)
+\item 
+std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& \hyperlink{class_alien_nest_a06b510eab5f7bb869078662f42080738}{get\+Bullets} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_alien_nest_ae5468acc196e21772de57cc786bc8922}\label{class_alien_nest_ae5468acc196e21772de57cc786bc8922}} 
+\index{Alien\+Nest@{Alien\+Nest}!Alien\+Nest@{Alien\+Nest}}
+\index{Alien\+Nest@{Alien\+Nest}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{Alien\+Nest()}{AlienNest()}}
+{\footnotesize\ttfamily Alien\+Nest\+::\+Alien\+Nest (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+\+Pos,  }\item[{sf\+::\+Vector2f}]{\+\_\+\+Vel,  }\item[{sf\+::\+Texture}]{\+\_\+\+Tex }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_adf76d39d4b159b48b685e28b48e65af4}\label{class_alien_nest_adf76d39d4b159b48b685e28b48e65af4}} 
+\index{Alien\+Nest@{Alien\+Nest}!````~Alien\+Nest@{$\sim$\+Alien\+Nest}}
+\index{````~Alien\+Nest@{$\sim$\+Alien\+Nest}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{$\sim$\+Alien\+Nest()}{~AlienNest()}}
+{\footnotesize\ttfamily Alien\+Nest\+::$\sim$\+Alien\+Nest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alien_nest_a79b79e01b2c2c191a62f6522e62e7093}\label{class_alien_nest_a79b79e01b2c2c191a62f6522e62e7093}} 
+\index{Alien\+Nest@{Alien\+Nest}!flee@{flee}}
+\index{flee@{flee}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{flee()}{flee()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::flee (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{class_alien_nest_a79b79e01b2c2c191a62f6522e62e7093_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{class_alien_nest_a79b79e01b2c2c191a62f6522e62e7093_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_alien_nest_ac5004adc73493a1f3f0807cd03b522c8}\label{class_alien_nest_ac5004adc73493a1f3f0807cd03b522c8}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Abductor\+Count@{get\+Abductor\+Count}}
+\index{get\+Abductor\+Count@{get\+Abductor\+Count}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Abductor\+Count()}{getAbductorCount()}}
+{\footnotesize\ttfamily int Alien\+Nest\+::get\+Abductor\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_ad8eb2e360b956e44ec9da1d0da42cf88}\label{class_alien_nest_ad8eb2e360b956e44ec9da1d0da42cf88}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Abductor\+Spawn\+Timer@{get\+Abductor\+Spawn\+Timer}}
+\index{get\+Abductor\+Spawn\+Timer@{get\+Abductor\+Spawn\+Timer}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Abductor\+Spawn\+Timer()}{getAbductorSpawnTimer()}}
+{\footnotesize\ttfamily int Alien\+Nest\+::get\+Abductor\+Spawn\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a076132ab9da2dae0b0a4eb66b7dc41b8}\label{class_alien_nest_a076132ab9da2dae0b0a4eb66b7dc41b8}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Bullet\+Count@{get\+Bullet\+Count}}
+\index{get\+Bullet\+Count@{get\+Bullet\+Count}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Bullet\+Count()}{getBulletCount()}}
+{\footnotesize\ttfamily int Alien\+Nest\+::get\+Bullet\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a06b510eab5f7bb869078662f42080738}\label{class_alien_nest_a06b510eab5f7bb869078662f42080738}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Bullets@{get\+Bullets}}
+\index{get\+Bullets@{get\+Bullets}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Bullets()}{getBullets()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& Alien\+Nest\+::get\+Bullets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a7522ad4ae88e2471de29ab62451ec36a}\label{class_alien_nest_a7522ad4ae88e2471de29ab62451ec36a}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Collision\+Rect@{get\+Collision\+Rect}}
+\index{get\+Collision\+Rect@{get\+Collision\+Rect}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Collision\+Rect()}{getCollisionRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Alien\+Nest\+::get\+Collision\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_adca5cfd4eae3e3f72dd76960a29588e9}\label{class_alien_nest_adca5cfd4eae3e3f72dd76960a29588e9}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Alien\+Nest\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a1d0491e4d757b1f068fcdfdff3af4263}\label{class_alien_nest_a1d0491e4d757b1f068fcdfdff3af4263}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Alien\+Nest\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_ab37d12dc080c9433d0b34324160c4540}\label{class_alien_nest_ab37d12dc080c9433d0b34324160c4540}} 
+\index{Alien\+Nest@{Alien\+Nest}!get\+Sprite@{get\+Sprite}}
+\index{get\+Sprite@{get\+Sprite}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{get\+Sprite()}{getSprite()}}
+{\footnotesize\ttfamily sf\+::\+Sprite Alien\+Nest\+::get\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a1482a4dc78827c14dd442a8d9a0a36e3}\label{class_alien_nest_a1482a4dc78827c14dd442a8d9a0a36e3}} 
+\index{Alien\+Nest@{Alien\+Nest}!Normalise@{Normalise}}
+\index{Normalise@{Normalise}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{Normalise()}{Normalise()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Alien\+Nest\+::\+Normalise (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{velocity }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_alien_nest_a1482a4dc78827c14dd442a8d9a0a36e3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_alien_nest_a0b47d6d12801e07c6d59592d37444c81}\label{class_alien_nest_a0b47d6d12801e07c6d59592d37444c81}} 
+\index{Alien\+Nest@{Alien\+Nest}!set\+Abductor\+Count@{set\+Abductor\+Count}}
+\index{set\+Abductor\+Count@{set\+Abductor\+Count}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{set\+Abductor\+Count()}{setAbductorCount()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::set\+Abductor\+Count (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_ac19100b42e3fda84431a918517411573}\label{class_alien_nest_ac19100b42e3fda84431a918517411573}} 
+\index{Alien\+Nest@{Alien\+Nest}!set\+Abductor\+Spawn\+Timer@{set\+Abductor\+Spawn\+Timer}}
+\index{set\+Abductor\+Spawn\+Timer@{set\+Abductor\+Spawn\+Timer}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{set\+Abductor\+Spawn\+Timer()}{setAbductorSpawnTimer()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::set\+Abductor\+Spawn\+Timer (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a050a64974389f5f6d4fbd1c74aa30bb5}\label{class_alien_nest_a050a64974389f5f6d4fbd1c74aa30bb5}} 
+\index{Alien\+Nest@{Alien\+Nest}!set\+Bullet\+Count@{set\+Bullet\+Count}}
+\index{set\+Bullet\+Count@{set\+Bullet\+Count}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{set\+Bullet\+Count()}{setBulletCount()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::set\+Bullet\+Count (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a49b484cdb9ba5c49e1d2912f359b66c5}\label{class_alien_nest_a49b484cdb9ba5c49e1d2912f359b66c5}} 
+\index{Alien\+Nest@{Alien\+Nest}!take\+Damage@{take\+Damage}}
+\index{take\+Damage@{take\+Damage}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{take\+Damage()}{takeDamage()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::take\+Damage (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_nest_a4dc29eea96da989af765ac1c0b92cbe0}\label{class_alien_nest_a4dc29eea96da989af765ac1c0b92cbe0}} 
+\index{Alien\+Nest@{Alien\+Nest}!update@{update}}
+\index{update@{update}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos,  }\item[{sf\+::\+Texture}]{\+\_\+alien\+Missile }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_alien_nest_a4dc29eea96da989af765ac1c0b92cbe0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_alien_nest_ac2679698409238879ace3367ceba6d9d}\label{class_alien_nest_ac2679698409238879ace3367ceba6d9d}} 
+\index{Alien\+Nest@{Alien\+Nest}!wander@{wander}}
+\index{wander@{wander}!Alien\+Nest@{Alien\+Nest}}
+\subsubsection{\texorpdfstring{wander()}{wander()}}
+{\footnotesize\ttfamily void Alien\+Nest\+::wander (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{class_alien_nest_ac2679698409238879ace3367ceba6d9d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{class_alien_nest_ac2679698409238879ace3367ceba6d9d_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_alien_nest_8h}{Alien\+Nest.\+h}\item 
+\hyperlink{_alien_nest_8cpp}{Alien\+Nest.\+cpp}\end{DoxyCompactItemize}

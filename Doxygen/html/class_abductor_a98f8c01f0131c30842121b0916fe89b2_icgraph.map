@@ -1,0 +1,7 @@
+<map id="Abductor::Normalise" name="Abductor::Normalise">
+<area shape="rect" id="node2" href="$class_abductor.html#a1a22ca1f62b22a3e6ab183c0d07215c9" title="Abductor::computeAlignment" alt="" coords="195,5,386,32"/>
+<area shape="rect" id="node3" href="$class_abductor.html#a8aa45d9b7d770533a60eae180c08d96f" title="Abductor::computeCohesion" alt="" coords="197,56,384,83"/>
+<area shape="rect" id="node4" href="$class_abductor.html#ac72ef77b379beff56efed7f66442c649" title="Abductor::computeSeparation" alt="" coords="193,107,388,133"/>
+<area shape="rect" id="node5" href="$class_abductor.html#a10a4ded56dcad749b1a1656688d135ea" title="Abductor::wander" alt="" coords="229,157,352,184"/>
+<area shape="rect" id="node6" href="$class_abductor.html#a6562333549ea4d8ef5d389e0594de7c1" title="Abductor::seek" alt="" coords="235,208,346,235"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="AlienNest::Normalise" name="AlienNest::Normalise">
+<area shape="rect" id="node2" href="$class_alien_nest.html#ac2679698409238879ace3367ceba6d9d" title="AlienNest::wander" alt="" coords="197,5,324,32"/>
+<area shape="rect" id="node4" href="$class_alien_nest.html#a79b79e01b2c2c191a62f6522e62e7093" title="AlienNest::flee" alt="" coords="207,56,314,83"/>
+<area shape="rect" id="node3" href="$class_alien_nest.html#a4dc29eea96da989af765ac1c0b92cbe0" title="AlienNest::update" alt="" coords="372,31,497,57"/>
+</map>

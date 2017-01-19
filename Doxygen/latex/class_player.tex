@@ -1,0 +1,487 @@
+\hypertarget{class_player}{}\section{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+
+
+Collaboration diagram for Player\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_player__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_player_a50b4f692a8315358192c8d955cf1250d}{Player} (sf\+::\+Vector2f m\+\_\+\+Pos, sf\+::\+Vector2f \+\_\+\+Vel, sf\+::\+Texture \+\_\+\+Tex)
+\item 
+\hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{$\sim$\+Player} ()
+\item 
+sf\+::\+Sprite \hyperlink{class_player_aabef659f696be314cdb705a1ce77ec2a}{get\+Sprite} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_player_a23356f99a9de86d3d47eadb679b332dc}{get\+Position} ()
+\item 
+void \hyperlink{class_player_a1b72ddc438471f7feb33b2b0b32cf303}{move} (sf\+::\+Vector2f speed, float \+\_\+dt)
+\item 
+void \hyperlink{class_player_aa37cc22b7a4862357cc70ae8f1f87396}{set\+Position} (sf\+::\+Vector2f \+\_\+temp\+Pos)
+\item 
+void \hyperlink{class_player_a71a11d7f337c312add448fe752e55b51}{update} (float \+\_\+dt)
+\item 
+bool \hyperlink{class_player_af318e11ad06e49d34f6a2ad4e4310e06}{isdecelerating} ()
+\item 
+void \hyperlink{class_player_a1f28fd8b1c747434ba36b0127b61713b}{setdecelerating} (bool value)
+\item 
+void \hyperlink{class_player_a002f775383954913c852beedca3a2258}{setdirection} (bool value)
+\item 
+bool \hyperlink{class_player_a55ab1bb46619242418ef5c7d104efe23}{get\+Direction} ()
+\item 
+void \hyperlink{class_player_a4d9c040f4b766e3052369bae0fd116d7}{handle\+Input} (float)
+\item 
+void \hyperlink{class_player_a6258e03705f093472c49af6d909fdad1}{spawn} (sf\+::\+Vector2f \+\_\+new\+Pos)
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_player_ab23a6224f848e8b8fab134c355b8a8de}{get\+Collision\+Rect} ()
+\item 
+int \hyperlink{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}{get\+Health} ()
+\item 
+void \hyperlink{class_player_af92779e4722eee7813fd6497e3e15e18}{take\+Damage} (int value)
+\item 
+int \hyperlink{class_player_a83204202817d4d34694a515c85ae3f0d}{get\+Bomb\+Count} ()
+\item 
+void \hyperlink{class_player_a1b9e6a1aebb4805e14bdefbb1566fb6d}{use\+Bomb} ()
+\item 
+void \hyperlink{class_player_ad3994801b0ca5d5da392302bbb56e0e8}{set\+Can\+Hyperjump} (bool value)
+\item 
+bool \hyperlink{class_player_a6f6ceb55f695ffd573d1e4b999896893}{get\+Can\+Hyper\+Jump} ()
+\item 
+void \hyperlink{class_player_a0a644b2b50d659f6bd21dadefd6c5f14}{set\+Max\+Acceleration} (int value)
+\item 
+std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& \hyperlink{class_player_a4ad45c4c8298531f45ebed48ce001373}{get\+Bullets} ()
+\item 
+void \hyperlink{class_player_a9d1ab7c1d5ac909e9fc85ca7ed844985}{create\+Bullet} (sf\+::\+Texture, int)
+\item 
+bool \hyperlink{class_player_aa45f751e7ba8afcd9894d57ef4813d50}{get\+Alive} ()
+\item 
+void \hyperlink{class_player_a6a05faf900b692306c66caa43b7ffb4f}{set\+Alive} (bool)
+\item 
+bool \hyperlink{class_player_a8ee193bc4d7773b6a1114e1b312f7eac}{get\+Fast\+Accel} ()
+\item 
+void \hyperlink{class_player_ac35450b46e8c7555d8098002898a6daa}{set\+Fast\+Accel} (bool)
+\item 
+void \hyperlink{class_player_a012354ce1dfa33d6393c41afc4db0e6c}{hyper\+Jump} ()
+\item 
+void \hyperlink{class_player_a796610d4bf49196f261a82f5b2c0a044}{set\+Invincible} (bool value)
+\item 
+bool \hyperlink{class_player_a35c75510e8be559cb1f9272bfc11d026}{get\+Invincible} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_a50b4f692a8315358192c8d955cf1250d}\label{class_player_a50b4f692a8315358192c8d955cf1250d}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\subsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{m\+\_\+\+Pos,  }\item[{sf\+::\+Vector2f}]{\+\_\+\+Vel,  }\item[{sf\+::\+Texture}]{\+\_\+\+Tex }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062}} 
+\index{Player@{Player}!````~Player@{$\sim$\+Player}}
+\index{````~Player@{$\sim$\+Player}!Player@{Player}}
+\subsubsection{\texorpdfstring{$\sim$\+Player()}{~Player()}}
+{\footnotesize\ttfamily Player\+::$\sim$\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_a9d1ab7c1d5ac909e9fc85ca7ed844985}\label{class_player_a9d1ab7c1d5ac909e9fc85ca7ed844985}} 
+\index{Player@{Player}!create\+Bullet@{create\+Bullet}}
+\index{create\+Bullet@{create\+Bullet}!Player@{Player}}
+\subsubsection{\texorpdfstring{create\+Bullet()}{createBullet()}}
+{\footnotesize\ttfamily void Player\+::create\+Bullet (\begin{DoxyParamCaption}\item[{sf\+::\+Texture}]{\+\_\+tex,  }\item[{int}]{speed }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{class_player_a9d1ab7c1d5ac909e9fc85ca7ed844985_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_aa45f751e7ba8afcd9894d57ef4813d50}\label{class_player_aa45f751e7ba8afcd9894d57ef4813d50}} 
+\index{Player@{Player}!get\+Alive@{get\+Alive}}
+\index{get\+Alive@{get\+Alive}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Alive()}{getAlive()}}
+{\footnotesize\ttfamily bool Player\+::get\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_aa45f751e7ba8afcd9894d57ef4813d50_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a83204202817d4d34694a515c85ae3f0d}\label{class_player_a83204202817d4d34694a515c85ae3f0d}} 
+\index{Player@{Player}!get\+Bomb\+Count@{get\+Bomb\+Count}}
+\index{get\+Bomb\+Count@{get\+Bomb\+Count}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Bomb\+Count()}{getBombCount()}}
+{\footnotesize\ttfamily int Player\+::get\+Bomb\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{class_player_a83204202817d4d34694a515c85ae3f0d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a4ad45c4c8298531f45ebed48ce001373}\label{class_player_a4ad45c4c8298531f45ebed48ce001373}} 
+\index{Player@{Player}!get\+Bullets@{get\+Bullets}}
+\index{get\+Bullets@{get\+Bullets}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Bullets()}{getBullets()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$ $>$ \& Player\+::get\+Bullets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a4ad45c4c8298531f45ebed48ce001373_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a6f6ceb55f695ffd573d1e4b999896893}\label{class_player_a6f6ceb55f695ffd573d1e4b999896893}} 
+\index{Player@{Player}!get\+Can\+Hyper\+Jump@{get\+Can\+Hyper\+Jump}}
+\index{get\+Can\+Hyper\+Jump@{get\+Can\+Hyper\+Jump}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Can\+Hyper\+Jump()}{getCanHyperJump()}}
+{\footnotesize\ttfamily bool Player\+::get\+Can\+Hyper\+Jump (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_ab23a6224f848e8b8fab134c355b8a8de}\label{class_player_ab23a6224f848e8b8fab134c355b8a8de}} 
+\index{Player@{Player}!get\+Collision\+Rect@{get\+Collision\+Rect}}
+\index{get\+Collision\+Rect@{get\+Collision\+Rect}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Collision\+Rect()}{getCollisionRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Player\+::get\+Collision\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_ab23a6224f848e8b8fab134c355b8a8de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a55ab1bb46619242418ef5c7d104efe23}\label{class_player_a55ab1bb46619242418ef5c7d104efe23}} 
+\index{Player@{Player}!get\+Direction@{get\+Direction}}
+\index{get\+Direction@{get\+Direction}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Direction()}{getDirection()}}
+{\footnotesize\ttfamily bool Player\+::get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{class_player_a55ab1bb46619242418ef5c7d104efe23_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a8ee193bc4d7773b6a1114e1b312f7eac}\label{class_player_a8ee193bc4d7773b6a1114e1b312f7eac}} 
+\index{Player@{Player}!get\+Fast\+Accel@{get\+Fast\+Accel}}
+\index{get\+Fast\+Accel@{get\+Fast\+Accel}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Fast\+Accel()}{getFastAccel()}}
+{\footnotesize\ttfamily bool Player\+::get\+Fast\+Accel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}\label{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}} 
+\index{Player@{Player}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Player\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_abcb15d249bed9a4ab0ab86b52b0d747a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a35c75510e8be559cb1f9272bfc11d026}\label{class_player_a35c75510e8be559cb1f9272bfc11d026}} 
+\index{Player@{Player}!get\+Invincible@{get\+Invincible}}
+\index{get\+Invincible@{get\+Invincible}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Invincible()}{getInvincible()}}
+{\footnotesize\ttfamily bool Player\+::get\+Invincible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a35c75510e8be559cb1f9272bfc11d026_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a23356f99a9de86d3d47eadb679b332dc}\label{class_player_a23356f99a9de86d3d47eadb679b332dc}} 
+\index{Player@{Player}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Player\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a23356f99a9de86d3d47eadb679b332dc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_aabef659f696be314cdb705a1ce77ec2a}\label{class_player_aabef659f696be314cdb705a1ce77ec2a}} 
+\index{Player@{Player}!get\+Sprite@{get\+Sprite}}
+\index{get\+Sprite@{get\+Sprite}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Sprite()}{getSprite()}}
+{\footnotesize\ttfamily sf\+::\+Sprite Player\+::get\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_aabef659f696be314cdb705a1ce77ec2a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a4d9c040f4b766e3052369bae0fd116d7}\label{class_player_a4d9c040f4b766e3052369bae0fd116d7}} 
+\index{Player@{Player}!handle\+Input@{handle\+Input}}
+\index{handle\+Input@{handle\+Input}!Player@{Player}}
+\subsubsection{\texorpdfstring{handle\+Input()}{handleInput()}}
+{\footnotesize\ttfamily void Player\+::handle\+Input (\begin{DoxyParamCaption}\item[{float}]{\+\_\+dt }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{class_player_a4d9c040f4b766e3052369bae0fd116d7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a4d9c040f4b766e3052369bae0fd116d7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a012354ce1dfa33d6393c41afc4db0e6c}\label{class_player_a012354ce1dfa33d6393c41afc4db0e6c}} 
+\index{Player@{Player}!hyper\+Jump@{hyper\+Jump}}
+\index{hyper\+Jump@{hyper\+Jump}!Player@{Player}}
+\subsubsection{\texorpdfstring{hyper\+Jump()}{hyperJump()}}
+{\footnotesize\ttfamily void Player\+::hyper\+Jump (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_player_a012354ce1dfa33d6393c41afc4db0e6c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{class_player_a012354ce1dfa33d6393c41afc4db0e6c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_af318e11ad06e49d34f6a2ad4e4310e06}\label{class_player_af318e11ad06e49d34f6a2ad4e4310e06}} 
+\index{Player@{Player}!isdecelerating@{isdecelerating}}
+\index{isdecelerating@{isdecelerating}!Player@{Player}}
+\subsubsection{\texorpdfstring{isdecelerating()}{isdecelerating()}}
+{\footnotesize\ttfamily bool Player\+::isdecelerating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a1b72ddc438471f7feb33b2b0b32cf303}\label{class_player_a1b72ddc438471f7feb33b2b0b32cf303}} 
+\index{Player@{Player}!move@{move}}
+\index{move@{move}!Player@{Player}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Player\+::move (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{speed,  }\item[{float}]{\+\_\+dt }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a1b72ddc438471f7feb33b2b0b32cf303_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a6a05faf900b692306c66caa43b7ffb4f}\label{class_player_a6a05faf900b692306c66caa43b7ffb4f}} 
+\index{Player@{Player}!set\+Alive@{set\+Alive}}
+\index{set\+Alive@{set\+Alive}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Alive()}{setAlive()}}
+{\footnotesize\ttfamily void Player\+::set\+Alive (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a6a05faf900b692306c66caa43b7ffb4f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_ad3994801b0ca5d5da392302bbb56e0e8}\label{class_player_ad3994801b0ca5d5da392302bbb56e0e8}} 
+\index{Player@{Player}!set\+Can\+Hyperjump@{set\+Can\+Hyperjump}}
+\index{set\+Can\+Hyperjump@{set\+Can\+Hyperjump}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Can\+Hyperjump()}{setCanHyperjump()}}
+{\footnotesize\ttfamily void Player\+::set\+Can\+Hyperjump (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_ad3994801b0ca5d5da392302bbb56e0e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a1f28fd8b1c747434ba36b0127b61713b}\label{class_player_a1f28fd8b1c747434ba36b0127b61713b}} 
+\index{Player@{Player}!setdecelerating@{setdecelerating}}
+\index{setdecelerating@{setdecelerating}!Player@{Player}}
+\subsubsection{\texorpdfstring{setdecelerating()}{setdecelerating()}}
+{\footnotesize\ttfamily void Player\+::setdecelerating (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{class_player_a1f28fd8b1c747434ba36b0127b61713b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a002f775383954913c852beedca3a2258}\label{class_player_a002f775383954913c852beedca3a2258}} 
+\index{Player@{Player}!setdirection@{setdirection}}
+\index{setdirection@{setdirection}!Player@{Player}}
+\subsubsection{\texorpdfstring{setdirection()}{setdirection()}}
+{\footnotesize\ttfamily void Player\+::setdirection (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{class_player_a002f775383954913c852beedca3a2258_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_ac35450b46e8c7555d8098002898a6daa}\label{class_player_ac35450b46e8c7555d8098002898a6daa}} 
+\index{Player@{Player}!set\+Fast\+Accel@{set\+Fast\+Accel}}
+\index{set\+Fast\+Accel@{set\+Fast\+Accel}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Fast\+Accel()}{setFastAccel()}}
+{\footnotesize\ttfamily void Player\+::set\+Fast\+Accel (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_ac35450b46e8c7555d8098002898a6daa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a796610d4bf49196f261a82f5b2c0a044}\label{class_player_a796610d4bf49196f261a82f5b2c0a044}} 
+\index{Player@{Player}!set\+Invincible@{set\+Invincible}}
+\index{set\+Invincible@{set\+Invincible}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Invincible()}{setInvincible()}}
+{\footnotesize\ttfamily void Player\+::set\+Invincible (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a796610d4bf49196f261a82f5b2c0a044_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a0a644b2b50d659f6bd21dadefd6c5f14}\label{class_player_a0a644b2b50d659f6bd21dadefd6c5f14}} 
+\index{Player@{Player}!set\+Max\+Acceleration@{set\+Max\+Acceleration}}
+\index{set\+Max\+Acceleration@{set\+Max\+Acceleration}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Max\+Acceleration()}{setMaxAcceleration()}}
+{\footnotesize\ttfamily void Player\+::set\+Max\+Acceleration (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_aa37cc22b7a4862357cc70ae8f1f87396}\label{class_player_aa37cc22b7a4862357cc70ae8f1f87396}} 
+\index{Player@{Player}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Player\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+temp\+Pos }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_aa37cc22b7a4862357cc70ae8f1f87396_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a6258e03705f093472c49af6d909fdad1}\label{class_player_a6258e03705f093472c49af6d909fdad1}} 
+\index{Player@{Player}!spawn@{spawn}}
+\index{spawn@{spawn}!Player@{Player}}
+\subsubsection{\texorpdfstring{spawn()}{spawn()}}
+{\footnotesize\ttfamily void Player\+::spawn (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+new\+Pos }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a6258e03705f093472c49af6d909fdad1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_af92779e4722eee7813fd6497e3e15e18}\label{class_player_af92779e4722eee7813fd6497e3e15e18}} 
+\index{Player@{Player}!take\+Damage@{take\+Damage}}
+\index{take\+Damage@{take\+Damage}!Player@{Player}}
+\subsubsection{\texorpdfstring{take\+Damage()}{takeDamage()}}
+{\footnotesize\ttfamily void Player\+::take\+Damage (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_af92779e4722eee7813fd6497e3e15e18_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a71a11d7f337c312add448fe752e55b51}\label{class_player_a71a11d7f337c312add448fe752e55b51}} 
+\index{Player@{Player}!update@{update}}
+\index{update@{update}!Player@{Player}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Player\+::update (\begin{DoxyParamCaption}\item[{float}]{\+\_\+dt }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_a71a11d7f337c312add448fe752e55b51_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{class_player_a71a11d7f337c312add448fe752e55b51_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_player_a1b9e6a1aebb4805e14bdefbb1566fb6d}\label{class_player_a1b9e6a1aebb4805e14bdefbb1566fb6d}} 
+\index{Player@{Player}!use\+Bomb@{use\+Bomb}}
+\index{use\+Bomb@{use\+Bomb}!Player@{Player}}
+\subsubsection{\texorpdfstring{use\+Bomb()}{useBomb()}}
+{\footnotesize\ttfamily void Player\+::use\+Bomb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{class_player_a1b9e6a1aebb4805e14bdefbb1566fb6d_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_player_8h}{Player.\+h}\item 
+\hyperlink{_player_8cpp}{Player.\+cpp}\end{DoxyCompactItemize}

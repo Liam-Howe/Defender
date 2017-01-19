@@ -1,0 +1,5 @@
+<map id="Mutant::getPosition" name="Mutant::getPosition">
+<area shape="rect" id="node2" href="$class_mutant.html#a1c6dbda519e0d1fa4013478f0337ed96" title="Mutant::computeAlignment" alt="" coords="190,5,369,32"/>
+<area shape="rect" id="node3" href="$class_mutant.html#ab6daf2a25a5a96ccc672ef00d3aa90d4" title="Mutant::computeCohesion" alt="" coords="192,56,367,83"/>
+<area shape="rect" id="node4" href="$class_mutant.html#a3477994ce821511033006866f2f3b987" title="Mutant::computeSeparation" alt="" coords="188,107,371,133"/>
+</map>

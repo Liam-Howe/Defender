@@ -1,0 +1,4 @@
+<map id="Player::setInvincible" name="Player::setInvincible">
+<area shape="rect" id="node2" href="$class_play.html#aa4cf498ba0e0f0d05305d749bd753137" title="Play::updatePowerUps" alt="" coords="191,5,345,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="393,5,488,32"/>
+</map>

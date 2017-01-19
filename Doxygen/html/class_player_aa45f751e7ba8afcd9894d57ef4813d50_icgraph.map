@@ -1,0 +1,4 @@
+<map id="Player::getAlive" name="Player::getAlive">
+<area shape="rect" id="node2" href="$class_play.html#ab99107a51dbbc3b2f5ef9a9549944574" title="Play::activateGameOverState" alt="" coords="165,5,357,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="405,5,500,32"/>
+</map>

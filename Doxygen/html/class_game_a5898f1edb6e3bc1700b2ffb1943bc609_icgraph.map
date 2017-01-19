@@ -1,0 +1,9 @@
+<map id="Game::pushState" name="Game::pushState">
+<area shape="rect" id="node2" href="$class_game.html#a8683b16995200bd11d95efc372e6722a" title="Game::changeState" alt="" coords="177,107,316,133"/>
+<area shape="rect" id="node3" href="$_console_application2_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Entrypoint of application. " alt="" coords="435,5,485,32"/>
+<area shape="rect" id="node4" href="$class_game_over.html#a69f9e1364ff7caa8b17184441474c8b7" title="GameOver::update" alt="" coords="395,56,525,83"/>
+<area shape="rect" id="node5" href="$class_menu.html#a8446e8a1e56e9cf1db93790067510a61" title="Menu::update" alt="" coords="409,107,511,133"/>
+<area shape="rect" id="node6" href="$class_menu.html#a28296c3978c880ea9288fc97a869795d" title="Menu::handleInput" alt="" coords="396,157,524,184"/>
+<area shape="rect" id="node7" href="$class_play.html#ab99107a51dbbc3b2f5ef9a9549944574" title="Play::activateGameOverState" alt="" coords="364,208,556,235"/>
+<area shape="rect" id="node8" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="604,208,699,235"/>
+</map>

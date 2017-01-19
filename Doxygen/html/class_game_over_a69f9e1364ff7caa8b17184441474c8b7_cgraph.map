@@ -1,0 +1,6 @@
+<map id="GameOver::update" name="GameOver::update">
+<area shape="rect" id="node2" href="$class_game_over.html#a7239e22d93ea5a1374b5b75af3ed7ed6" title="GameOver::checkClicked" alt="" coords="184,5,353,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a8683b16995200bd11d95efc372e6722a" title="Game::changeState" alt="" coords="199,56,338,83"/>
+<area shape="rect" id="node4" href="$class_game.html#a4b33dd67adef59bebadba8a234282c88" title="Game::popState" alt="" coords="405,31,522,57"/>
+<area shape="rect" id="node5" href="$class_game.html#a5898f1edb6e3bc1700b2ffb1943bc609" title="Game::pushState" alt="" coords="401,81,525,108"/>
+</map>

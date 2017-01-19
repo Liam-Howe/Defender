@@ -1,0 +1,9 @@
+<map id="Play::CollisionManager" name="Play::CollisionManager">
+<area shape="rect" id="node2" href="$class_collision_manager.html#affe670241642e07380fff0050d8ef459" title="CollisionManager::collision" alt="" coords="208,5,384,32"/>
+<area shape="rect" id="node3" href="$class_player.html#ab23a6224f848e8b8fab134c355b8a8de" title="Player::getCollisionRect" alt="" coords="215,56,377,83"/>
+<area shape="rect" id="node4" href="$class_player.html#abcb15d249bed9a4ab0ab86b52b0d747a" title="Player::getHealth" alt="" coords="235,107,357,133"/>
+<area shape="rect" id="node5" href="$class_player.html#af92779e4722eee7813fd6497e3e15e18" title="Player::takeDamage" alt="" coords="226,157,366,184"/>
+<area shape="rect" id="node6" href="$class_player.html#a35c75510e8be559cb1f9272bfc11d026" title="Player::getInvincible" alt="" coords="227,208,365,235"/>
+<area shape="rect" id="node7" href="$class_player.html#a4ad45c4c8298531f45ebed48ce001373" title="Player::getBullets" alt="" coords="233,259,359,285"/>
+<area shape="rect" id="node8" href="$class_play.html#af923e24bb8d24800e6481b18ce6f1e7b" title="Play::increaseScore" alt="" coords="227,309,365,336"/>
+</map>

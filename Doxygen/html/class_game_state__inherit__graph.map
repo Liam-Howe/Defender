@@ -1,0 +1,5 @@
+<map id="GameState" name="GameState">
+<area shape="rect" id="node2" href="$class_game_over.html" title="{GameOver\n||+ draw()\l+ update()\l+ handleInput()\l+ checkClicked()\l+ ~GameOver()\l+ GameOver()\l}" alt="" coords="5,219,125,369"/>
+<area shape="rect" id="node3" href="$class_menu.html" title="{Menu\n||+ draw()\l+ update()\l+ handleInput()\l+ checkClicked()\l+ ~Menu()\l+ Menu()\l}" alt="" coords="149,219,269,369"/>
+<area shape="rect" id="node4" href="$class_play.html" title="{Play\n||+ updatePowerUps()\l+ draw()\l+ CollisionManager()\l+ updateCamera()\l+ increaseRound()\l+ increaseScore()\l+ wrapAround()\l+ update()\l+ activateGameOverState()\l+ handleInput()\l+ checkHealth()\l+ ~Play()\l+ updateRounds()\l+ Play()\l}" alt="" coords="293,160,472,428"/>
+</map>

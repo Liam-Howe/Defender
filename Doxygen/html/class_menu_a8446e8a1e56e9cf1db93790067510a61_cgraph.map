@@ -1,0 +1,6 @@
+<map id="Menu::update" name="Menu::update">
+<area shape="rect" id="node2" href="$class_menu.html#a1b4d7af621c036afa3d9758e8accbc16" title="Menu::checkClicked" alt="" coords="155,5,295,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a8683b16995200bd11d95efc372e6722a" title="Game::changeState" alt="" coords="155,56,294,83"/>
+<area shape="rect" id="node4" href="$class_game.html#a4b33dd67adef59bebadba8a234282c88" title="Game::popState" alt="" coords="346,31,463,57"/>
+<area shape="rect" id="node5" href="$class_game.html#a5898f1edb6e3bc1700b2ffb1943bc609" title="Game::pushState" alt="" coords="343,81,467,108"/>
+</map>

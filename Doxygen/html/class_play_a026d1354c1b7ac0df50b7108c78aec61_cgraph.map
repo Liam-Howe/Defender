@@ -1,0 +1,4 @@
+<map id="Play::draw" name="Play::draw">
+<area shape="rect" id="node2" href="$class_player.html#aabef659f696be314cdb705a1ce77ec2a" title="Player::getSprite" alt="" coords="139,5,258,32"/>
+<area shape="rect" id="node3" href="$class_player.html#a4ad45c4c8298531f45ebed48ce001373" title="Player::getBullets" alt="" coords="136,56,261,83"/>
+</map>

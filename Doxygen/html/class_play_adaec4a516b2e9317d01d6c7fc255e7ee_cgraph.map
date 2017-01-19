@@ -1,0 +1,4 @@
+<map id="Play::wrapAround" name="Play::wrapAround">
+<area shape="rect" id="node2" href="$class_player.html#a23356f99a9de86d3d47eadb679b332dc" title="Player::getPosition" alt="" coords="177,5,309,32"/>
+<area shape="rect" id="node3" href="$class_player.html#aa37cc22b7a4862357cc70ae8f1f87396" title="Player::setPosition" alt="" coords="177,56,309,83"/>
+</map>

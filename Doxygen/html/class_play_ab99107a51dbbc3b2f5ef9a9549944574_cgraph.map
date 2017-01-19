@@ -1,0 +1,6 @@
+<map id="Play::activateGameOverState" name="Play::activateGameOverState">
+<area shape="rect" id="node2" href="$class_player.html#aa45f751e7ba8afcd9894d57ef4813d50" title="Player::getAlive" alt="" coords="259,5,371,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a8683b16995200bd11d95efc372e6722a" title="Game::changeState" alt="" coords="245,56,384,83"/>
+<area shape="rect" id="node4" href="$class_game.html#a4b33dd67adef59bebadba8a234282c88" title="Game::popState" alt="" coords="435,31,553,57"/>
+<area shape="rect" id="node5" href="$class_game.html#a5898f1edb6e3bc1700b2ffb1943bc609" title="Game::pushState" alt="" coords="432,81,556,108"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Player::getInvincible" name="Player::getInvincible">
+<area shape="rect" id="node2" href="$class_play.html#a3dbdeaf231718f05feac075aa4902175" title="Play::CollisionManager" alt="" coords="191,5,345,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="393,5,488,32"/>
+</map>

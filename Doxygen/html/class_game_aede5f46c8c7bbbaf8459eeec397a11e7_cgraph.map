@@ -1,0 +1,6 @@
+<map id="Game::gameLoop" name="Game::gameLoop">
+<area shape="rect" id="node2" href="$class_game.html#a6cdc6cb374ab8e7d8ac9b280284b3793" title="Game::peekState" alt="" coords="198,5,322,32"/>
+<area shape="rect" id="node3" href="$class_game_state.html#a970b55edd5a1da31ea0f7113e2c1f85a" title="GameState::handleInput" alt="" coords="179,56,341,83"/>
+<area shape="rect" id="node4" href="$class_game_state.html#ab2864bfa04f92f6966861a1f2883bda0" title="GameState::update" alt="" coords="193,107,327,133"/>
+<area shape="rect" id="node5" href="$class_game_state.html#ac872d748df12ac36d7a42a191997e4f7" title="GameState::draw" alt="" coords="199,157,321,184"/>
+</map>

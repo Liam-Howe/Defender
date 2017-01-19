@@ -1,0 +1,5 @@
+<map id="Mutant::movement" name="Mutant::movement">
+<area shape="rect" id="node2" href="$class_mutant.html#a24699eb054b6cf95f66bf3e856364b71" title="Mutant::seek" alt="" coords="183,5,281,32"/>
+<area shape="rect" id="node4" href="$class_mutant.html#aaa71f2f6d0fe2be008db453bb9673d4c" title="Mutant::fire" alt="" coords="189,56,275,83"/>
+<area shape="rect" id="node3" href="$class_mutant.html#a167cab6fa9c2a19f40c9886f043c1270" title="Mutant::Normalise" alt="" coords="329,5,457,32"/>
+</map>

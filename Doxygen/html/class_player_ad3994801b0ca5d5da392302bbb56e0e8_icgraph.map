@@ -1,0 +1,5 @@
+<map id="Player::setCanHyperjump" name="Player::setCanHyperjump">
+<area shape="rect" id="node2" href="$class_play.html#aa4cf498ba0e0f0d05305d749bd753137" title="Play::updatePowerUps" alt="" coords="224,5,379,32"/>
+<area shape="rect" id="node4" href="$class_play.html#a81bdbd1ef7b3de50dba1a8ebf346a1fc" title="Play::handleInput" alt="" coords="240,56,363,83"/>
+<area shape="rect" id="node3" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="427,5,521,32"/>
+</map>

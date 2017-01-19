@@ -1,0 +1,3 @@
+<map id="Menu" name="Menu">
+<area shape="rect" id="node2" href="$class_game_state.html" title="{GameState\n|+ game\l|+ draw()\l+ update()\l+ handleInput()\l}" alt="" coords="11,5,119,112"/>
+</map>

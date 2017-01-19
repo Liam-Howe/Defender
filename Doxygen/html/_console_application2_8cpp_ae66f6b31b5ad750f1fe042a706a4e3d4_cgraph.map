@@ -1,0 +1,9 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$class_game.html#a8683b16995200bd11d95efc372e6722a" title="Game::changeState" alt="" coords="116,31,255,57"/>
+<area shape="rect" id="node5" href="$class_game.html#a6cdc6cb374ab8e7d8ac9b280284b3793" title="Game::peekState" alt="" coords="123,81,247,108"/>
+<area shape="rect" id="node6" href="$class_game_state.html#a970b55edd5a1da31ea0f7113e2c1f85a" title="GameState::handleInput" alt="" coords="104,132,267,159"/>
+<area shape="rect" id="node7" href="$class_game_state.html#ab2864bfa04f92f6966861a1f2883bda0" title="GameState::update" alt="" coords="118,183,253,209"/>
+<area shape="rect" id="node8" href="$class_game_state.html#ac872d748df12ac36d7a42a191997e4f7" title="GameState::draw" alt="" coords="124,233,247,260"/>
+<area shape="rect" id="node3" href="$class_game.html#a4b33dd67adef59bebadba8a234282c88" title="Game::popState" alt="" coords="318,5,435,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a5898f1edb6e3bc1700b2ffb1943bc609" title="Game::pushState" alt="" coords="315,56,439,83"/>
+</map>

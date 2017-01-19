@@ -1,0 +1,6 @@
+<map id="Player::getBullets" name="Player::getBullets">
+<area shape="rect" id="node2" href="$class_play.html#a026d1354c1b7ac0df50b7108c78aec61" title="Play::draw" alt="" coords="179,5,261,32"/>
+<area shape="rect" id="node4" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="512,56,607,83"/>
+<area shape="rect" id="node5" href="$class_play.html#a3dbdeaf231718f05feac075aa4902175" title="Play::CollisionManager" alt="" coords="309,107,464,133"/>
+<area shape="rect" id="node3" href="$class_play.html#a321efb6f8d02dc3695404b33c22e9285" title="Play::updateCamera" alt="" coords="317,5,457,32"/>
+</map>

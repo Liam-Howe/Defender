@@ -1,0 +1,165 @@
+\hypertarget{class_game}{}\section{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$game.\+hpp$>$}
+
+
+
+Collaboration diagram for Game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_game__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_game_a5898f1edb6e3bc1700b2ffb1943bc609}{push\+State} (\hyperlink{class_game_state}{Game\+State} $\ast$state)
+\item 
+void \hyperlink{class_game_a4b33dd67adef59bebadba8a234282c88}{pop\+State} ()
+\item 
+void \hyperlink{class_game_a8683b16995200bd11d95efc372e6722a}{change\+State} (\hyperlink{class_game_state}{Game\+State} $\ast$state)
+\item 
+\hyperlink{class_game_state}{Game\+State} $\ast$ \hyperlink{class_game_a6cdc6cb374ab8e7d8ac9b280284b3793}{peek\+State} ()
+\item 
+void \hyperlink{class_game_aede5f46c8c7bbbaf8459eeec397a11e7}{game\+Loop} ()
+\item 
+\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game} ()
+\item 
+\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::stack$<$ \hyperlink{class_game_state}{Game\+State} $\ast$ $>$ \hyperlink{class_game_afb615f4fb6621cd14769c14716f4b0a5}{states}
+\item 
+sf\+::\+Render\+Window \hyperlink{class_game_a223de215aeb661cd423ac145756cc730}{window}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\label{class_game_ad59df6562a58a614fda24622d3715b65}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\label{class_game_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$\+Game}}
+\index{````~Game@{$\sim$\+Game}!Game@{Game}}
+\subsubsection{\texorpdfstring{$\sim$\+Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{class_game_ae3d112ca6e0e55150d2fdbc704474530_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a8683b16995200bd11d95efc372e6722a}\label{class_game_a8683b16995200bd11d95efc372e6722a}} 
+\index{Game@{Game}!change\+State@{change\+State}}
+\index{change\+State@{change\+State}!Game@{Game}}
+\subsubsection{\texorpdfstring{change\+State()}{changeState()}}
+{\footnotesize\ttfamily void Game\+::change\+State (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_state}{Game\+State} $\ast$}]{state }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{class_game_a8683b16995200bd11d95efc372e6722a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a8683b16995200bd11d95efc372e6722a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_aede5f46c8c7bbbaf8459eeec397a11e7}\label{class_game_aede5f46c8c7bbbaf8459eeec397a11e7}} 
+\index{Game@{Game}!game\+Loop@{game\+Loop}}
+\index{game\+Loop@{game\+Loop}!Game@{Game}}
+\subsubsection{\texorpdfstring{game\+Loop()}{gameLoop()}}
+{\footnotesize\ttfamily void Game\+::game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{class_game_aede5f46c8c7bbbaf8459eeec397a11e7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a6cdc6cb374ab8e7d8ac9b280284b3793}\label{class_game_a6cdc6cb374ab8e7d8ac9b280284b3793}} 
+\index{Game@{Game}!peek\+State@{peek\+State}}
+\index{peek\+State@{peek\+State}!Game@{Game}}
+\subsubsection{\texorpdfstring{peek\+State()}{peekState()}}
+{\footnotesize\ttfamily \hyperlink{class_game_state}{Game\+State} $\ast$ Game\+::peek\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{class_game_a6cdc6cb374ab8e7d8ac9b280284b3793_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a4b33dd67adef59bebadba8a234282c88}\label{class_game_a4b33dd67adef59bebadba8a234282c88}} 
+\index{Game@{Game}!pop\+State@{pop\+State}}
+\index{pop\+State@{pop\+State}!Game@{Game}}
+\subsubsection{\texorpdfstring{pop\+State()}{popState()}}
+{\footnotesize\ttfamily void Game\+::pop\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a4b33dd67adef59bebadba8a234282c88_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_a5898f1edb6e3bc1700b2ffb1943bc609}\label{class_game_a5898f1edb6e3bc1700b2ffb1943bc609}} 
+\index{Game@{Game}!push\+State@{push\+State}}
+\index{push\+State@{push\+State}!Game@{Game}}
+\subsubsection{\texorpdfstring{push\+State()}{pushState()}}
+{\footnotesize\ttfamily void Game\+::push\+State (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_state}{Game\+State} $\ast$}]{state }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a5898f1edb6e3bc1700b2ffb1943bc609_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_afb615f4fb6621cd14769c14716f4b0a5}\label{class_game_afb615f4fb6621cd14769c14716f4b0a5}} 
+\index{Game@{Game}!states@{states}}
+\index{states@{states}!Game@{Game}}
+\subsubsection{\texorpdfstring{states}{states}}
+{\footnotesize\ttfamily std\+::stack$<$\hyperlink{class_game_state}{Game\+State}$\ast$$>$ Game\+::states}
+
+\mbox{\Hypertarget{class_game_a223de215aeb661cd423ac145756cc730}\label{class_game_a223de215aeb661cd423ac145756cc730}} 
+\index{Game@{Game}!window@{window}}
+\index{window@{window}!Game@{Game}}
+\subsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily sf\+::\+Render\+Window Game\+::window}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{game_8hpp}{game.\+hpp}\item 
+\hyperlink{game_8cpp}{game.\+cpp}\end{DoxyCompactItemize}

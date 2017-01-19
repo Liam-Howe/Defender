@@ -1,0 +1,199 @@
+\hypertarget{class_astronaut}{}\section{Astronaut Class Reference}
+\label{class_astronaut}\index{Astronaut@{Astronaut}}
+
+
+{\ttfamily \#include $<$Astronaut.\+h$>$}
+
+
+
+Collaboration diagram for Astronaut\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{class_astronaut__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_astronaut_ad88a1f14ffa4e13ebc9d996a7def9c74}{Astronaut} (sf\+::\+Vector2f \+\_\+\+Pos, sf\+::\+Vector2f \+\_\+\+Vel, sf\+::\+Texture \+\_\+\+Tex)
+\item 
+\hyperlink{class_astronaut_af31f9de205719a042df5f0a1879ee064}{$\sim$\+Astronaut} ()
+\item 
+void \hyperlink{class_astronaut_ab5c332ef51826c5ef2f89fcc72160401}{movement} (sf\+::\+Vector2f abductor\+Pos)
+\item 
+void \hyperlink{class_astronaut_a39d7e43f8604bf561570e2eb2564a8fa}{wander} ()
+\item 
+void \hyperlink{class_astronaut_a81199297e80402f219a58a2fff56372c}{flee} (sf\+::\+Vector2f abductor\+Pos)
+\item 
+sf\+::\+Sprite \hyperlink{class_astronaut_a0fd66ca32a63fde604ddbeadd1a80edc}{get\+Sprite} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_astronaut_a3738ff50527c44f089b110ecdb0be2f3}{get\+Position} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_astronaut_a9276590bb221f7809f17ebff0a32db36}{Normalise} (sf\+::\+Vector2f velocity)
+\item 
+void \hyperlink{class_astronaut_acb963c04f91f1cda4aac81f5a51e1f34}{update} ()
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_astronaut_a5d01978fdd0f00d9adc9769505baa5d5}{get\+Collision\+Rect} ()
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_astronaut_a59883964bc6a7997885e341918638f80}{get\+Seek\+Rect} ()
+\item 
+void \hyperlink{class_astronaut_a33359ffc0867f0e6c83a63ed39659848}{abducted} (sf\+::\+Vector2f \+\_\+abductor\+Pos)
+\item 
+void \hyperlink{class_astronaut_a07d0b1366726e708be3361795a25a1ce}{set\+Abducted} (bool)
+\item 
+bool \hyperlink{class_astronaut_a531b1ad1af11a0c788a182fa7b71794f}{get\+Abducted} ()
+\item 
+void \hyperlink{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387}{set\+Position} (sf\+::\+Vector2f)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_astronaut_ad88a1f14ffa4e13ebc9d996a7def9c74}\label{class_astronaut_ad88a1f14ffa4e13ebc9d996a7def9c74}} 
+\index{Astronaut@{Astronaut}!Astronaut@{Astronaut}}
+\index{Astronaut@{Astronaut}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{Astronaut()}{Astronaut()}}
+{\footnotesize\ttfamily Astronaut\+::\+Astronaut (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+\+Pos,  }\item[{sf\+::\+Vector2f}]{\+\_\+\+Vel,  }\item[{sf\+::\+Texture}]{\+\_\+\+Tex }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_af31f9de205719a042df5f0a1879ee064}\label{class_astronaut_af31f9de205719a042df5f0a1879ee064}} 
+\index{Astronaut@{Astronaut}!````~Astronaut@{$\sim$\+Astronaut}}
+\index{````~Astronaut@{$\sim$\+Astronaut}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{$\sim$\+Astronaut()}{~Astronaut()}}
+{\footnotesize\ttfamily Astronaut\+::$\sim$\+Astronaut (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_astronaut_a33359ffc0867f0e6c83a63ed39659848}\label{class_astronaut_a33359ffc0867f0e6c83a63ed39659848}} 
+\index{Astronaut@{Astronaut}!abducted@{abducted}}
+\index{abducted@{abducted}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{abducted()}{abducted()}}
+{\footnotesize\ttfamily void Astronaut\+::abducted (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+abductor\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a81199297e80402f219a58a2fff56372c}\label{class_astronaut_a81199297e80402f219a58a2fff56372c}} 
+\index{Astronaut@{Astronaut}!flee@{flee}}
+\index{flee@{flee}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{flee()}{flee()}}
+{\footnotesize\ttfamily void Astronaut\+::flee (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{abductor\+Pos }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{class_astronaut_a81199297e80402f219a58a2fff56372c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{class_astronaut_a81199297e80402f219a58a2fff56372c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_astronaut_a531b1ad1af11a0c788a182fa7b71794f}\label{class_astronaut_a531b1ad1af11a0c788a182fa7b71794f}} 
+\index{Astronaut@{Astronaut}!get\+Abducted@{get\+Abducted}}
+\index{get\+Abducted@{get\+Abducted}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{get\+Abducted()}{getAbducted()}}
+{\footnotesize\ttfamily bool Astronaut\+::get\+Abducted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a5d01978fdd0f00d9adc9769505baa5d5}\label{class_astronaut_a5d01978fdd0f00d9adc9769505baa5d5}} 
+\index{Astronaut@{Astronaut}!get\+Collision\+Rect@{get\+Collision\+Rect}}
+\index{get\+Collision\+Rect@{get\+Collision\+Rect}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{get\+Collision\+Rect()}{getCollisionRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Astronaut\+::get\+Collision\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a3738ff50527c44f089b110ecdb0be2f3}\label{class_astronaut_a3738ff50527c44f089b110ecdb0be2f3}} 
+\index{Astronaut@{Astronaut}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Astronaut\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a59883964bc6a7997885e341918638f80}\label{class_astronaut_a59883964bc6a7997885e341918638f80}} 
+\index{Astronaut@{Astronaut}!get\+Seek\+Rect@{get\+Seek\+Rect}}
+\index{get\+Seek\+Rect@{get\+Seek\+Rect}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{get\+Seek\+Rect()}{getSeekRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Astronaut\+::get\+Seek\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a0fd66ca32a63fde604ddbeadd1a80edc}\label{class_astronaut_a0fd66ca32a63fde604ddbeadd1a80edc}} 
+\index{Astronaut@{Astronaut}!get\+Sprite@{get\+Sprite}}
+\index{get\+Sprite@{get\+Sprite}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{get\+Sprite()}{getSprite()}}
+{\footnotesize\ttfamily sf\+::\+Sprite Astronaut\+::get\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_ab5c332ef51826c5ef2f89fcc72160401}\label{class_astronaut_ab5c332ef51826c5ef2f89fcc72160401}} 
+\index{Astronaut@{Astronaut}!movement@{movement}}
+\index{movement@{movement}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{movement()}{movement()}}
+{\footnotesize\ttfamily void Astronaut\+::movement (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{abductor\+Pos }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_astronaut_ab5c332ef51826c5ef2f89fcc72160401_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_astronaut_a9276590bb221f7809f17ebff0a32db36}\label{class_astronaut_a9276590bb221f7809f17ebff0a32db36}} 
+\index{Astronaut@{Astronaut}!Normalise@{Normalise}}
+\index{Normalise@{Normalise}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{Normalise()}{Normalise()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Astronaut\+::\+Normalise (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{velocity }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_astronaut_a9276590bb221f7809f17ebff0a32db36_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_astronaut_a07d0b1366726e708be3361795a25a1ce}\label{class_astronaut_a07d0b1366726e708be3361795a25a1ce}} 
+\index{Astronaut@{Astronaut}!set\+Abducted@{set\+Abducted}}
+\index{set\+Abducted@{set\+Abducted}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{set\+Abducted()}{setAbducted()}}
+{\footnotesize\ttfamily void Astronaut\+::set\+Abducted (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387}\label{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387}} 
+\index{Astronaut@{Astronaut}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Astronaut\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_acb963c04f91f1cda4aac81f5a51e1f34}\label{class_astronaut_acb963c04f91f1cda4aac81f5a51e1f34}} 
+\index{Astronaut@{Astronaut}!update@{update}}
+\index{update@{update}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Astronaut\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_astronaut_a39d7e43f8604bf561570e2eb2564a8fa}\label{class_astronaut_a39d7e43f8604bf561570e2eb2564a8fa}} 
+\index{Astronaut@{Astronaut}!wander@{wander}}
+\index{wander@{wander}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{wander()}{wander()}}
+{\footnotesize\ttfamily void Astronaut\+::wander (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{class_astronaut_a39d7e43f8604bf561570e2eb2564a8fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{class_astronaut_a39d7e43f8604bf561570e2eb2564a8fa_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_astronaut_8h}{Astronaut.\+h}\item 
+\hyperlink{_astronaut_8cpp}{Astronaut.\+cpp}\end{DoxyCompactItemize}

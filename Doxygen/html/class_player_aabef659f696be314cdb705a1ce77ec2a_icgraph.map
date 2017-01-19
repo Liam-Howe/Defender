@@ -1,0 +1,6 @@
+<map id="Player::getSprite" name="Player::getSprite">
+<area shape="rect" id="node2" href="$class_play.html#a026d1354c1b7ac0df50b7108c78aec61" title="Play::draw" alt="" coords="192,5,275,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a321efb6f8d02dc3695404b33c22e9285" title="Play::updateCamera" alt="" coords="343,31,483,57"/>
+<area shape="rect" id="node5" href="$class_play.html#a81bdbd1ef7b3de50dba1a8ebf346a1fc" title="Play::handleInput" alt="" coords="172,107,295,133"/>
+<area shape="rect" id="node4" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="531,31,625,57"/>
+</map>

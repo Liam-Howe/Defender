@@ -1,0 +1,4 @@
+<map id="Player::spawn" name="Player::spawn">
+<area shape="rect" id="node2" href="$class_player.html#a012354ce1dfa33d6393c41afc4db0e6c" title="Player::hyperJump" alt="" coords="157,5,288,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a81bdbd1ef7b3de50dba1a8ebf346a1fc" title="Play::handleInput" alt="" coords="336,5,459,32"/>
+</map>

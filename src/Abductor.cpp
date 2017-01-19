@@ -31,6 +31,7 @@ sf::Vector2f Abductor::computeAlignment(std::vector<Abductor*> agents)
 	for (int i = 0; i < agents.size(); i++)
 	{
 		if (i != index)
+
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
@@ -93,7 +94,7 @@ sf::Vector2f Abductor::computeSeparation(std::vector<Abductor*> agents)
 
 	for (int i = 0; i < agents.size(); i++)
 	{
-		if (i != index)
+		if (i != index )
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 

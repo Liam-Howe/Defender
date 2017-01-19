@@ -1,0 +1,6 @@
+<map id="Player::getHealth" name="Player::getHealth">
+<area shape="rect" id="node2" href="$class_play.html#a84bc1e86dc4368356228523315d4dac9" title="Play::Play" alt="" coords="212,5,295,32"/>
+<area shape="rect" id="node3" href="$class_play.html#a3dbdeaf231718f05feac075aa4902175" title="Play::CollisionManager" alt="" coords="176,56,331,83"/>
+<area shape="rect" id="node5" href="$class_play.html#a75c96673011616e5c97731870ddb649e" title="Play::checkHealth" alt="" coords="189,107,317,133"/>
+<area shape="rect" id="node4" href="$class_play.html#a8eaa457d009e35bfbf699b38b569e3b8" title="Play::update" alt="" coords="379,81,473,108"/>
+</map>

@@ -367,6 +367,7 @@ void Play::CollisionManager()
 						if (_collisionManager.collision(_abductors[k]->getCollisionRect(), m_astronauts[j]->getCollisionRect()))
 						{
 							m_astronauts[j]->setAbducted(false);
+							m_astronauts[j]->setPosition(sf::Vector2f(m_astronauts[j]->getPosition().x, 690));
 						}
 					}
 					_abductors[k]->takeDamage(1);

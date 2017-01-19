@@ -1,0 +1,5 @@
+<map id="Abductor::getPosition" name="Abductor::getPosition">
+<area shape="rect" id="node2" href="$class_abductor.html#a1a22ca1f62b22a3e6ab183c0d07215c9" title="Abductor::computeAlignment" alt="" coords="202,5,393,32"/>
+<area shape="rect" id="node3" href="$class_abductor.html#a8aa45d9b7d770533a60eae180c08d96f" title="Abductor::computeCohesion" alt="" coords="204,56,391,83"/>
+<area shape="rect" id="node4" href="$class_abductor.html#ac72ef77b379beff56efed7f66442c649" title="Abductor::computeSeparation" alt="" coords="200,107,395,133"/>
+</map>
