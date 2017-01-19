@@ -65,7 +65,6 @@ void AlienNest::update(sf::Vector2f playerPos, sf::Texture _alienMissile)
 			if (bulletTimer > 100)
 			{
 				Bullet * _temp = new Bullet(sf::Vector2f(m_APos.x, m_APos.y), sf::Vector2f(0, 0), _alienMissile, 10);
-				std::cout << "Missile Fired" << std::endl;
 				_nestBulletVector.push_back(_temp);
 				bulletTimer = 0;
 				bulletCount++;

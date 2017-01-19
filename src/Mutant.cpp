@@ -15,11 +15,189 @@ Mutant::Mutant(sf::Vector2f _pos, sf::Vector2f _vel, sf::Texture _tex) : m_pos(_
 	collisionBox.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
 	collisionBox = sf::RectangleShape(sf::Vector2f(m_tex.getSize().x, m_tex.getSize().y));
 	collisionBox.setPosition(m_pos.x, m_pos.y);
+	m_neighourCount = 0;
+	m_index = 0;
+	m_pointToFlock = sf::Vector2f(0, 0);
+	m_cohesion = sf::Vector2f(0, 0);
+	m_seperation = sf::Vector2f(0, 0);
+	m_alignment = sf::Vector2f(0, 0);
 }
 
 Mutant::~Mutant()
 {
 
+}
+sf::Vector2f Mutant::getVelocity()
+{
+	return m_vel;
+}
+void Mutant::setindex(int value)
+{
+	m_index = value;
+}
+sf::Vector2f Mutant::computeAlignment(std::vector<Mutant*> agents)
+{
+	m_neighourCount = 0;
+	v = sf::Vector2f(0, 0);
+
+	for (int i = 0; i < agents.size(); i++)
+	{
+		if (i != m_index)
+		{
+			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
+
+			if (agentDist < 150)
+			{
+				v.x += agents[i]->getVelocity().x;
+				v.y += agents[i]->getVelocity().y;
+				m_neighourCount++;
+			}
+		}
+	}
+
+	if (m_neighourCount == 0)
+	{
+		return v;
+	}
+
+	v.x = v.x / m_neighourCount;
+	v.y = v.y / m_neighourCount;
+	v = Normalise(v);
+	m_alignment = v;
+	return v;
+}
+sf::Vector2f Mutant::computeCohesion(std::vector<Mutant*> agents)
+{
+	m_neighourCount = 0;
+	v = sf::Vector2f(0, 0);
+
+	for (int i = 0; i < agents.size(); i++)
+	{
+		if (i != m_index)
+		{
+			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
+
+			if (agentDist < 150 && agentDist > 70)
+			{
+				v.x += agents[i]->getPosition().x;
+				v.y += agents[i]->getPosition().y;
+				m_neighourCount++;
+			}
+		}
+	}
+
+	if (m_neighourCount == 0)
+	{
+		return v;
+	}
+
+	v.x = v.x / m_neighourCount;
+	v.y = v.y / m_neighourCount;
+	sf::Vector2f v2 = sf::Vector2f(v.x - m_pos.x, v.y - m_pos.y);
+	v = Normalise(v2);
+	m_cohesion = v;
+	return v;
+}
+
+sf::Vector2f Mutant::computeSeparation(std::vector<Mutant*> agents)
+{
+	m_neighourCount = 0;
+	v = sf::Vector2f(0, 0);
+
+	for (int i = 0; i < agents.size(); i++)
+	{
+		if (i != m_index)
+		{
+			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
+
+			if (agentDist < 70)
+			{
+				v.x += agents[i]->getPosition().x - m_pos.x;
+				v.y += agents[i]->getPosition().y - m_pos.y;
+				m_neighourCount++;
+			}
+		}
+	}
+
+	if (m_neighourCount == 0)
+	{
+		return v;
+	}
+	v.x /= m_neighourCount;
+	v.y /= m_neighourCount;
+
+	v.x *= -1;
+	v.y *= -1;
+
+	v = Normalise(v);
+	m_seperation = v;
+	return v;
+}
+
+sf::Vector2f Mutant::Normalise(sf::Vector2f velocity)
+{
+	float length;
+	length = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y));
+	if (length != 0)
+	{
+		velocity = velocity / length;
+		return velocity;
+	}
+	else
+	{
+		return sf::Vector2f(0, 0);
+	}
+}
+
+void Mutant::wander(std::vector<Mutant*> agents)
+{
+
+	if (v != sf::Vector2f(0, 0))
+	{
+		m_pointToFlock = m_generatedPos - m_pos;
+		m_pointToFlock = Normalise(m_pointToFlock);
+
+		m_vel.x += (m_alignment.x + m_cohesion.x + m_seperation.x) + m_pointToFlock.x;
+		m_vel.y += (m_alignment.y + m_cohesion.y + m_seperation.y) + m_pointToFlock.y;
+
+		m_vel = Normalise(m_vel);
+
+		m_vel.x = m_vel.x * 0.75;
+		m_vel.y = m_vel.y * 0.75;
+
+		m_pos += m_vel;
+
+
+		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
+
+		if (dist < 30)
+		{
+			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
+			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
+		}
+
+	}
+	else
+	{
+		m_vel.x = m_generatedPos.x - m_pos.x;
+		m_vel.y = m_generatedPos.y - m_pos.y;
+		m_vel = Normalise(m_vel);
+		m_pos.x += m_vel.x;
+		m_pos.y += m_vel.y;
+
+
+		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
+
+		if (dist < 30)
+		{
+			m_vel.x = 0;
+			m_vel.y = 0;
+			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
+			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
+		}
+	}
+	m_sprite.setPosition(m_pos);
+	collisionBox.setPosition(m_pos);
 }
 
 sf::Vector2f Mutant::getPosition()
@@ -56,14 +234,6 @@ void Mutant::seek(sf::Vector2f targetPos)
 	m_pos += m_vel;
 	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos.x, m_pos.y);
-}
-
-sf::Vector2f Mutant::Normalise(sf::Vector2f velocity)
-{
-	float length;
-	length = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y));
-	velocity = velocity / length;
-	return velocity;
 }
 
 void Mutant::movement(sf::Vector2f targetPos, sf::Texture _playerBullet)

@@ -520,10 +520,12 @@ void Play::update()
 			if (_collisionManager.collision(m_astronauts[k]->getSeekRect(), _abductors[i]->getCollisionRect()) == false)
 			{
 				_abductors[i]->setIndex(i);
+				_abductors[i]->computeAlignment(_abductors);
+				_abductors[i]->computeCohesion(_abductors);
+				_abductors[i]->computeSeparation(_abductors);
 
 				_abductors[i]->wander(_abductors);
 			}
-			
 			if ((_collisionManager.collision(m_astronauts[k]->getSeekRect(), _abductors[i]->getCollisionRect()) == true))
 			{
 				if (m_astronauts[k]->getAbducted() == false)
@@ -551,16 +553,7 @@ void Play::update()
 
 void Play::activateGameOverState()
 {
-	if (m_astronauts.size() <= 0)
-	{
-		m_music.stop();
-		m_playerFire.stop();
-		m_explosion.stop();
-		m_powerUpSound.stop();
-		this->game->changeState(new GameOver(this->game, m_score));
-	}
-
-	if (_player->getAlive() == false)
+	if (_player->getAlive() == false || m_astronauts.size() <=0)
 	{
 		m_music.stop();
 		m_playerFire.stop();

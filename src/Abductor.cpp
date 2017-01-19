@@ -25,14 +25,16 @@ Abductor::~Abductor()
 
 sf::Vector2f Abductor::computeAlignment(std::vector<Abductor*> agents)
 {
+	neighbourCount = 0;
 	v = sf::Vector2f(0, 0);
+
 	for (int i = 0; i < agents.size(); i++)
 	{
 		if (i != index)
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
-			if (agentDist < 250)
+			if (agentDist < 150)
 			{
 				v.x += agents[i]->getVelocity().x;
 				v.y += agents[i]->getVelocity().y;
@@ -49,11 +51,14 @@ sf::Vector2f Abductor::computeAlignment(std::vector<Abductor*> agents)
 	v.x = v.x / neighbourCount;
 	v.y = v.y / neighbourCount;
 	v = Normalise(v);
+	alignment = v;
 	return v;
 }
 sf::Vector2f Abductor::computeCohesion(std::vector<Abductor*> agents)
 {
+	neighbourCount = 0;
 	v = sf::Vector2f(0, 0);
+
 	for (int i = 0; i < agents.size(); i++)
 	{
 		if (i != index)
@@ -64,7 +69,7 @@ sf::Vector2f Abductor::computeCohesion(std::vector<Abductor*> agents)
 			{
 				v.x += agents[i]->getPosition().x;
 				v.y += agents[i]->getPosition().y;
-				//neighbourCount++;
+				neighbourCount++;
 			}
 		}
 	}
@@ -78,10 +83,12 @@ sf::Vector2f Abductor::computeCohesion(std::vector<Abductor*> agents)
 	v.y = v.y / neighbourCount;
 	sf::Vector2f v2 = sf::Vector2f(v.x - m_pos.x, v.y - m_pos.y);
 	v = Normalise(v2);
+	cohesion = v;
 	return v;
 }
 sf::Vector2f Abductor::computeSeparation(std::vector<Abductor*> agents)
 {
+	neighbourCount = 0;
 	v = sf::Vector2f(0, 0);
 
 	for (int i = 0; i < agents.size(); i++)
@@ -90,11 +97,11 @@ sf::Vector2f Abductor::computeSeparation(std::vector<Abductor*> agents)
 		{
 			float agentDist = sqrt(((agents[i]->getPosition().x - m_pos.x) * (agents[i]->getPosition().x - m_pos.x)) + ((agents[i]->getPosition().y - m_pos.y) * (agents[i]->getPosition().y - m_pos.y)));
 
-			if (agentDist < 100)
+			if (agentDist < 70)
 			{
 				v.x += agents[i]->getPosition().x - m_pos.x;
 				v.y += agents[i]->getPosition().y - m_pos.y;
-				//neighbourCount++;
+				neighbourCount++;
 			}
 		}
 	}
@@ -106,13 +113,13 @@ sf::Vector2f Abductor::computeSeparation(std::vector<Abductor*> agents)
 	v.x /= neighbourCount;
 	v.y /= neighbourCount;
 
-	v.x *= -2;
-	v.y *= -2;
+	v.x *= -1;
+	v.y *= -1;
 
 	v = Normalise(v);
+	separation = v;
 	return v;
 }
-
 
 void Abductor::update()
 {
@@ -163,57 +170,51 @@ void Abductor::abducting()
 
 void Abductor::wander(std::vector<Abductor*> agents)
 {
-	
-	pointToFlock = m_generatedPos - m_pos;
-	pointToFlock = Normalise(pointToFlock);
-
-	alignment = computeAlignment(agents);
-	/*if (neighbourCount != 0)
-	{*/
-		cohesion = computeCohesion(agents);
-		separation = computeSeparation(agents);
+	if (v != sf::Vector2f(0, 0))
+	{
+		pointToFlock = m_generatedPos - m_pos;
+		pointToFlock = Normalise(pointToFlock);
 
 		m_vel.x += (alignment.x + cohesion.x + separation.x) + pointToFlock.x;
 		m_vel.y += (alignment.y + cohesion.y + separation.y) + pointToFlock.y;
 
 		m_vel = Normalise(m_vel);
 
-		m_vel.x = m_vel.x * 0.2;
-		m_vel.y = m_vel.y * 0.2;
+		m_vel.x = m_vel.x * 0.75;
+		m_vel.y = m_vel.y * 0.75;
 
 		m_pos += m_vel;
-		m_sprite.setPosition(m_pos);
-	//}
-	/*else if (neighbourCount ==0)
+		
+
+		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
+
+		if (dist < 30)
+		{
+			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
+			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
+		}
+		
+	}
+	else
 	{
 		m_vel.x = m_generatedPos.x - m_pos.x;
 		m_vel.y = m_generatedPos.y - m_pos.y;
 		m_vel = Normalise(m_vel);
 		m_pos.x += m_vel.x;
 		m_pos.y += m_vel.y;
-		m_sprite.setPosition(m_pos);
+		
 
-		if (m_pos == m_generatedPos)
+		float dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + (m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y));
+
+		if (dist < 30)
 		{
 			m_vel.x = 0;
 			m_vel.y = 0;
-			m_pos.x = m_generatedPos.x + 10;
-			m_generatedPos.x = rand() % 2048 + 1;
-			m_generatedPos.y = rand() % 700 + 1;
+			m_generatedPos.x = rand() % (5500 - 600 + 1) + 600;
+			m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
 		}
-	}*/
-	
-	
-
-	float Dist = sqrt(((m_pos.x - m_generatedPos.x) * (m_pos.x - m_generatedPos.x)) + ((m_pos.y - m_generatedPos.y) * (m_pos.y - m_generatedPos.y)));
-	if (Dist< 10)
-	{
-		//m_vel.x = 0;
-		//	m_vel.y = 0;
-		m_pos.x = m_generatedPos.x + 10;
-		m_generatedPos.x = rand() % (5500 - 60 + 1) + 600;
-		m_generatedPos.y = rand() % (600 - 100 + 1) + 100;
 	}
+	m_sprite.setPosition(m_pos);
 	collisionBox.setPosition(m_pos);
 }
 
@@ -254,8 +255,6 @@ sf::Vector2f Abductor::Normalise(sf::Vector2f velocity)
 	{
 		return sf::Vector2f(0,0);
 	}
-
-	//return velocity;
 }
 sf::Vector2f Abductor::getPosition()
 {

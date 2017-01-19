@@ -74,7 +74,6 @@ void Astronaut::movement(sf::Vector2f abductorPos)
 
 	 m_Sprite.setPosition(m_Pos);
 	 collisionBox.setPosition(m_Pos);
-	// m_circle.setPosition(m_Pos);
 	 seekBox.setPosition(m_Pos);
 }
 sf::RectangleShape Astronaut::getCollisionRect()
@@ -88,7 +87,7 @@ void Astronaut::abducted(sf::Vector2f _abductorPos)
 		m_Pos.y = _abductorPos.y - 15;
 		m_Sprite.setPosition(m_Pos);
 		collisionBox.setPosition(m_Pos);
-		//m_circle.setRadius(0);
+	
 }
 void Astronaut::wander()
 {
@@ -98,8 +97,8 @@ void Astronaut::wander()
 	m_Pos.x += m_Vel.x;
 	m_Sprite.setPosition(m_Pos);
 	collisionBox.setPosition(m_Pos);
-	float abductorDist = sqrt(((m_Pos.x - generatedPos) * (m_Pos.x - generatedPos)) + ((m_Pos.y - generatedPos) * (m_Pos.y - generatedPos)));
-	if (abductorDist < 20)
+	float dist = sqrt(((m_Pos.x - generatedPos) * (m_Pos.x - generatedPos)) + ((m_Pos.y - 690) * (m_Pos.y - 690)));
+	if (dist < 50)
 	{
 		m_Vel.x = 0;
 		m_Pos.x = generatedPos + 10;
